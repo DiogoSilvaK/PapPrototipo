@@ -301,53 +301,139 @@ namespace PapPrototipo
 
         private void InsButton_Click(object sender, EventArgs e)
         {
+            bool aut = true;
+            String query2 = "SELECT * FROM ";
             string SDR ="";
             switch (CBoxTab.Text)
             {
                 case "Serviços":
+                    query2 = "SELECT * FROM Serviço";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
-                    consultaSql = "insert into Serviços(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text + "','" + Data1.Text + "','" + CBox1.Text + "'," + Login.UserLogado + ")";
+                    consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text + "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
+                    if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
                     break;
                 case "Clientes":
+                    query2 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
                     consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "')";
+                    if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "") aut = false;
                     break;
                 case "Lista de Peças":
+                    query2 = "SELECT * FROM Lista_de_peças";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
                     consultaSql = "insert into Lista_de_peças(Cod_Peça, Nome, Marca, Num_Serie, Preco, Cod_Serviço) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
+                    if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox5.Text == "" || CBox1.Text == "") aut = false;
                     break;
                 case "Veiculos":
+                    query2 = "SELECT * FROM Veiculo";
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
                     consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox4.Text + "," + MesAnoV.Text + "," + CBox1.Text + ")";
+                    if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox4.Text =="" || CBox1.Text == "") aut = false;
                     break;
 
             }
                     string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
                     MySqlConnection Conn = new MySqlConnection(ConnectS);
 
-                    DialogResult DR = MessageBox.Show(SDR,"Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            try 
+            if (aut)
             {
-            MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
-
-                Conn.Open();
-
-
-                if(DR == DialogResult.Yes)
+                DialogResult DR = MessageBox.Show(SDR, "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                try
                 {
-                    queryCmd.ExecuteNonQuery();
+                    MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
+
+                    Conn.Open();
+
+
+                    if (DR == DialogResult.Yes)
+                    {
+                        queryCmd.ExecuteNonQuery();
+                    }
+
+
                 }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+
+                    MySqlDataAdapter DataAdapter = new MySqlDataAdapter(query2, Conn);
+                    DataSet DataTemp = new DataSet("tabela");
 
 
+                    //DataAdapter = new MySqlDataAdapter(query2, Conn);
+                    //DataTemp = new DataSet("tabela");
+                    DataAdapter.Fill(DataTemp, "tabela");
+                    TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+                    Conn.Close();
+                }
+                aut = true;
             }
-            catch (MySqlException ex)
+            else 
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("PREENCHA TODOS OS CAMPOS!!","AVISO!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
-            finally
+        }
+
+
+
+        private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            /*
+            
+            
+
+            switch (CBoxTab.Text)
             {
-                Conn.Close();
-            }
+                case "Serviços":
+                    if (TabelaDataGrid.SelectedCells.ToString() != "")
+                    {
+                        TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                        TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                        TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        Data1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        TBox5.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    }
+                    break;
+                case "Clientes":
+                    if (TabelaDataGrid.SelectedCells.ToString() != "")
+                    {
+                        TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                        TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                        TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        
+                    }
+                    break;
+                case "Lista de Peças":
+                    if (TabelaDataGrid.SelectedCells.ToString() != "")
+                    {
+                        TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                        TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                        TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        TBox5.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    }
+                    break;
+                case "Veiculos":
+                    if (TabelaDataGrid.SelectedCells.ToString() != "")
+                    {
+                        TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                        TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                        TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                        TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    }
+                    break;
+            */
+
+            
         }
     }
 }
