@@ -14,6 +14,7 @@ namespace PapPrototipo
 {
     public partial class Registro : Form
     {
+        bool login = false;
         public Registro()
         {
             InitializeComponent();
@@ -59,6 +60,28 @@ namespace PapPrototipo
                     Conn.Close();
                 }
             }
+        }
+
+        private void Registro_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Registro_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(!login)
+            {
+                Application.Exit();
+                login = false;
+            }
+        }
+
+        private void VoltarBut_Click(object sender, EventArgs e)
+        {
+            login = true;
+            Login loginForm = new Login();
+            loginForm.Show();
+            this.Close();
         }
     }
 }

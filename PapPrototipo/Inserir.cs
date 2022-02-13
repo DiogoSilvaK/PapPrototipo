@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions; 
 
 namespace PapPrototipo
 {
+    
     public partial class FormInserir : Form
     {
         static string consultaSql;
+        int erro = 0;
         public FormInserir()
         {
             InitializeComponent();
@@ -73,6 +76,14 @@ namespace PapPrototipo
 
         public void CBoxTab_SelectedIndexChanged(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
+            errorProvider2.Clear();
+            errorProvider3.Clear();
+            errorProvider4.Clear();
+            errorProvider5.Clear();
+            errorProvider6.Clear();
+            errorProvider7.Clear();
+            errorProvider8.Clear();
             TBox1.Clear();
             TBox2.Clear();
             TBox3.Clear();
@@ -302,40 +313,42 @@ namespace PapPrototipo
         private void InsButton_Click(object sender, EventArgs e)
         {
             bool aut = true;
-            String query2 = "SELECT * FROM ";
+            bool aut1 = true; 
+            String consultaSql1 = "SELECT * FROM Cliente ";
             string SDR ="";
             switch (CBoxTab.Text)
             {
                 case "Serviços":
-                    query2 = "SELECT * FROM Serviço";
+                    consultaSql1 = "SELECT * FROM Serviço";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
                     consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text + "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
+                    //if(errorProvider1.GetError() == "")
                     break;
                 case "Clientes":
-                    query2 = "SELECT * FROM Cliente";
+                    consultaSql1 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
                     consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "") aut = false;
                     break;
                 case "Lista de Peças":
-                    query2 = "SELECT * FROM Lista_de_peças";
+                    consultaSql1 = "SELECT * FROM Lista_de_peças";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
                     consultaSql = "insert into Lista_de_peças(Cod_Peça, Nome, Marca, Num_Serie, Preco, Cod_Serviço) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox5.Text == "" || CBox1.Text == "") aut = false;
                     break;
-                case "Veiculos":
-                    query2 = "SELECT * FROM Veiculo";
+                case "Veículos":
+                    consultaSql1 = "SELECT * FROM Veiculo";
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
-                    consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox4.Text + "," + MesAnoV.Text + "," + CBox1.Text + ")";
-                    if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox4.Text =="" || CBox1.Text == "") aut = false;
+                    consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox5.Text + ",'" + MesAnoV.Text + "'," + CBox1.Text + ")";
+                    if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox5.Text =="" || CBox1.Text == "") aut = false;
                     break;
 
             }
                     string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
                     MySqlConnection Conn = new MySqlConnection(ConnectS);
 
-            if (aut)
+            if (aut && erro <= 0)
             {
                 DialogResult DR = MessageBox.Show(SDR, "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 try
@@ -358,22 +371,41 @@ namespace PapPrototipo
                 }
                 finally
                 {
+                    
 
-                    MySqlDataAdapter DataAdapter = new MySqlDataAdapter(query2, Conn);
-                    DataSet DataTemp = new DataSet("tabela");
+                    MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
+                    DataSet DataTemp = new DataSet();
 
 
                     //DataAdapter = new MySqlDataAdapter(query2, Conn);
                     //DataTemp = new DataSet("tabela");
                     DataAdapter.Fill(DataTemp, "tabela");
                     TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+
+                    // Set your desired AutoSize Mode:
+                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                    // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
+                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    {
+                        // Store Auto Sized Widths:
+                        int colw = TabelaDataGrid.Columns[i].Width;
+
+                        // Remove AutoSizing:
+                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                        // Set Width to calculated AutoSize value:
+                        TabelaDataGrid.Columns[i].Width = colw;
+                    }
                     Conn.Close();
                 }
                 aut = true;
             }
             else 
             {
-                MessageBox.Show("PREENCHA TODOS OS CAMPOS!!","AVISO!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("PREENCHA TODOS OS CAMPOS OU VERIFIQUE SE TODOS ESTÃO BEM PREENCHIDOS!!","AVISO!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
         }
 
@@ -434,6 +466,550 @@ namespace PapPrototipo
             */
 
             
+        }
+
+
+        //A Validação das TextBoxes 
+        private void TBox1_Validating(object sender, CancelEventArgs e)
+        {
+
+            switch (CBoxTab.Text)
+            {
+                case "Clientes":
+                    if (TBox1.Text == "")
+                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
+                    else
+                    {
+                        
+                        Regex CodClienteCheck = new Regex(@"^[0-9]{1,11}$");
+                        if (!CodClienteCheck.IsMatch(TBox1.Text)) 
+                        {
+                            errorProvider1.SetError(TBox1, "Insira apenas números!!");
+                            
+                        }
+                        else 
+                        { 
+                            errorProvider1.SetError(TBox1, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Veículos":
+
+                    if (TBox1.Text == "")
+                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
+                    else
+                    {
+                        
+                        Regex MarcaCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                        if (!MarcaCheck.IsMatch(TBox1.Text)) 
+                        { 
+                            errorProvider1.SetError(TBox1, "Insira uma marca válida!!");
+                           
+                        }
+                        else 
+                        {
+                            errorProvider1.SetError(TBox1, "");
+                           
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Lista_de_peças":
+
+                    if (TBox1.Text == "")
+                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
+                    else
+                    {
+                        
+                        Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
+                        if (!CodPecaCheck.IsMatch(TBox1.Text)) 
+                        { 
+                            errorProvider1.SetError(TBox1, "Insira apenas números!!");
+                            
+                        }
+                        else 
+                        { 
+                            errorProvider1.SetError(TBox1, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Serviços":
+
+                    if (TBox1.Text == "")
+                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
+                    else
+                    {
+                        
+                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
+                        if (!CodServicoCheck.IsMatch(TBox1.Text)) 
+                        {
+                            errorProvider1.SetError(TBox1, "Insira apenas números!!");
+                            
+                        }
+                        else
+                        { 
+                            errorProvider1.SetError(TBox1, "");
+                            
+                        }
+                    }
+                    break;
+
+            }
+
+        }
+
+        private void TBox2_Validating(object sender, CancelEventArgs e)
+        {
+
+
+                switch (CBoxTab.Text)
+                {
+                    case "Clientes":
+                        if (TBox2.Text == "")
+                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
+                        else
+                        {
+                            
+                            Regex NomeCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                            if (!NomeCheck.IsMatch(TBox2.Text)) { errorProvider2.SetError(TBox2, "Insira um nome válida!");}
+                            else
+                            {
+                                errorProvider2.SetError(TBox2, "");
+                                
+                            }
+                        }
+                    break;
+                    
+
+
+                    case "Veículos":
+
+                        if (TBox2.Text == "")
+                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
+                        else
+                        {
+                        
+                            Regex ModeloCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                            if (!ModeloCheck.IsMatch(TBox2.Text))
+                            {
+                            errorProvider2.SetError(TBox2, "Insira um modelo válido!!");
+                            
+                            }
+                            else
+                            { 
+                                errorProvider2.SetError(TBox2, "");
+                                
+                            }
+                        }
+                    break;
+                    
+
+
+                    case "Lista_de_peças":
+
+                        if (TBox2.Text == "")
+                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
+                        else
+                        {
+                            
+                            Regex NomeCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                            if (!NomeCheck.IsMatch(TBox2.Text)) 
+                            { 
+                            errorProvider2.SetError(TBox2, "Insira um nome válido!!");
+                            
+                            }
+                            else 
+                            { 
+                                errorProvider2.SetError(TBox2, "");
+                                
+                            }
+                        }
+                    break;
+                    
+
+
+                    case "Serviços":
+
+                    
+                        if (TBox2.Text == "")
+                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
+                        else
+                        {
+                           
+                            Regex TituloCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                            if (!TituloCheck.IsMatch(TBox2.Text)) 
+                            { 
+                            errorProvider2.SetError(TBox2, "Insira um titulo válido!!");
+                            
+                        }
+                            else 
+                            { 
+                                errorProvider2.SetError(TBox2, "");
+                                
+                            }
+                        }
+                    
+
+                    break;
+
+                }
+        }
+
+        private void TBox3_Validating(object sender, CancelEventArgs e)
+        {
+
+            switch (CBoxTab.Text)
+            {
+                case "Clientes":
+                    if (TBox3.Text == "")
+                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        
+                        Regex NContCheck = new Regex(@"^[0-9]{9}$");
+                        if (!NContCheck.IsMatch(TBox3.Text)) 
+                        { 
+                            errorProvider3.SetError(TBox3, "Insira apenas números!!");
+                            
+                        }
+                        else 
+                        { 
+                            errorProvider3.SetError(TBox3, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Veículos":
+
+                    if (TBox3.Text == "")
+                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                       
+                        Regex MatriculaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
+                        if (!MatriculaCheck.IsMatch(TBox3.Text))
+                        { 
+                            errorProvider3.SetError(TBox3, "Insira uma matricula válida!!");
+                           
+                        }
+                        else 
+                        { 
+                            errorProvider3.SetError(TBox3, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Lista_de_peças":
+
+                    if (TBox3.Text == "")
+                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        
+                        Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9_ ]{3,40}$");
+                        if (!MarcaCheck.IsMatch(TBox3.Text)) 
+                        { 
+                            errorProvider3.SetError(TBox3, "Insira uma marca válida!!");
+                            
+                        }
+                        else 
+                        {
+                            errorProvider3.SetError(TBox3, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Serviços":
+                    /*
+                    if (TBox3.Text == "")
+                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
+                        if (!CodServicoCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
+                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
+                    }
+                    */
+                    break;
+
+            }
+        }
+
+        private void TBox4_Validating(object sender, CancelEventArgs e)
+        {
+
+            switch (CBoxTab.Text)
+            {
+                case "Clientes":
+                    if (TBox4.Text == "")
+                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
+                    else
+                    {
+                        
+                        Regex MoradaCheck = new Regex(@"^[a-zA-Z0-9._ ]{10,40}$");
+                        if (!MoradaCheck.IsMatch(TBox4.Text)) 
+                        { 
+                            errorProvider4.SetError(TBox4, "Insira uma morada válida!!");
+                            
+                        }
+                        else 
+                        { 
+                            errorProvider4.SetError(TBox4, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Veículos":
+                    /*
+                    if (TBox4.Text == "")
+                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
+                    else
+                    {
+                        Regex MatriculaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
+                        if (!MatriculaCheck.IsMatch(TBox4.Text)) { errorProvider4.SetError(TBox4, "Insira uma matricula válida!!"); InsButton.Enabled = false; }
+                        else { errorProvider4.SetError(TBox4, ""); InsButton.Enabled = true; }
+                    }
+                    */
+                    break;
+
+
+
+                case "Lista_de_peças":
+
+                    if (TBox4.Text == "")
+                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
+                    else
+                    {
+                        
+                        Regex PrecoCheck = new Regex(@"^[0-9]{1,4}$");
+                        if (!PrecoCheck.IsMatch(TBox4.Text)) 
+                        { 
+                            errorProvider4.SetError(TBox4, "Insira apenas números e até 4 digitos!!");
+                            
+                        }
+                        else 
+                        { 
+                            errorProvider4.SetError(TBox4, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Serviços":
+                    
+                    if (TBox4.Text == "")
+                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
+                    else
+                    {
+                        
+                        Regex HorasCheck = new Regex(@"^[0-9]{1,3}$");
+                        if (!HorasCheck.IsMatch(TBox4.Text)) 
+                        { 
+                            errorProvider4.SetError(TBox4, "Insira apenas números e até 3 digitos!!");
+                            
+                        }
+                        else 
+                        { 
+                            errorProvider4.SetError(TBox4, "");
+                            
+                        }
+                    }
+                    
+                    break;
+            }
+
+
+
+        }
+
+        private void TBox5_Validating(object sender, CancelEventArgs e)
+        {
+            
+            switch (CBoxTab.Text)
+            {
+                case "Clientes":
+                    /*
+                    if (TBox3.Text == "")
+                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        Regex NContCheck = new Regex(@"^[0-9]{9}$");
+                        if (!NContCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
+                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
+                    }
+                    
+                    */
+                    break;
+
+                case "Veículos":
+
+                    if (TBox5.Text == "")
+                    { errorProvider5.SetError(TBox5, "Insira o " + labelIns5.Text); }
+                    else
+                    {
+                        
+                        Regex CilindradaCheck = new Regex(@"^[0-9]{2,4}$");
+                        if (!CilindradaCheck.IsMatch(TBox5.Text))
+                        { 
+                            errorProvider5.SetError(TBox5, "Insira apenas números!!");
+                            
+                        }
+                        else
+                        {
+                            errorProvider5.SetError(TBox5, "");
+                            
+                        }
+                    }
+                    break;
+
+
+
+                case "Lista_de_peças":
+                    /*
+                    if (TBox3.Text == "")
+                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9_]{3,40}$");
+                        if (!MarcaCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
+                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
+                    }
+                    */
+                    break;
+
+
+
+                case "Serviços":
+                    /*
+                    if (TBox3.Text == "")
+                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
+                        if (!CodServicoCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
+                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
+                    }
+                    */
+                    break;
+
+            }
+
+
+
+        }
+
+        private void TBox6_Validating(object sender, CancelEventArgs e)
+        {
+
+            switch (CBoxTab.Text)
+            {
+                case "Clientes":
+                    /*
+                    if (TBox3.Text == "")
+                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        Regex NContCheck = new Regex(@"^[0-9]{9}$");
+                        if (!NContCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
+                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
+                    }
+                    
+                    */
+                    break;
+
+                case "Veículos":
+                    /*
+                    if (TBox5.Text == "")
+                    { errorProvider5.SetError(TBox5, "Insira o " + labelIns5.Text); }
+                    else
+                    {
+                        Regex CilindradaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
+                        if (!CilindradaCheck.IsMatch(TBox5.Text)) { errorProvider5.SetError(TBox5, "Insira uma matricula válida!!"); InsButton.Enabled = false; }
+                        else { errorProvider5.SetError(TBox5, ""); InsButton.Enabled = true; }
+                    }
+                    */
+                    break;
+
+
+
+                case "Lista_de_peças":
+                    
+                    if (TBox6.Text == "")
+                    { errorProvider6.SetError(TBox6, "Insira o " + labelIns6.Text); }
+                    else
+                    {
+                        
+                        Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9_ ]{3,40}$");
+                        if (!MarcaCheck.IsMatch(TBox6.Text))
+                        { 
+                            errorProvider6.SetError(TBox6, "Insira uma marca válida!!");
+                            
+                        }
+                        else 
+                        { 
+                            errorProvider6.SetError(TBox6, "");
+                            
+                        }
+                    }
+                    
+                    break;
+
+
+
+                case "Serviços":
+                    /*
+                    if (TBox3.Text == "")
+                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
+                    else
+                    {
+                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
+                        if (!CodServicoCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
+                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
+                    }
+                    */
+                    break;
+
+            }
+
+
+
+        }
+
+        private void RTBDescricao_Validating(object sender, CancelEventArgs e)
+        {
+            if (RTBDescricao.Text== "")
+            {
+                
+            }
+            else
+            {
+              
+            }
         }
     }
 }

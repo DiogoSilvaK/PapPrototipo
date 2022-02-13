@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,11 +58,27 @@
             this.TBox1 = new System.Windows.Forms.TextBox();
             this.InsButton = new System.Windows.Forms.Button();
             this.labelIns1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider5 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider6 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider7 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider8 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.ListaDePeçasGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).BeginInit();
             this.Gbox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider8)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -95,7 +112,7 @@
             this.ListaDePeçasGroupBox.Size = new System.Drawing.Size(1049, 377);
             this.ListaDePeçasGroupBox.TabIndex = 5;
             this.ListaDePeçasGroupBox.TabStop = false;
-            this.ListaDePeçasGroupBox.Text = "Lista de Peças";
+            this.ListaDePeçasGroupBox.Text = "Tabela";
             // 
             // TabelaDataGrid
             // 
@@ -188,6 +205,7 @@
             this.TBox6.Name = "TBox6";
             this.TBox6.Size = new System.Drawing.Size(173, 26);
             this.TBox6.TabIndex = 32;
+            this.TBox6.Validating += new System.ComponentModel.CancelEventHandler(this.TBox6_Validating);
             // 
             // labelIns7
             // 
@@ -208,6 +226,7 @@
             this.TBox5.Name = "TBox5";
             this.TBox5.Size = new System.Drawing.Size(173, 26);
             this.TBox5.TabIndex = 30;
+            this.TBox5.Validating += new System.ComponentModel.CancelEventHandler(this.TBox5_Validating);
             // 
             // labelIns6
             // 
@@ -228,6 +247,7 @@
             this.TBox4.Name = "TBox4";
             this.TBox4.Size = new System.Drawing.Size(173, 26);
             this.TBox4.TabIndex = 28;
+            this.TBox4.Validating += new System.ComponentModel.CancelEventHandler(this.TBox4_Validating);
             // 
             // labelIns5
             // 
@@ -242,6 +262,7 @@
             // 
             // CBoxTab
             // 
+            this.CBoxTab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBoxTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CBoxTab.FormattingEnabled = true;
             this.CBoxTab.Items.AddRange(new object[] {
@@ -270,19 +291,20 @@
             // 
             this.RTBDescricao.BackColor = System.Drawing.Color.White;
             this.RTBDescricao.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RTBDescricao.Location = new System.Drawing.Point(595, 55);
+            this.RTBDescricao.Location = new System.Drawing.Point(643, 55);
             this.RTBDescricao.Name = "RTBDescricao";
-            this.RTBDescricao.Size = new System.Drawing.Size(448, 192);
+            this.RTBDescricao.Size = new System.Drawing.Size(400, 192);
             this.RTBDescricao.TabIndex = 24;
             this.RTBDescricao.Text = "";
+            this.RTBDescricao.Validating += new System.ComponentModel.CancelEventHandler(this.RTBDescricao_Validating);
             // 
             // labelIns9
             // 
             this.labelIns9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelIns9.ForeColor = System.Drawing.Color.White;
-            this.labelIns9.Location = new System.Drawing.Point(595, 20);
+            this.labelIns9.Location = new System.Drawing.Point(643, 20);
             this.labelIns9.Name = "labelIns9";
-            this.labelIns9.Size = new System.Drawing.Size(448, 27);
+            this.labelIns9.Size = new System.Drawing.Size(400, 27);
             this.labelIns9.TabIndex = 23;
             this.labelIns9.Text = "Descrição:";
             this.labelIns9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -316,6 +338,7 @@
             this.TBox3.Name = "TBox3";
             this.TBox3.Size = new System.Drawing.Size(173, 26);
             this.TBox3.TabIndex = 20;
+            this.TBox3.Validating += new System.ComponentModel.CancelEventHandler(this.TBox3_Validating);
             // 
             // labelIns3
             // 
@@ -336,6 +359,7 @@
             this.TBox2.Name = "TBox2";
             this.TBox2.Size = new System.Drawing.Size(173, 26);
             this.TBox2.TabIndex = 18;
+            this.TBox2.Validating += new System.ComponentModel.CancelEventHandler(this.TBox2_Validating);
             // 
             // labelIns2
             // 
@@ -356,6 +380,7 @@
             this.TBox1.Name = "TBox1";
             this.TBox1.Size = new System.Drawing.Size(173, 26);
             this.TBox1.TabIndex = 13;
+            this.TBox1.Validating += new System.ComponentModel.CancelEventHandler(this.TBox1_Validating);
             // 
             // InsButton
             // 
@@ -388,6 +413,38 @@
             this.labelIns1.Text = "Titulo:";
             this.labelIns1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
+            // errorProvider5
+            // 
+            this.errorProvider5.ContainerControl = this;
+            // 
+            // errorProvider6
+            // 
+            this.errorProvider6.ContainerControl = this;
+            // 
+            // errorProvider7
+            // 
+            this.errorProvider7.ContainerControl = this;
+            // 
+            // errorProvider8
+            // 
+            this.errorProvider8.ContainerControl = this;
+            // 
             // FormInserir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,6 +466,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).EndInit();
             this.Gbox1.ResumeLayout(false);
             this.Gbox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -442,5 +507,13 @@
         private System.Windows.Forms.Button InsButton;
         private System.Windows.Forms.Label labelIns1;
         private System.Windows.Forms.ComboBox CBox1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
+        private System.Windows.Forms.ErrorProvider errorProvider5;
+        private System.Windows.Forms.ErrorProvider errorProvider6;
+        private System.Windows.Forms.ErrorProvider errorProvider7;
+        private System.Windows.Forms.ErrorProvider errorProvider8;
     }
 }

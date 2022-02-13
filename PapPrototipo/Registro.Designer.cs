@@ -31,14 +31,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.UserPicBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.NomeLabel = new System.Windows.Forms.Label();
+            this.NomeTextBox = new System.Windows.Forms.TextBox();
             this.RegistrarBut = new System.Windows.Forms.Button();
             this.PassLabel = new System.Windows.Forms.Label();
             this.PassTextBox = new System.Windows.Forms.TextBox();
             this.UserLabel = new System.Windows.Forms.Label();
             this.UserTextBox = new System.Windows.Forms.TextBox();
             this.LoginLabel = new System.Windows.Forms.Label();
-            this.NomeLabel = new System.Windows.Forms.Label();
-            this.NomeTextBox = new System.Windows.Forms.TextBox();
+            this.VoltarBut = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserPicBox)).BeginInit();
             this.panel1.SuspendLayout();
@@ -70,6 +71,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.VoltarBut);
             this.panel1.Controls.Add(this.NomeLabel);
             this.panel1.Controls.Add(this.NomeTextBox);
             this.panel1.Controls.Add(this.RegistrarBut);
@@ -84,6 +86,29 @@
             this.panel1.Size = new System.Drawing.Size(383, 477);
             this.panel1.TabIndex = 3;
             // 
+            // NomeLabel
+            // 
+            this.NomeLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.NomeLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.NomeLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NomeLabel.ForeColor = System.Drawing.Color.White;
+            this.NomeLabel.Location = new System.Drawing.Point(111, 117);
+            this.NomeLabel.Name = "NomeLabel";
+            this.NomeLabel.Size = new System.Drawing.Size(160, 32);
+            this.NomeLabel.TabIndex = 7;
+            this.NomeLabel.Text = "Nome";
+            this.NomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NomeTextBox
+            // 
+            this.NomeTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.NomeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NomeTextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NomeTextBox.Location = new System.Drawing.Point(113, 152);
+            this.NomeTextBox.Name = "NomeTextBox";
+            this.NomeTextBox.Size = new System.Drawing.Size(160, 27);
+            this.NomeTextBox.TabIndex = 8;
+            // 
             // RegistrarBut
             // 
             this.RegistrarBut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -97,9 +122,9 @@
             this.RegistrarBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RegistrarBut.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RegistrarBut.ForeColor = System.Drawing.Color.White;
-            this.RegistrarBut.Location = new System.Drawing.Point(3, 441);
+            this.RegistrarBut.Location = new System.Drawing.Point(194, 441);
             this.RegistrarBut.Name = "RegistrarBut";
-            this.RegistrarBut.Size = new System.Drawing.Size(375, 31);
+            this.RegistrarBut.Size = new System.Drawing.Size(184, 31);
             this.RegistrarBut.TabIndex = 6;
             this.RegistrarBut.Text = "Registrar";
             this.RegistrarBut.UseVisualStyleBackColor = false;
@@ -164,28 +189,26 @@
             this.LoginLabel.Text = "AutoMobil Manager";
             this.LoginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // NomeLabel
+            // VoltarBut
             // 
-            this.NomeLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.NomeLabel.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.NomeLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NomeLabel.ForeColor = System.Drawing.Color.White;
-            this.NomeLabel.Location = new System.Drawing.Point(111, 117);
-            this.NomeLabel.Name = "NomeLabel";
-            this.NomeLabel.Size = new System.Drawing.Size(160, 32);
-            this.NomeLabel.TabIndex = 7;
-            this.NomeLabel.Text = "Nome";
-            this.NomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // NomeTextBox
-            // 
-            this.NomeTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.NomeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NomeTextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NomeTextBox.Location = new System.Drawing.Point(113, 152);
-            this.NomeTextBox.Name = "NomeTextBox";
-            this.NomeTextBox.Size = new System.Drawing.Size(160, 27);
-            this.NomeTextBox.TabIndex = 8;
+            this.VoltarBut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.VoltarBut.BackColor = System.Drawing.Color.DimGray;
+            this.VoltarBut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.VoltarBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.VoltarBut.FlatAppearance.BorderSize = 2;
+            this.VoltarBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
+            this.VoltarBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.VoltarBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.VoltarBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VoltarBut.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VoltarBut.ForeColor = System.Drawing.Color.White;
+            this.VoltarBut.Location = new System.Drawing.Point(3, 441);
+            this.VoltarBut.Name = "VoltarBut";
+            this.VoltarBut.Size = new System.Drawing.Size(185, 31);
+            this.VoltarBut.TabIndex = 9;
+            this.VoltarBut.Text = "Voltar";
+            this.VoltarBut.UseVisualStyleBackColor = false;
+            this.VoltarBut.Click += new System.EventHandler(this.VoltarBut_Click);
             // 
             // Registro
             // 
@@ -199,6 +222,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Registro";
             this.Text = "Registro";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Registro_FormClosing);
+            this.Load += new System.EventHandler(this.Registro_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UserPicBox)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -220,5 +245,6 @@
         private System.Windows.Forms.Label LoginLabel;
         private System.Windows.Forms.Label NomeLabel;
         private System.Windows.Forms.TextBox NomeTextBox;
+        private System.Windows.Forms.Button VoltarBut;
     }
 }
