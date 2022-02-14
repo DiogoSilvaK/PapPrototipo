@@ -16,7 +16,7 @@ namespace PapPrototipo
     public partial class FormInserir : Form
     {
         static string consultaSql;
-        int erro = 0;
+        //int erro = 0;
         public FormInserir()
         {
             InitializeComponent();
@@ -129,7 +129,7 @@ namespace PapPrototipo
                     
                     
 
-                    ConsultaSql = "Select * from Serviço";
+                    ConsultaSql = "Select Titulo from Serviço";
                     MySqlCommand queryCmd = new MySqlCommand(ConsultaSql,Conn);
                     try
                     {
@@ -186,7 +186,7 @@ namespace PapPrototipo
                     CBox1.Items.Clear();
                     
                     
-                    ConsultaSql = "Select * from Veiculo";
+                    ConsultaSql = "Select Matricula from Veiculo";
                     MySqlCommand queryCmd1 = new MySqlCommand(ConsultaSql, Conn);
                     try
                     {
@@ -197,7 +197,7 @@ namespace PapPrototipo
                             int NumCol = leitor.FieldCount;
                             while (leitor.Read())
                             {
-                                CBox1.Items.Add(leitor.GetValue(2));
+                                CBox1.Items.Add(leitor.GetValue(0));
                             }
                         }
                         Conn.Close();
@@ -241,7 +241,7 @@ namespace PapPrototipo
                 break;
                 case "Veículos":
                     CBox1.Items.Clear();
-                    ConsultaSql = "Select * from Cliente";
+                    ConsultaSql = "Select Nome from Cliente";
                     MySqlCommand queryCmd2 = new MySqlCommand(ConsultaSql, Conn);
                     try
                     {
@@ -318,37 +318,238 @@ namespace PapPrototipo
             string SDR ="";
             switch (CBoxTab.Text)
             {
+
+
+
+                //Caso ComboBox das tabelas tiver como opção "Serviços"
                 case "Serviços":
                     consultaSql1 = "SELECT * FROM Serviço";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
                     consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text + "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
-                    //if(errorProvider1.GetError() == "")
+
+
+
+                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
+                        if (!CodServicoCheck.IsMatch(TBox1.Text))
+                        {
+                           aut1 = false;
+                            errorProvider2.SetError(TBox2, "Insira um titulo válido!!");
+                        }
+                        else
+                        {  
+                            errorProvider2.SetError(TBox2, "");
+                        }
+
+                        Regex TituloCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                        if (!TituloCheck.IsMatch(TBox2.Text))
+                        {
+                            errorProvider2.SetError(TBox2, "Insira um titulo válido!!");
+                            aut1 = false;
+                        }
+                        else
+                        {
+                            errorProvider2.SetError(TBox2, "");
+                        }
+
+                        Regex HorasCheck = new Regex(@"^[0-9]{1,3}$");
+                        if (!HorasCheck.IsMatch(TBox4.Text))
+                        {
+                            errorProvider4.SetError(TBox4, "Insira apenas números e até 3 digitos!!");
+                            aut1 = false; 
+                        }
+                        else
+                        {
+                            errorProvider4.SetError(TBox4, "");
+                        }
+
+
                     break;
+
+
                 case "Clientes":
                     consultaSql1 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
                     consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "") aut = false;
+
+
+
+                    Regex CodClienteCheck = new Regex(@"^[0-9]{1,11}$");
+                    if (!CodClienteCheck.IsMatch(TBox1.Text))
+                    {
+                        errorProvider1.SetError(TBox1, "Insira apenas números!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(TBox1, "");
+
+                    }
+
+                    Regex NomeCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                    if (!NomeCheck.IsMatch(TBox2.Text))
+                    {
+                        errorProvider2.SetError(TBox2, "Insira um nome válida!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider2.SetError(TBox2, "");
+
+                    }
+
+                    Regex NContCheck = new Regex(@"^[0-9]{9}$");
+                    if (!NContCheck.IsMatch(TBox3.Text))
+                    {
+                        errorProvider3.SetError(TBox3, "Insira apenas números!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider3.SetError(TBox3, "");
+
+                    }
+
+                    Regex MoradaCheck = new Regex(@"^[a-zA-Z0-9._ ]{10,40}$");
+                    if (!MoradaCheck.IsMatch(TBox4.Text))
+                    {
+                        errorProvider4.SetError(TBox4, "Insira uma morada válida!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider4.SetError(TBox4, "");
+
+                    }
+
+
                     break;
+
+
                 case "Lista de Peças":
                     consultaSql1 = "SELECT * FROM Lista_de_peças";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
                     consultaSql = "insert into Lista_de_peças(Cod_Peça, Nome, Marca, Num_Serie, Preco, Cod_Serviço) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox5.Text == "" || CBox1.Text == "") aut = false;
+
+                    Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
+                    if (!CodPecaCheck.IsMatch(TBox1.Text))
+                    {
+                        errorProvider1.SetError(TBox1, "Insira apenas números!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(TBox1, "");
+
+                    }
+
+                    Regex Nome1Check = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                    if (!Nome1Check.IsMatch(TBox2.Text))
+                    {
+                        errorProvider2.SetError(TBox2, "Insira um nome válido!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider2.SetError(TBox2, "");
+
+                    }
+
+                    Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9_ ]{3,40}$");
+                    if (!MarcaCheck.IsMatch(TBox3.Text))
+                    {
+                        errorProvider3.SetError(TBox3, "Insira uma marca válida!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider3.SetError(TBox3, "");
+
+                    }
+
+                    Regex PrecoCheck = new Regex(@"^[0-9]{1,4}$");
+                    if (!PrecoCheck.IsMatch(TBox4.Text))
+                    {
+                        errorProvider4.SetError(TBox4, "Insira apenas números e até 4 digitos!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider4.SetError(TBox4, "");
+
+                    }
+
+
+
                     break;
+
+
                 case "Veículos":
                     consultaSql1 = "SELECT * FROM Veiculo";
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
                     consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox5.Text + ",'" + MesAnoV.Text + "'," + CBox1.Text + ")";
                     if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox5.Text =="" || CBox1.Text == "") aut = false;
+
+                    Regex Marca1Check = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                    if (!Marca1Check.IsMatch(TBox1.Text))
+                    {
+                        errorProvider1.SetError(TBox1, "Insira uma marca válida!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(TBox1, "");
+
+
+                    }
+
+                    Regex ModeloCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
+                    if (!ModeloCheck.IsMatch(TBox2.Text))
+                    {
+                        errorProvider2.SetError(TBox2, "Insira um modelo válido!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider2.SetError(TBox2, "");
+
+                    }
+
+                    Regex MatriculaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
+                    if (!MatriculaCheck.IsMatch(TBox3.Text))
+                    {
+                        errorProvider3.SetError(TBox3, "Insira uma matricula válida!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider3.SetError(TBox3, "");
+
+                    }
+
+                    Regex CilindradaCheck = new Regex(@"^[0-9]{2,4}$");
+                    if (!CilindradaCheck.IsMatch(TBox5.Text))
+                    {
+                        errorProvider5.SetError(TBox5, "Insira apenas números!!");
+                        aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider5.SetError(TBox5, "");
+
+                    }
+
                     break;
+
+
 
             }
                     string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
                     MySqlConnection Conn = new MySqlConnection(ConnectS);
 
-            if (aut && erro <= 0)
+            if (aut && aut1)
             {
                 DialogResult DR = MessageBox.Show(SDR, "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 try
@@ -406,6 +607,7 @@ namespace PapPrototipo
             else 
             {
                 MessageBox.Show("PREENCHA TODOS OS CAMPOS OU VERIFIQUE SE TODOS ESTÃO BEM PREENCHIDOS!!","AVISO!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                aut1 = false;
             }
         }
 
@@ -414,9 +616,6 @@ namespace PapPrototipo
         private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            /*
-            
-            
 
             switch (CBoxTab.Text)
             {
@@ -463,553 +662,10 @@ namespace PapPrototipo
                         CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
                     }
                     break;
-            */
-
-            
-        }
-
-
-        //A Validação das TextBoxes 
-        private void TBox1_Validating(object sender, CancelEventArgs e)
-        {
-
-            switch (CBoxTab.Text)
-            {
-                case "Clientes":
-                    if (TBox1.Text == "")
-                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
-                    else
-                    {
-                        
-                        Regex CodClienteCheck = new Regex(@"^[0-9]{1,11}$");
-                        if (!CodClienteCheck.IsMatch(TBox1.Text)) 
-                        {
-                            errorProvider1.SetError(TBox1, "Insira apenas números!!");
-                            
-                        }
-                        else 
-                        { 
-                            errorProvider1.SetError(TBox1, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Veículos":
-
-                    if (TBox1.Text == "")
-                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
-                    else
-                    {
-                        
-                        Regex MarcaCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
-                        if (!MarcaCheck.IsMatch(TBox1.Text)) 
-                        { 
-                            errorProvider1.SetError(TBox1, "Insira uma marca válida!!");
-                           
-                        }
-                        else 
-                        {
-                            errorProvider1.SetError(TBox1, "");
-                           
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Lista_de_peças":
-
-                    if (TBox1.Text == "")
-                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
-                    else
-                    {
-                        
-                        Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
-                        if (!CodPecaCheck.IsMatch(TBox1.Text)) 
-                        { 
-                            errorProvider1.SetError(TBox1, "Insira apenas números!!");
-                            
-                        }
-                        else 
-                        { 
-                            errorProvider1.SetError(TBox1, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Serviços":
-
-                    if (TBox1.Text == "")
-                    { errorProvider1.SetError(TBox1, "Insira o " + labelIns1.Text); }
-                    else
-                    {
-                        
-                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
-                        if (!CodServicoCheck.IsMatch(TBox1.Text)) 
-                        {
-                            errorProvider1.SetError(TBox1, "Insira apenas números!!");
-                            
-                        }
-                        else
-                        { 
-                            errorProvider1.SetError(TBox1, "");
-                            
-                        }
-                    }
-                    break;
-
             }
 
         }
 
-        private void TBox2_Validating(object sender, CancelEventArgs e)
-        {
 
-
-                switch (CBoxTab.Text)
-                {
-                    case "Clientes":
-                        if (TBox2.Text == "")
-                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
-                        else
-                        {
-                            
-                            Regex NomeCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
-                            if (!NomeCheck.IsMatch(TBox2.Text)) { errorProvider2.SetError(TBox2, "Insira um nome válida!");}
-                            else
-                            {
-                                errorProvider2.SetError(TBox2, "");
-                                
-                            }
-                        }
-                    break;
-                    
-
-
-                    case "Veículos":
-
-                        if (TBox2.Text == "")
-                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
-                        else
-                        {
-                        
-                            Regex ModeloCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
-                            if (!ModeloCheck.IsMatch(TBox2.Text))
-                            {
-                            errorProvider2.SetError(TBox2, "Insira um modelo válido!!");
-                            
-                            }
-                            else
-                            { 
-                                errorProvider2.SetError(TBox2, "");
-                                
-                            }
-                        }
-                    break;
-                    
-
-
-                    case "Lista_de_peças":
-
-                        if (TBox2.Text == "")
-                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
-                        else
-                        {
-                            
-                            Regex NomeCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
-                            if (!NomeCheck.IsMatch(TBox2.Text)) 
-                            { 
-                            errorProvider2.SetError(TBox2, "Insira um nome válido!!");
-                            
-                            }
-                            else 
-                            { 
-                                errorProvider2.SetError(TBox2, "");
-                                
-                            }
-                        }
-                    break;
-                    
-
-
-                    case "Serviços":
-
-                    
-                        if (TBox2.Text == "")
-                            { errorProvider2.SetError(TBox2, "Insira o " + labelIns2.Text); }
-                        else
-                        {
-                           
-                            Regex TituloCheck = new Regex(@"^[a-zA-Z_ ]{3,40}$");
-                            if (!TituloCheck.IsMatch(TBox2.Text)) 
-                            { 
-                            errorProvider2.SetError(TBox2, "Insira um titulo válido!!");
-                            
-                        }
-                            else 
-                            { 
-                                errorProvider2.SetError(TBox2, "");
-                                
-                            }
-                        }
-                    
-
-                    break;
-
-                }
-        }
-
-        private void TBox3_Validating(object sender, CancelEventArgs e)
-        {
-
-            switch (CBoxTab.Text)
-            {
-                case "Clientes":
-                    if (TBox3.Text == "")
-                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        
-                        Regex NContCheck = new Regex(@"^[0-9]{9}$");
-                        if (!NContCheck.IsMatch(TBox3.Text)) 
-                        { 
-                            errorProvider3.SetError(TBox3, "Insira apenas números!!");
-                            
-                        }
-                        else 
-                        { 
-                            errorProvider3.SetError(TBox3, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Veículos":
-
-                    if (TBox3.Text == "")
-                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                       
-                        Regex MatriculaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
-                        if (!MatriculaCheck.IsMatch(TBox3.Text))
-                        { 
-                            errorProvider3.SetError(TBox3, "Insira uma matricula válida!!");
-                           
-                        }
-                        else 
-                        { 
-                            errorProvider3.SetError(TBox3, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Lista_de_peças":
-
-                    if (TBox3.Text == "")
-                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        
-                        Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9_ ]{3,40}$");
-                        if (!MarcaCheck.IsMatch(TBox3.Text)) 
-                        { 
-                            errorProvider3.SetError(TBox3, "Insira uma marca válida!!");
-                            
-                        }
-                        else 
-                        {
-                            errorProvider3.SetError(TBox3, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Serviços":
-                    /*
-                    if (TBox3.Text == "")
-                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
-                        if (!CodServicoCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
-                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
-                    }
-                    */
-                    break;
-
-            }
-        }
-
-        private void TBox4_Validating(object sender, CancelEventArgs e)
-        {
-
-            switch (CBoxTab.Text)
-            {
-                case "Clientes":
-                    if (TBox4.Text == "")
-                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
-                    else
-                    {
-                        
-                        Regex MoradaCheck = new Regex(@"^[a-zA-Z0-9._ ]{10,40}$");
-                        if (!MoradaCheck.IsMatch(TBox4.Text)) 
-                        { 
-                            errorProvider4.SetError(TBox4, "Insira uma morada válida!!");
-                            
-                        }
-                        else 
-                        { 
-                            errorProvider4.SetError(TBox4, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Veículos":
-                    /*
-                    if (TBox4.Text == "")
-                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
-                    else
-                    {
-                        Regex MatriculaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
-                        if (!MatriculaCheck.IsMatch(TBox4.Text)) { errorProvider4.SetError(TBox4, "Insira uma matricula válida!!"); InsButton.Enabled = false; }
-                        else { errorProvider4.SetError(TBox4, ""); InsButton.Enabled = true; }
-                    }
-                    */
-                    break;
-
-
-
-                case "Lista_de_peças":
-
-                    if (TBox4.Text == "")
-                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
-                    else
-                    {
-                        
-                        Regex PrecoCheck = new Regex(@"^[0-9]{1,4}$");
-                        if (!PrecoCheck.IsMatch(TBox4.Text)) 
-                        { 
-                            errorProvider4.SetError(TBox4, "Insira apenas números e até 4 digitos!!");
-                            
-                        }
-                        else 
-                        { 
-                            errorProvider4.SetError(TBox4, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Serviços":
-                    
-                    if (TBox4.Text == "")
-                    { errorProvider4.SetError(TBox4, "Insira o " + labelIns4.Text); }
-                    else
-                    {
-                        
-                        Regex HorasCheck = new Regex(@"^[0-9]{1,3}$");
-                        if (!HorasCheck.IsMatch(TBox4.Text)) 
-                        { 
-                            errorProvider4.SetError(TBox4, "Insira apenas números e até 3 digitos!!");
-                            
-                        }
-                        else 
-                        { 
-                            errorProvider4.SetError(TBox4, "");
-                            
-                        }
-                    }
-                    
-                    break;
-            }
-
-
-
-        }
-
-        private void TBox5_Validating(object sender, CancelEventArgs e)
-        {
-            
-            switch (CBoxTab.Text)
-            {
-                case "Clientes":
-                    /*
-                    if (TBox3.Text == "")
-                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        Regex NContCheck = new Regex(@"^[0-9]{9}$");
-                        if (!NContCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
-                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
-                    }
-                    
-                    */
-                    break;
-
-                case "Veículos":
-
-                    if (TBox5.Text == "")
-                    { errorProvider5.SetError(TBox5, "Insira o " + labelIns5.Text); }
-                    else
-                    {
-                        
-                        Regex CilindradaCheck = new Regex(@"^[0-9]{2,4}$");
-                        if (!CilindradaCheck.IsMatch(TBox5.Text))
-                        { 
-                            errorProvider5.SetError(TBox5, "Insira apenas números!!");
-                            
-                        }
-                        else
-                        {
-                            errorProvider5.SetError(TBox5, "");
-                            
-                        }
-                    }
-                    break;
-
-
-
-                case "Lista_de_peças":
-                    /*
-                    if (TBox3.Text == "")
-                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9_]{3,40}$");
-                        if (!MarcaCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
-                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
-                    }
-                    */
-                    break;
-
-
-
-                case "Serviços":
-                    /*
-                    if (TBox3.Text == "")
-                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
-                        if (!CodServicoCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
-                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
-                    }
-                    */
-                    break;
-
-            }
-
-
-
-        }
-
-        private void TBox6_Validating(object sender, CancelEventArgs e)
-        {
-
-            switch (CBoxTab.Text)
-            {
-                case "Clientes":
-                    /*
-                    if (TBox3.Text == "")
-                    { errorProvider3.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        Regex NContCheck = new Regex(@"^[0-9]{9}$");
-                        if (!NContCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
-                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
-                    }
-                    
-                    */
-                    break;
-
-                case "Veículos":
-                    /*
-                    if (TBox5.Text == "")
-                    { errorProvider5.SetError(TBox5, "Insira o " + labelIns5.Text); }
-                    else
-                    {
-                        Regex CilindradaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
-                        if (!CilindradaCheck.IsMatch(TBox5.Text)) { errorProvider5.SetError(TBox5, "Insira uma matricula válida!!"); InsButton.Enabled = false; }
-                        else { errorProvider5.SetError(TBox5, ""); InsButton.Enabled = true; }
-                    }
-                    */
-                    break;
-
-
-
-                case "Lista_de_peças":
-                    
-                    if (TBox6.Text == "")
-                    { errorProvider6.SetError(TBox6, "Insira o " + labelIns6.Text); }
-                    else
-                    {
-                        
-                        Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9_ ]{3,40}$");
-                        if (!MarcaCheck.IsMatch(TBox6.Text))
-                        { 
-                            errorProvider6.SetError(TBox6, "Insira uma marca válida!!");
-                            
-                        }
-                        else 
-                        { 
-                            errorProvider6.SetError(TBox6, "");
-                            
-                        }
-                    }
-                    
-                    break;
-
-
-
-                case "Serviços":
-                    /*
-                    if (TBox3.Text == "")
-                    { errorProvider1.SetError(TBox3, "Insira o " + labelIns3.Text); }
-                    else
-                    {
-                        Regex CodServicoCheck = new Regex(@"^[0-9]{1,11}$");
-                        if (!CodServicoCheck.IsMatch(TBox3.Text)) { errorProvider3.SetError(TBox3, "Insira apenas números!!"); InsButton.Enabled = false; }
-                        else { errorProvider3.SetError(TBox3, ""); InsButton.Enabled = true; }
-                    }
-                    */
-                    break;
-
-            }
-
-
-
-        }
-
-        private void RTBDescricao_Validating(object sender, CancelEventArgs e)
-        {
-            if (RTBDescricao.Text== "")
-            {
-                
-            }
-            else
-            {
-              
-            }
-        }
     }
 }

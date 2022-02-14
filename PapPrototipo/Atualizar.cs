@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace PapPrototipo
 {
@@ -23,24 +24,85 @@ namespace PapPrototipo
         }
 
 
-
-        private void NovoVeiculo_TextChanged(object sender, EventArgs e)
+        private void TabelaCBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string cs = "data source=localhost; database=pap1; user id=root; pwd=''";
+            MySqlConnection Conn = new MySqlConnection(cs);
+            DataSet DataTemp = new DataSet();
 
-        }
 
-        private void VeiculoCBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            switch (TabelaCBox1.Text) 
+            {
 
-        }
 
-        private void VeiculoCBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            /**Verifica se a Combobox VeiculoCBox está selecionada no "Mês/Ano", se sim ele ativa o DateTimePicker de nome
- * MesAnoV, e desativa as textboxes AntigoVeiculo/NovoVeiculo, senão faz o contrario**/
-            if (CampoVeiculo2.Text == "Mês/Ano")
-            { MesAnoV.Enabled = true; NovoVeiculo.Enabled = false; }
-            else { MesAnoV.Enabled = false; NovoVeiculo.Enabled = true; }
+                case "Clientes":
+                    string ConsultaSql = "SELECT * FROM Cliente";
+                    MySqlCommand queryCmd = new MySqlCommand(ConsultaSql, Conn);
+                    
+                    
+                    try 
+                    {
+                        Conn.Open();
+                        MySqlDataReader DataReader = queryCmd.ExecuteReader();
+                        
+                        if(DataReader.HasRows)
+                        {
+                            for (int i = 0; i < DataReader.FieldCount; i++)
+                            {
+                                Campo1.Items.Add(DataReader.GetName(i));
+                                Campo2.Items.Add(DataReader.GetName(i));
+                            }
+
+                        }
+                        Conn.Close();
+                    }
+                    catch(MySqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+
+                    }
+
+                    labelat3.Visible = false;
+                    DataServicos.Visible = false;
+                    DescricaoRTR.Visible = false;
+                    labelat6.Visible = false;
+                    break;
+
+
+                case "Serviços":
+                    labelat3.Visible = true;
+                    DataServicos.Visible = true;
+                    labelat3.Text = "Data:";
+                    DataServicos.Format = DateTimePickerFormat.Custom;
+                    DataServicos.CustomFormat = "dd/MM/yyyy";
+                    DescricaoRTR.Visible = true;
+                    labelat6.Visible = true;
+                    break;
+
+
+                case "Veículos":
+                    labelat3.Visible = true;
+                    DataServicos.Visible = true;
+                    labelat3.Text = "MêsAnoV:";
+                    DataServicos.Format = DateTimePickerFormat.Custom;
+                    DataServicos.CustomFormat = "MM/yy";
+                    DescricaoRTR.Visible= false;
+                    labelat6.Visible= false;
+                    break;
+
+
+                case "Lista de peças":
+                    labelat3.Visible = false;
+                    DataServicos.Visible = false;
+                    DescricaoRTR.Visible = false;
+                    labelat6.Visible = false;
+                    break;
+
+
+            }
         }
     }
 }
