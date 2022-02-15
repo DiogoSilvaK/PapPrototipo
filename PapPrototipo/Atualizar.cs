@@ -61,7 +61,7 @@ namespace PapPrototipo
 
 
                 case "Veículos":
-                    consultaSql = "SELECT * FROM Veículo";
+                    consultaSql = "SELECT * FROM Veiculo";
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
                     labelat3.Text = "MêsAnoV:";
