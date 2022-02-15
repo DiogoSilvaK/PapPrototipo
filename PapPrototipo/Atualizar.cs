@@ -26,44 +26,20 @@ namespace PapPrototipo
 
         private void TabelaCBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string consultaSql = "";
             string cs = "data source=localhost; database=pap1; user id=root; pwd=''";
             MySqlConnection Conn = new MySqlConnection(cs);
             DataSet DataTemp = new DataSet();
 
+            Campo1.Items.Clear();
+            Campo2.Items.Clear();
 
             switch (TabelaCBox1.Text) 
             {
 
 
                 case "Clientes":
-                    string ConsultaSql = "SELECT * FROM Cliente";
-                    MySqlCommand queryCmd = new MySqlCommand(ConsultaSql, Conn);
-                    
-                    
-                    try 
-                    {
-                        Conn.Open();
-                        MySqlDataReader DataReader = queryCmd.ExecuteReader();
-                        
-                        if(DataReader.HasRows)
-                        {
-                            for (int i = 0; i < DataReader.FieldCount; i++)
-                            {
-                                Campo1.Items.Add(DataReader.GetName(i));
-                                Campo2.Items.Add(DataReader.GetName(i));
-                            }
-
-                        }
-                        Conn.Close();
-                    }
-                    catch(MySqlException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-
-                    }
+                    consultaSql = "SELECT * FROM Cliente";
 
                     labelat3.Visible = false;
                     DataServicos.Visible = false;
@@ -73,6 +49,7 @@ namespace PapPrototipo
 
 
                 case "Serviços":
+                    consultaSql = "SELECT * FROM Serviço";
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
                     labelat3.Text = "Data:";
@@ -84,6 +61,7 @@ namespace PapPrototipo
 
 
                 case "Veículos":
+                    consultaSql = "SELECT * FROM Veículo";
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
                     labelat3.Text = "MêsAnoV:";
@@ -95,6 +73,7 @@ namespace PapPrototipo
 
 
                 case "Lista de peças":
+                    consultaSql = "SELECT * FROM Lista_de_peças";
                     labelat3.Visible = false;
                     DataServicos.Visible = false;
                     DescricaoRTR.Visible = false;
@@ -103,6 +82,55 @@ namespace PapPrototipo
 
 
             }
+
+            MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
+            MySqlDataAdapter Adapter = new MySqlDataAdapter(consultaSql, Conn);
+            Adapter.Fill(DataTemp, "tabela");
+
+            TabelaDataGrid.DataSource =(DataTemp.Tables["tabela"]);
+            try
+            {
+                Conn.Open();
+                MySqlDataReader DataReader = queryCmd.ExecuteReader();
+
+                if (DataReader.HasRows)
+                {
+                    for (int i = 0; i < DataReader.FieldCount; i++)
+                    {
+                        Campo1.Items.Add(DataReader.GetName(i));
+                        Campo2.Items.Add(DataReader.GetName(i));
+                    }
+
+                }
+                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                {
+                    // Store Auto Sized Widths:
+                    int colw = TabelaDataGrid.Columns[i].Width;
+
+                    // Remove AutoSizing:
+                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                    // Set Width to calculated AutoSize value:
+                    TabelaDataGrid.Columns[i].Width = colw;
+                }
+                Conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+
+
+
+        }
+
+        private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+           // AntigoReg.Text = TabelaDataGrid.
         }
     }
 }
