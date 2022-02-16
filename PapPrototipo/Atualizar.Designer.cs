@@ -233,6 +233,7 @@
             this.Campo2.Name = "Campo2";
             this.Campo2.Size = new System.Drawing.Size(173, 26);
             this.Campo2.TabIndex = 4;
+            this.Campo2.SelectedIndexChanged += new System.EventHandler(this.Campo2_SelectedIndexChanged);
             // 
             // Campo1
             // 
@@ -246,6 +247,7 @@
             this.Campo1.Name = "Campo1";
             this.Campo1.Size = new System.Drawing.Size(171, 26);
             this.Campo1.TabIndex = 4;
+            this.Campo1.SelectedIndexChanged += new System.EventHandler(this.Campo1_SelectedIndexChanged);
             // 
             // labelat3
             // 

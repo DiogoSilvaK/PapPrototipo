@@ -130,7 +130,19 @@ namespace PapPrototipo
 
         private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           // AntigoReg.Text = TabelaDataGrid.
+            AntigoReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();
+
+            Campo1.Text = TabelaDataGrid.Columns[e.ColumnIndex].ToString() ;
+        }
+
+        private void Campo1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AntigoReg.Clear();
+        }
+
+        private void Campo2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            NovoReg.Clear();
         }
     }
 }

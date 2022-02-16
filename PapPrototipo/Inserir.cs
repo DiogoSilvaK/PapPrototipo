@@ -325,7 +325,7 @@ namespace PapPrototipo
                 case "Serviços":
                     consultaSql1 = "SELECT * FROM Serviço";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
-                    consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text + "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
+                    consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text.ToLower() + ",'" + TBox2.Text.ToLower() + "','" + RTBDescricao.Text.ToLower() + "',"+TBox4.Text.ToLower()+",'" + Data1.Text.ToLower() + "','" + CBox1.Text.ToLower() + "','" + Login.UserLogado.ToLower() + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
 
 

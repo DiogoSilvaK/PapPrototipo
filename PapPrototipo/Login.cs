@@ -46,7 +46,7 @@ namespace PapPrototipo
 
             for (int i = 0; i < valorC.Length; i++) { PassSb.Append(valorC[i].ToString("x2")); }
 
-            string ConsultaSql = "select * from login where Email='"+UserT+"' and Pass='"+PassSb+"'";
+            string ConsultaSql = "select Nome from login where Email='"+UserT+"' and Pass='"+PassSb+"'";
 
 
 
@@ -59,6 +59,7 @@ namespace PapPrototipo
                     MySqlDataReader LeitorConsulta = queryCmd.ExecuteReader();
                     if (LeitorConsulta.Read())
                     {
+                        
                         //Login f1 = new Login();
                         Main f2 = new Main();
                         this.Hide();
@@ -76,7 +77,7 @@ namespace PapPrototipo
                 }
                 finally
                 {
-
+                    
                     Conn.Close();
                     if (suc) { UserLogado = UserT; }
                 }
