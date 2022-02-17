@@ -325,7 +325,7 @@ namespace PapPrototipo
                 case "Serviços":
                     consultaSql1 = "SELECT * FROM Serviço";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
-                    consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text.ToLower() + ",'" + TBox2.Text.ToLower() + "','" + RTBDescricao.Text.ToLower() + "',"+TBox4.Text.ToLower()+",'" + Data1.Text.ToLower() + "','" + CBox1.Text.ToLower() + "','" + Login.UserLogado.ToLower() + "')";
+                    consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
 
 
@@ -370,7 +370,7 @@ namespace PapPrototipo
                 case "Clientes":
                     consultaSql1 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
-                    consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "')";
+                    consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "'," + TBox3.Text + ",'" + TBox4.Text.ToLower() + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "") aut = false;
 
 
@@ -430,7 +430,7 @@ namespace PapPrototipo
                 case "Lista de Peças":
                     consultaSql1 = "SELECT * FROM Lista_de_peças";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
-                    consultaSql = "insert into Lista_de_peças(Cod_Peça, Nome, Marca, Num_Serie, Preco, Cod_Serviço) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
+                    consultaSql = "insert into Lista_de_peças(Cod_Peça, Nome, Marca, Num_Serie, Preco, Cod_Serviço) VALUES(" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + TBox3.Text.ToLower() + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox5.Text == "" || CBox1.Text == "") aut = false;
 
                     Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
@@ -489,7 +489,7 @@ namespace PapPrototipo
                 case "Veículos":
                     consultaSql1 = "SELECT * FROM Veiculo";
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
-                    consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox5.Text + ",'" + MesAnoV.Text + "'," + CBox1.Text + ")";
+                    consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox5.Teaxt + ",'" + MesAnoV.Text + "'," + CBox1.Text + ")";
                     if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox5.Text =="" || CBox1.Text == "") aut = false;
 
                     Regex Marca1Check = new Regex(@"^[a-zA-Z_ ]{3,40}$");
