@@ -436,7 +436,7 @@ namespace PapPrototipo
                     Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
                     if (!CodPecaCheck.IsMatch(TBox1.Text))
                     {
-                        errorProvider1.SetError(TBox1, "Insira apenas números!!");
+                        errorProvider1.SetError(TBox1, "Insira apenas números!!!");
                         aut1 = false;
                     }
                     else
