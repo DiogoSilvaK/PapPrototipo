@@ -30,7 +30,7 @@ namespace PapPrototipo
         public void LoginBut_Click(object sender, EventArgs e)
         {
             bool suc = true;
-            string ConnectS = "data source= localhost; database= pap1; user id= root; pwd= ''";
+            string ConnectS = "data source= sql11.freemysqlhosting.net; database= sql11473764; user id= sql11473764; pwd= 'esUYyKeaAT'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
 
