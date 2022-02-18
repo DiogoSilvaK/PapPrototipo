@@ -129,7 +129,7 @@ namespace PapPrototipo
                     
                     
 
-                    ConsultaSql = "Select Titulo from Serviço";
+                    ConsultaSql = "Select Titulo from servico";
                     MySqlCommand queryCmd = new MySqlCommand(ConsultaSql,Conn);
                     try
                     {
@@ -155,12 +155,12 @@ namespace PapPrototipo
                         CBox1.SelectedIndex = 0;
                     }
 
-                    labelIns1.Text = "Cod_Peça:";
-                    labelIns2.Text = "Nome:";
-                    labelIns3.Text = "Marca:";
-                    labelIns4.Text = "NumSerie:";
-                    labelIns5.Text = "Preço:";
-                    labelIns6.Text = "Cod_Serviço:";
+                    labelIns1.Text = "Cod_Peca:"; //TBox1
+                    labelIns2.Text = "Nome:"; //TBox2
+                    labelIns3.Text = "Marca:"; //TBox3
+                    labelIns4.Text = "NumSerie:"; //TBox6
+                    labelIns5.Text = "Preço:"; //TBox4
+                    labelIns6.Text = "Cod_Servico:"; //CBox1
 
                     CBox1.Visible = true;
                     CBox1.Location = new Point(412, 96);
@@ -312,6 +312,17 @@ namespace PapPrototipo
 
         private void InsButton_Click(object sender, EventArgs e)
         {
+            errorProvider1.Clear();
+            errorProvider2.Clear();
+            errorProvider3.Clear();
+            errorProvider4.Clear();
+            errorProvider5.Clear();
+            errorProvider6.Clear();
+            errorProvider7.Clear();
+            errorProvider8.Clear();
+
+
+
             bool aut = true;
             bool aut1 = true; 
             String consultaSql1 = "SELECT * FROM Cliente ";
@@ -321,11 +332,11 @@ namespace PapPrototipo
 
 
 
-                //Caso ComboBox das tabelas tiver como opção "Serviços"
+                //Caso ComboBox das tabelas tiver como opção "servicos"
                 case "Serviços":
-                    consultaSql1 = "SELECT * FROM Serviço";
+                    consultaSql1 = "SELECT * FROM servico";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
-                    consultaSql = "insert into Serviço(Cod_Serviço,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
+                    consultaSql = "insert into servico(Cod_Servico,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
 
 
@@ -428,9 +439,9 @@ namespace PapPrototipo
 
 
                 case "Lista de Peças":
-                    consultaSql1 = "SELECT * FROM Lista_de_peças";
+                    consultaSql1 = "SELECT * FROM Lista_de_pecas";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
-                    consultaSql = "insert into Lista_de_peças(Cod_Peça, Nome, Marca, Num_Serie, Preco, Cod_Serviço) VALUES(" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + TBox3.Text.ToLower() + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
+                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + TBox3.Text.ToLower() + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox5.Text == "" || CBox1.Text == "") aut = false;
 
                     Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");

@@ -13,6 +13,7 @@ namespace PapPrototipo
 {
     public partial class FormAtualizar : Form
     {
+        bool notchange1=true, notchange2=true;
         public FormAtualizar()
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace PapPrototipo
 
 
                 case "Serviços":
-                    consultaSql = "SELECT * FROM Serviço";
+                    consultaSql = "SELECT * FROM servico";
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
                     labelat3.Text = "Data:";
@@ -73,7 +74,7 @@ namespace PapPrototipo
 
 
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM Lista_de_peças";
+                    consultaSql = "SELECT * FROM lista_de_pecas";
                     labelat3.Visible = false;
                     DataServicos.Visible = false;
                     DescricaoRTR.Visible = false;
@@ -130,14 +131,18 @@ namespace PapPrototipo
 
         private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            notchange1 = true;
             AntigoReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();
-
-            Campo1.Text = TabelaDataGrid.Columns[e.ColumnIndex].ToString() ;
+            MessageBox.Show(TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString());
+            Campo1.SelectedItem = TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString() ;
         }
 
         private void Campo1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(!notchange1)
             AntigoReg.Clear();
+            else
+            notchange1 = false;
         }
 
         private void Campo2_SelectedIndexChanged(object sender, EventArgs e)
