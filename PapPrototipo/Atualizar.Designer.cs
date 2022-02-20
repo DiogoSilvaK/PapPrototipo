@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ListaDePeçasGroupBox = new System.Windows.Forms.GroupBox();
             this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -36,7 +36,7 @@
             this.ServicoGroupBox = new System.Windows.Forms.GroupBox();
             this.labelat5 = new System.Windows.Forms.Label();
             this.TabelaCBox1 = new System.Windows.Forms.ComboBox();
-            this.ButAServicos = new System.Windows.Forms.Button();
+            this.ButAt = new System.Windows.Forms.Button();
             this.DescricaoRTR = new System.Windows.Forms.RichTextBox();
             this.labelat6 = new System.Windows.Forms.Label();
             this.DataServicos = new System.Windows.Forms.DateTimePicker();
@@ -73,10 +73,10 @@
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TabelaDataGrid.Location = new System.Drawing.Point(6, 23);
             this.TabelaDataGrid.Name = "TabelaDataGrid";
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Firebrick;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.TabelaDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.TabelaDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.TabelaDataGrid.Size = new System.Drawing.Size(1049, 315);
             this.TabelaDataGrid.TabIndex = 0;
             this.TabelaDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TabelaDataGrid_CellClick);
@@ -106,7 +106,7 @@
             // 
             this.ServicoGroupBox.Controls.Add(this.labelat5);
             this.ServicoGroupBox.Controls.Add(this.TabelaCBox1);
-            this.ServicoGroupBox.Controls.Add(this.ButAServicos);
+            this.ServicoGroupBox.Controls.Add(this.ButAt);
             this.ServicoGroupBox.Controls.Add(this.DescricaoRTR);
             this.ServicoGroupBox.Controls.Add(this.labelat6);
             this.ServicoGroupBox.Controls.Add(this.DataServicos);
@@ -153,24 +153,25 @@
             this.TabelaCBox1.TabIndex = 2;
             this.TabelaCBox1.SelectedIndexChanged += new System.EventHandler(this.TabelaCBox1_SelectedIndexChanged);
             // 
-            // ButAServicos
+            // ButAt
             // 
-            this.ButAServicos.BackColor = System.Drawing.Color.DimGray;
-            this.ButAServicos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButAServicos.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.ButAServicos.FlatAppearance.BorderSize = 2;
-            this.ButAServicos.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ButAServicos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ButAServicos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.ButAServicos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButAServicos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButAServicos.ForeColor = System.Drawing.Color.White;
-            this.ButAServicos.Location = new System.Drawing.Point(531, 262);
-            this.ButAServicos.Name = "ButAServicos";
-            this.ButAServicos.Size = new System.Drawing.Size(509, 27);
-            this.ButAServicos.TabIndex = 25;
-            this.ButAServicos.Text = "Atualizar";
-            this.ButAServicos.UseVisualStyleBackColor = false;
+            this.ButAt.BackColor = System.Drawing.Color.DimGray;
+            this.ButAt.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButAt.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.ButAt.FlatAppearance.BorderSize = 2;
+            this.ButAt.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ButAt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.ButAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.ButAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButAt.ForeColor = System.Drawing.Color.White;
+            this.ButAt.Location = new System.Drawing.Point(531, 262);
+            this.ButAt.Name = "ButAt";
+            this.ButAt.Size = new System.Drawing.Size(509, 27);
+            this.ButAt.TabIndex = 25;
+            this.ButAt.Text = "Atualizar";
+            this.ButAt.UseVisualStyleBackColor = false;
+            this.ButAt.Click += new System.EventHandler(this.ButAt_Click);
             // 
             // DescricaoRTR
             // 
@@ -340,7 +341,7 @@
         private System.Windows.Forms.Label labelat2;
         private System.Windows.Forms.TextBox AntigoReg;
         private System.Windows.Forms.Label labelat0;
-        private System.Windows.Forms.Button ButAServicos;
+        private System.Windows.Forms.Button ButAt;
         private System.Windows.Forms.Label labelat4;
         private System.Windows.Forms.ComboBox Campo1;
         private System.Windows.Forms.Label labelat1;

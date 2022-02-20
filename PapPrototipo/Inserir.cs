@@ -22,51 +22,6 @@ namespace PapPrototipo
             InitializeComponent();
         }
 
-        private void InsLDP_Click(object sender, EventArgs e)
-        {
-            /*
-            if (PreçoLdpTBox.Text != ""|| NumSerLdpTBox.Text != ""|| NomeLdpTBox.Text !=""|| MarcaLdpTBox.Text != ""||CodServLdpTBox.Text != "") 
-            {
-            
-            
-            
-            }
-            else
-            {
-                MessageBox.Show("Tem de preencher todos os campos antes de introduzir!");
-
-            }
-            */
-        }
-
-        private void InsVeiculo_Click(object sender, EventArgs e)
-        {
-           /* if (MarcaVTBox.Text != "" || ModeloVTBox.Text != "" || CilinVTBox.Text != "" || MatriculaVTBox.Text != "" || CodClienteVTBox.Text != "")
-            {
-                string connectionS = "data source=localhost; database= pap1; user id=root; pwd=''";
-                MySqlConnection MSC = new MySqlConnection(connectionS);
-
-                
-                string sqlinsert= 
-                "INSERT INTO Veiculo(Marca,Modelo,Matricula,Cilindrada,Mes_Ano,Cod_Cliente)VALUES (" + "'" + MarcaVTBox.Text + "','" + ModeloVTBox.Text + "','" + MatriculaVTBox.Text + "'," + CilinVTBox.Text + ",'" + MesAnoV.Text+ "'," + CodClienteVTBox.Text+")";
-                DialogResult InsPerg = MessageBox.Show("Deseja inserir " + MarcaVTBox.Text + ", " + ModeloVTBox.Text + ", " + CilinVTBox.Text + ", '" + MesAnoV.Text + "', " + MatriculaVTBox.Text + " do cliente " + CodClienteVTBox.Text + "?", "Inserir?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                try
-                {
-                    MySqlCommand consultaInserir = new MySqlCommand(sqlinsert,MSC);
-                    MSC.Open();
-                    //if (InsPerg == DialogResult.OK)
-                    //{
-                        consultaInserir.ExecuteNonQuery();
-                    //}
-                }
-                catch (MySqlException ex)
-                { MessageBox.Show(ex.Message); }
-                finally
-                { MSC.Close(); }
-            
-            }
-            else { MessageBox.Show("Tem de preencher todos os campos antes de introduzir!"); }*/
-        }
 
         private void FormInserir_Load(object sender, EventArgs e)
         {
@@ -93,7 +48,7 @@ namespace PapPrototipo
             Data1.ResetText();
             MesAnoV.ResetText();
 
-            string ConnectS = "data source= sql11.freemysqlhosting.net; database= sql11473764; user id= sql11473764; pwd= 'esUYyKeaAT'";
+            string ConnectS = "data source= localhost; database= pap1; user id= root; pwd= ''";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             string ConsultaSql = String.Empty;
 
@@ -336,7 +291,7 @@ namespace PapPrototipo
                 case "Serviços":
                     consultaSql1 = "SELECT * FROM servico";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
-                    consultaSql = "insert into servico(Cod_Servico,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
+                    consultaSql = "insert into servico(Cod_Servico,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
 
 
@@ -381,7 +336,7 @@ namespace PapPrototipo
                 case "Clientes":
                     consultaSql1 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
-                    consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "'," + TBox3.Text + ",'" + TBox4.Text.ToLower() + "')";
+                    consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "") aut = false;
 
 
@@ -441,8 +396,8 @@ namespace PapPrototipo
                 case "Lista de Peças":
                     consultaSql1 = "SELECT * FROM Lista_de_pecas";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
-                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text.ToLower() + "','" + TBox3.Text.ToLower() + "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
-                    if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox5.Text == "" || CBox1.Text == "") aut = false;
+                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
+                    if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
 
                     Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
                     if (!CodPecaCheck.IsMatch(TBox1.Text))
@@ -614,11 +569,11 @@ namespace PapPrototipo
                     Conn.Close();
                 }
                 aut = true;
-            }
+            } 
             else 
             {
                 MessageBox.Show("PREENCHA TODOS OS CAMPOS OU VERIFIQUE SE TODOS ESTÃO BEM PREENCHIDOS!!","AVISO!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
-                aut1 = false;
+                aut1 = true;
             }
         }
 

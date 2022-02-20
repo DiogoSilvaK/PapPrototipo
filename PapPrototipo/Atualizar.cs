@@ -14,6 +14,8 @@ namespace PapPrototipo
     public partial class FormAtualizar : Form
     {
         bool notchange1=true, notchange2=true;
+        static string AtNReg = String.Empty;
+
         public FormAtualizar()
         {
             InitializeComponent();
@@ -28,8 +30,8 @@ namespace PapPrototipo
         private void TabelaCBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string consultaSql = "";
-            string cs = "data source=localhost; database=pap1; user id=root; pwd=''";
-            MySqlConnection Conn = new MySqlConnection(cs);
+            string ConnectS = "data source=localhost; database=pap1; user id=root; pwd=''";
+            MySqlConnection Conn = new MySqlConnection(ConnectS);
             DataSet DataTemp = new DataSet();
 
             Campo1.Items.Clear();
@@ -101,8 +103,143 @@ namespace PapPrototipo
                         Campo1.Items.Add(DataReader.GetName(i));
                         Campo2.Items.Add(DataReader.GetName(i));
                     }
-
+                    Campo1.SelectedIndex = 0;
+                    Campo2.SelectedIndex = 0;
                 }
+                else
+                {
+                    MessageBox.Show("Esta tabela está vazia...", "AVISO!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                Conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // Set your desired AutoSize Mode:
+                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                {
+                    // Store Auto Sized Widths:
+                    int colw = TabelaDataGrid.Columns[i].Width;
+
+                    // Remove AutoSizing:
+                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                    // Set Width to calculated AutoSize value:
+                    TabelaDataGrid.Columns[i].Width = colw;
+                }
+
+            }
+
+
+
+        }
+
+        private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            notchange1 = true;
+            AntigoReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();
+            //MessageBox.Show(TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString());
+            Campo1.SelectedItem = TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString() ;
+        }
+
+        private void Campo1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+                    Campo1.Items.Remove("Descricao");
+                    Campo1.Items.Remove("Data");
+           
+
+
+
+            if(!notchange1)
+            AntigoReg.Clear();
+            else
+            notchange1 = false;
+        }
+
+        private void ButAt_Click(object sender, EventArgs e)
+        {
+            string tabelaSelect = "";
+            switch(TabelaCBox1.Text)
+            {
+                case "Clientes":
+                    tabelaSelect = "cliente";
+                    break;
+                case "Lista de Peças":
+                    tabelaSelect = "lista_de_pecas";
+                    break;
+                case "Serviços":
+                    tabelaSelect = "servico";
+                    break;
+                case "Veículos":
+                    tabelaSelect = "veiculo";
+                    break;
+            }
+
+            switch (Campo2.Text)
+            {
+                case "Descricao":
+                    AtNReg = DescricaoRTR.Text;
+                    break;
+                case "Mes_Ano":
+                    AtNReg = DataServicos.Text;
+                    break;
+                case "Data":
+                    AtNReg = DataServicos.Text;
+                    break;
+                default:
+                    AtNReg = NovoReg.Text;
+                    break;
+
+            }
+
+
+            string consultaSql = "UPDATE "+ tabelaSelect + " SET "+ Campo2.Text +"='"+ AtNReg +"' WHERE "+ Campo1.Text + "='"+ AntigoReg.Text+"'";
+            string ConnectS = "data source= localhost; database=pap1; user id= root; pwd=''";
+            MySqlConnection Conn = new MySqlConnection(ConnectS);
+
+            DialogResult DR = MessageBox.Show("Deseja atualizar o campo: " + Campo2.Text + "com o registo '" + NovoReg.Text + "' onde o campo: " + Campo1.Text + " tem o registo '" + AntigoReg.Text + "' da Tabela " + tabelaSelect, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            try
+            {
+                Conn.Open();
+                MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
+                if (DR == DialogResult.Yes)
+                {
+                    queryCmd.ExecuteNonQuery();
+                }
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                string consultaSql1 = "SELECT * FROM " + tabelaSelect + " WHERE "+ Campo2.Text + "='" + AtNReg+"'";
+                MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
+                DataSet DataTemp = new DataSet();
+
+
+                //DataAdapter = new MySqlDataAdapter(query2, Conn);
+                //DataTemp = new DataSet("tabela");
+                DataAdapter.Fill(DataTemp, "tabela");
+                TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+
+                // Set your desired AutoSize Mode:
+                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
                 for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
                 {
                     // Store Auto Sized Widths:
@@ -116,37 +253,34 @@ namespace PapPrototipo
                 }
                 Conn.Close();
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-
-            }
-
-
-
-        }
-
-        private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            notchange1 = true;
-            AntigoReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();
-            MessageBox.Show(TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString());
-            Campo1.SelectedItem = TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString() ;
-        }
-
-        private void Campo1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(!notchange1)
-            AntigoReg.Clear();
-            else
-            notchange1 = false;
         }
 
         private void Campo2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (Campo2.Text)
+            {
+                case "Descricao":
+                    DescricaoRTR.Enabled = true;
+                    DataServicos.Enabled = false;
+                    NovoReg.Enabled = false;
+                    break;
+                case "Mes_Ano":
+                    DataServicos.Enabled = true;
+                    DescricaoRTR.Enabled = false;
+                    NovoReg.Enabled = false;
+                    break;
+                case "Data":
+                    DataServicos.Enabled = true;
+                    DescricaoRTR.Enabled = false;
+                    NovoReg.Enabled = false;
+                    break;
+                default:
+                    NovoReg.Enabled = true;
+                    DescricaoRTR.Enabled = false;
+                    DataServicos.Enabled = false;
+                    break;
+
+            }
             NovoReg.Clear();
         }
     }
