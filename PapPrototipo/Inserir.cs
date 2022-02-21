@@ -97,6 +97,11 @@ namespace PapPrototipo
                             {
                                 CBox1.Items.Add(leitor.GetValue(0));
                             }
+                            CBox1.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            MessageBox.Show("ERRO! IMPOSSIVEL INSERIR NESTA TABELA(NÃO EXISTEM SERVIÇOS!)");
                         }
                         Conn.Close();
                     }
@@ -107,7 +112,7 @@ namespace PapPrototipo
                     finally
                     {
                         
-                        CBox1.SelectedIndex = 0;
+                        
                     }
 
                     labelIns1.Text = "Cod_Peca:"; //TBox1

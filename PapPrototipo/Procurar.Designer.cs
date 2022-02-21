@@ -28,22 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TabelaBox = new System.Windows.Forms.GroupBox();
-            this.TabelaPesquisar = new System.Windows.Forms.DataGridView();
+            this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.PesquisarBox = new System.Windows.Forms.GroupBox();
             this.PesquisarBut = new System.Windows.Forms.Button();
-            this.TBox = new System.Windows.Forms.TextBox();
-            this.CBoxCampo = new System.Windows.Forms.ComboBox();
+            this.PesqTBox = new System.Windows.Forms.TextBox();
+            this.CampoCBox = new System.Windows.Forms.ComboBox();
             this.CBoxTabela = new System.Windows.Forms.ComboBox();
             this.CBoxOperadores = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.DataServicos = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.TabelaBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TabelaPesquisar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).BeginInit();
             this.PesquisarBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +61,7 @@
             // 
             // TabelaBox
             // 
-            this.TabelaBox.Controls.Add(this.TabelaPesquisar);
+            this.TabelaBox.Controls.Add(this.TabelaDataGrid);
             this.TabelaBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabelaBox.ForeColor = System.Drawing.Color.White;
             this.TabelaBox.Location = new System.Drawing.Point(5, 0);
@@ -69,20 +71,29 @@
             this.TabelaBox.TabStop = false;
             this.TabelaBox.Text = "Tabela";
             // 
-            // TabelaPesquisar
+            // TabelaDataGrid
             // 
-            this.TabelaPesquisar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TabelaPesquisar.Location = new System.Drawing.Point(7, 26);
-            this.TabelaPesquisar.Name = "TabelaPesquisar";
-            this.TabelaPesquisar.Size = new System.Drawing.Size(1064, 528);
-            this.TabelaPesquisar.TabIndex = 0;
+            this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            this.TabelaDataGrid.Location = new System.Drawing.Point(7, 26);
+            this.TabelaDataGrid.Name = "TabelaDataGrid";
+            this.TabelaDataGrid.Size = new System.Drawing.Size(1064, 528);
+            this.TabelaDataGrid.TabIndex = 0;
             // 
             // PesquisarBox
             // 
             this.PesquisarBox.BackColor = System.Drawing.Color.Transparent;
+            this.PesquisarBox.Controls.Add(this.DataServicos);
             this.PesquisarBox.Controls.Add(this.PesquisarBut);
-            this.PesquisarBox.Controls.Add(this.TBox);
-            this.PesquisarBox.Controls.Add(this.CBoxCampo);
+            this.PesquisarBox.Controls.Add(this.PesqTBox);
+            this.PesquisarBox.Controls.Add(this.CampoCBox);
             this.PesquisarBox.Controls.Add(this.CBoxTabela);
             this.PesquisarBox.Controls.Add(this.CBoxOperadores);
             this.PesquisarBox.Controls.Add(this.label4);
@@ -116,44 +127,50 @@
             this.PesquisarBut.TabIndex = 4;
             this.PesquisarBut.Text = "Pesquisar";
             this.PesquisarBut.UseVisualStyleBackColor = false;
+            this.PesquisarBut.Click += new System.EventHandler(this.PesquisarBut_Click);
             // 
-            // TBox
+            // PesqTBox
             // 
-            this.TBox.Location = new System.Drawing.Point(763, 30);
-            this.TBox.Name = "TBox";
-            this.TBox.Size = new System.Drawing.Size(308, 27);
-            this.TBox.TabIndex = 2;
+            this.PesqTBox.Location = new System.Drawing.Point(763, 30);
+            this.PesqTBox.Name = "PesqTBox";
+            this.PesqTBox.Size = new System.Drawing.Size(308, 27);
+            this.PesqTBox.TabIndex = 2;
             // 
-            // CBoxCampo
+            // CampoCBox
             // 
-            this.CBoxCampo.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBoxCampo.FormattingEnabled = true;
-            this.CBoxCampo.Items.AddRange(new object[] {
+            this.CampoCBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CampoCBox.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CampoCBox.FormattingEnabled = true;
+            this.CampoCBox.Items.AddRange(new object[] {
             "Serviço",
             "Cliente",
             "Lista de Peças",
             "Veiculo"});
-            this.CBoxCampo.Location = new System.Drawing.Point(364, 30);
-            this.CBoxCampo.Name = "CBoxCampo";
-            this.CBoxCampo.Size = new System.Drawing.Size(121, 28);
-            this.CBoxCampo.TabIndex = 1;
+            this.CampoCBox.Location = new System.Drawing.Point(364, 30);
+            this.CampoCBox.Name = "CampoCBox";
+            this.CampoCBox.Size = new System.Drawing.Size(121, 28);
+            this.CampoCBox.TabIndex = 1;
+            this.CampoCBox.SelectedIndexChanged += new System.EventHandler(this.CampoCBox_SelectedIndexChanged);
             // 
             // CBoxTabela
             // 
+            this.CBoxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBoxTabela.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBoxTabela.FormattingEnabled = true;
             this.CBoxTabela.Items.AddRange(new object[] {
-            "Serviço",
-            "Cliente",
-            "Lista de Peças",
-            "Veiculo"});
+            "Clientes",
+            "Lista de peças",
+            "Serviços",
+            "Veículos"});
             this.CBoxTabela.Location = new System.Drawing.Point(145, 30);
             this.CBoxTabela.Name = "CBoxTabela";
             this.CBoxTabela.Size = new System.Drawing.Size(121, 28);
             this.CBoxTabela.TabIndex = 1;
+            this.CBoxTabela.SelectedIndexChanged += new System.EventHandler(this.CBoxTabela_SelectedIndexChanged);
             // 
             // CBoxOperadores
             // 
+            this.CBoxOperadores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBoxOperadores.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBoxOperadores.FormattingEnabled = true;
             this.CBoxOperadores.Items.AddRange(new object[] {
@@ -210,6 +227,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mostrar na tabela";
             // 
+            // DataServicos
+            // 
+            this.DataServicos.CustomFormat = "dd/MM/yyyy";
+            this.DataServicos.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.DataServicos.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DataServicos.Location = new System.Drawing.Point(763, 30);
+            this.DataServicos.Name = "DataServicos";
+            this.DataServicos.Size = new System.Drawing.Size(308, 27);
+            this.DataServicos.TabIndex = 23;
+            // 
             // FormPesquisar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -226,7 +253,7 @@
             this.Load += new System.EventHandler(this.FormPesquisar_Load);
             this.panel1.ResumeLayout(false);
             this.TabelaBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.TabelaPesquisar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).EndInit();
             this.PesquisarBox.ResumeLayout(false);
             this.PesquisarBox.PerformLayout();
             this.ResumeLayout(false);
@@ -237,16 +264,17 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox TabelaBox;
-        private System.Windows.Forms.DataGridView TabelaPesquisar;
+        private System.Windows.Forms.DataGridView TabelaDataGrid;
         private System.Windows.Forms.GroupBox PesquisarBox;
         private System.Windows.Forms.ComboBox CBoxOperadores;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TBox;
-        private System.Windows.Forms.ComboBox CBoxCampo;
+        private System.Windows.Forms.TextBox PesqTBox;
+        private System.Windows.Forms.ComboBox CampoCBox;
         private System.Windows.Forms.ComboBox CBoxTabela;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button PesquisarBut;
+        private System.Windows.Forms.DateTimePicker DataServicos;
     }
 }

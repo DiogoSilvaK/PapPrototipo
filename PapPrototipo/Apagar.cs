@@ -60,6 +60,33 @@ namespace PapPrototipo
             }
             finally
             {
+                string consultaSql1 = "SELECT * FROM " + tabelaSelect;
+                MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
+                DataSet DataTemp = new DataSet();
+
+
+                //DataAdapter = new MySqlDataAdapter(query2, Conn);
+                //DataTemp = new DataSet("tabela");
+                DataAdapter.Fill(DataTemp, "tabela");
+                TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+
+                // Set your desired AutoSize Mode:
+                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                {
+                    // Store Auto Sized Widths:
+                    int colw = TabelaDataGrid.Columns[i].Width;
+
+                    // Remove AutoSizing:
+                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                    // Set Width to calculated AutoSize value:
+                    TabelaDataGrid.Columns[i].Width = colw;
+
+                }
+
                 Conn.Close();
             }
 
@@ -167,10 +194,12 @@ namespace PapPrototipo
                     DelReg.Enabled = false;
                     DataServicos.Enabled = true;
                     break;
+                    /*
                 case "Marca":
                 case "Modelo":
 
                     break;
+                    */
                 default:
                     WREG = DelReg.Text;
                     DelReg.Enabled = true;
