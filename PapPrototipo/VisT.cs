@@ -37,7 +37,7 @@ namespace PapPrototipo
                     consultaSql = "SELECT * FROM cliente";
                     break;
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM lista_de_peca";
+                    consultaSql = "SELECT * FROM lista_de_pecas";
                     break;
                 case "Serviços":
                     consultaSql = "SELECT * FROM servico";
