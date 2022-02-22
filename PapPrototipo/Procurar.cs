@@ -154,7 +154,7 @@ namespace PapPrototipo
         {
             string ConnectS = "data source=localhost; database= pap1; user id= root; pwd=''";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
-
+            
             switch (CampoCBox.Text)
             {
                 case "Data":

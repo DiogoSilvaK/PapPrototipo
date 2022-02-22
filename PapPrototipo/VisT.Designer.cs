@@ -1,6 +1,6 @@
 ﻿namespace PapPrototipo
 {
-    partial class FormVTC
+    partial class VTForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RefreshBut = new System.Windows.Forms.Button();
-            this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.CBoxCampo = new System.Windows.Forms.ComboBox();
+            this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).BeginInit();
@@ -51,8 +53,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox1.Controls.Add(this.RefreshBut);
             this.groupBox1.Controls.Add(this.TabelaDataGrid);
+            this.groupBox1.Controls.Add(this.RefreshBut);
             this.groupBox1.Location = new System.Drawing.Point(3, -6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1079, 635);
@@ -76,14 +78,7 @@
             this.RefreshBut.TabIndex = 1;
             this.RefreshBut.Text = "Atualizar";
             this.RefreshBut.UseVisualStyleBackColor = false;
-            // 
-            // TabelaDataGrid
-            // 
-            this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TabelaDataGrid.Location = new System.Drawing.Point(9, 13);
-            this.TabelaDataGrid.Name = "TabelaDataGrid";
-            this.TabelaDataGrid.Size = new System.Drawing.Size(1067, 577);
-            this.TabelaDataGrid.TabIndex = 0;
+            this.RefreshBut.Click += new System.EventHandler(this.RefreshBut_Click);
             // 
             // label1
             // 
@@ -91,24 +86,57 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(348, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(333, 40);
+            this.label1.Size = new System.Drawing.Size(205, 40);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Visualizar todos os clientes";
+            this.label1.Text = "Visualizar todos:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // FormVTC
+            // CBoxCampo
+            // 
+            this.CBoxCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBoxCampo.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBoxCampo.FormattingEnabled = true;
+            this.CBoxCampo.Items.AddRange(new object[] {
+            "Clientes",
+            "Lista de peças",
+            "Serviços",
+            "Veículos"});
+            this.CBoxCampo.Location = new System.Drawing.Point(559, 2);
+            this.CBoxCampo.Name = "CBoxCampo";
+            this.CBoxCampo.Size = new System.Drawing.Size(139, 38);
+            this.CBoxCampo.TabIndex = 2;
+            // 
+            // TabelaDataGrid
+            // 
+            this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            this.TabelaDataGrid.Location = new System.Drawing.Point(9, 20);
+            this.TabelaDataGrid.Name = "TabelaDataGrid";
+            this.TabelaDataGrid.Size = new System.Drawing.Size(1061, 570);
+            this.TabelaDataGrid.TabIndex = 2;
+            // 
+            // VTForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.ClientSize = new System.Drawing.Size(1085, 675);
+            this.Controls.Add(this.CBoxCampo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FormVTC";
-            this.Text = "FormVTC";
+            this.Name = "VTForm";
+            this.Text = "VTForm";
+            this.Load += new System.EventHandler(this.FormVTC_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).EndInit();
@@ -120,8 +148,9 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView TabelaDataGrid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button RefreshBut;
+        private System.Windows.Forms.ComboBox CBoxCampo;
+        private System.Windows.Forms.DataGridView TabelaDataGrid;
     }
 }

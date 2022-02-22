@@ -82,7 +82,7 @@ namespace PapPrototipo
         }
         private void VTC_Click(object sender, EventArgs e){
             panelf3.Controls.Clear();
-            FormVTC FVTC= new FormVTC();
+            VTForm FVTC= new VTForm();
             FVTC.TopLevel = false;
             panelf3.Controls.Add(FVTC);
             FVTC.Show();
