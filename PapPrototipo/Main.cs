@@ -41,7 +41,7 @@ namespace PapPrototipo
         private void VTS_Click(object sender, EventArgs e)
         {
             panelf3.Controls.Clear();
-            FormVTS FVTS = new FormVTS();
+            ImprimirForm FVTS = new ImprimirForm();
             FVTS.TopLevel = false;
             panelf3.Controls.Add(FVTS);
             FVTS.Show();
