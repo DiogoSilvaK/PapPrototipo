@@ -181,21 +181,20 @@ namespace PapPrototipo
                 DataAdapter.Fill(DataTemp, "tabela");
                 TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
 
-                // Set your desired AutoSize Mode:
                 TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
+               
                 for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
                 {
-                    // Store Auto Sized Widths:
+                   
                     int colw = TabelaDataGrid.Columns[i].Width;
 
-                    // Remove AutoSizing:
+                 
                     TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
 
-                    // Set Width to calculated AutoSize value:
+                 
                     TabelaDataGrid.Columns[i].Width = colw;
                 }
                 }
