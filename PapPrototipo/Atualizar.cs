@@ -256,6 +256,11 @@ namespace PapPrototipo
             }
         }
 
+        private void TabelaDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void Campo2_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (Campo2.Text)

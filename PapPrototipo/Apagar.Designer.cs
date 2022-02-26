@@ -30,17 +30,17 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TabelaGroupBox = new System.Windows.Forms.GroupBox();
-            this.CBoxTabela = new System.Windows.Forms.ComboBox();
             this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
+            this.CBoxTabela = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.ClientesGBox = new System.Windows.Forms.GroupBox();
+            this.DataServicos = new System.Windows.Forms.DateTimePicker();
             this.labeldel1 = new System.Windows.Forms.Label();
             this.ButDel = new System.Windows.Forms.Button();
             this.CampoCBox = new System.Windows.Forms.ComboBox();
             this.labeldel3 = new System.Windows.Forms.Label();
             this.labeldel2 = new System.Windows.Forms.Label();
             this.DelReg = new System.Windows.Forms.TextBox();
-            this.DataServicos = new System.Windows.Forms.DateTimePicker();
             this.TabelaGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -50,7 +50,7 @@
             // TabelaGroupBox
             // 
             this.TabelaGroupBox.Controls.Add(this.TabelaDataGrid);
-            this.TabelaGroupBox.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TabelaGroupBox.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.TabelaGroupBox.ForeColor = System.Drawing.Color.White;
             this.TabelaGroupBox.Location = new System.Drawing.Point(12, 3);
             this.TabelaGroupBox.Name = "TabelaGroupBox";
@@ -59,27 +59,12 @@
             this.TabelaGroupBox.TabStop = false;
             this.TabelaGroupBox.Text = "Tabela";
             // 
-            // CBoxTabela
-            // 
-            this.CBoxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBoxTabela.FormattingEnabled = true;
-            this.CBoxTabela.Items.AddRange(new object[] {
-            "Clientes",
-            "Lista de peças",
-            "Serviços",
-            "Veículos"});
-            this.CBoxTabela.Location = new System.Drawing.Point(8, 25);
-            this.CBoxTabela.Name = "CBoxTabela";
-            this.CBoxTabela.Size = new System.Drawing.Size(1047, 26);
-            this.CBoxTabela.TabIndex = 1;
-            this.CBoxTabela.SelectedIndexChanged += new System.EventHandler(this.CBoxTabela_SelectedIndexChanged);
-            // 
             // TabelaDataGrid
             // 
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
@@ -90,6 +75,22 @@
             this.TabelaDataGrid.Size = new System.Drawing.Size(1049, 392);
             this.TabelaDataGrid.TabIndex = 0;
             this.TabelaDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TabelaDataGrid_CellClick);
+            // 
+            // CBoxTabela
+            // 
+            this.CBoxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBoxTabela.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.CBoxTabela.FormattingEnabled = true;
+            this.CBoxTabela.Items.AddRange(new object[] {
+            "Clientes",
+            "Lista de peças",
+            "Serviços",
+            "Veículos"});
+            this.CBoxTabela.Location = new System.Drawing.Point(8, 25);
+            this.CBoxTabela.Name = "CBoxTabela";
+            this.CBoxTabela.Size = new System.Drawing.Size(1047, 29);
+            this.CBoxTabela.TabIndex = 1;
+            this.CBoxTabela.SelectedIndexChanged += new System.EventHandler(this.CBoxTabela_SelectedIndexChanged);
             // 
             // panel1
             // 
@@ -118,6 +119,17 @@
             this.ClientesGBox.Size = new System.Drawing.Size(1061, 236);
             this.ClientesGBox.TabIndex = 10;
             this.ClientesGBox.TabStop = false;
+            // 
+            // DataServicos
+            // 
+            this.DataServicos.CustomFormat = "dd/MM/yyyy";
+            this.DataServicos.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.DataServicos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.DataServicos.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DataServicos.Location = new System.Drawing.Point(8, 170);
+            this.DataServicos.Name = "DataServicos";
+            this.DataServicos.Size = new System.Drawing.Size(1047, 27);
+            this.DataServicos.TabIndex = 23;
             // 
             // labeldel1
             // 
@@ -154,7 +166,7 @@
             // 
             this.CampoCBox.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.CampoCBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CampoCBox.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CampoCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.CampoCBox.ForeColor = System.Drawing.Color.White;
             this.CampoCBox.FormattingEnabled = true;
             this.CampoCBox.Items.AddRange(new object[] {
@@ -162,7 +174,7 @@
             "Mês/Ano"});
             this.CampoCBox.Location = new System.Drawing.Point(87, 82);
             this.CampoCBox.Name = "CampoCBox";
-            this.CampoCBox.Size = new System.Drawing.Size(968, 28);
+            this.CampoCBox.Size = new System.Drawing.Size(968, 29);
             this.CampoCBox.TabIndex = 12;
             this.CampoCBox.SelectedIndexChanged += new System.EventHandler(this.CampoCBox_SelectedIndexChanged);
             // 
@@ -190,20 +202,11 @@
             // 
             this.DelReg.BackColor = System.Drawing.Color.White;
             this.DelReg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DelReg.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.DelReg.Location = new System.Drawing.Point(8, 138);
             this.DelReg.Name = "DelReg";
-            this.DelReg.Size = new System.Drawing.Size(1047, 26);
+            this.DelReg.Size = new System.Drawing.Size(1047, 27);
             this.DelReg.TabIndex = 5;
-            // 
-            // DataServicos
-            // 
-            this.DataServicos.CustomFormat = "dd/MM/yyyy";
-            this.DataServicos.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.DataServicos.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DataServicos.Location = new System.Drawing.Point(8, 170);
-            this.DataServicos.Name = "DataServicos";
-            this.DataServicos.Size = new System.Drawing.Size(1047, 26);
-            this.DataServicos.TabIndex = 23;
             // 
             // FormApagar
             // 

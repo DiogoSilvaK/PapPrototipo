@@ -32,7 +32,8 @@ namespace PapPrototipo
 
         private void CBoxTabela_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CBoxCampo.Items.Clear();
+            string consultaSql1 = string.Empty;
+            
             CBoxReg.Items.Clear();
             switch(CBoxTabela.Text)
             {
@@ -59,44 +60,53 @@ namespace PapPrototipo
             {
                 Conn.Open();
 
-                MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
-                MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql, Conn);
-                DataSet DataTemp = new DataSet();
+                CBoxReg.Items.Clear();
 
-                DataAdapter.Fill(DataTemp, "tabela");
+                
+                    MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql,Conn);
+                    DataSet DataTemp = new DataSet();
 
-                TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
 
-                MySqlDataReader DataReader = queryCmd.ExecuteReader();
+                    DataAdapter.Fill(DataTemp, "tabela");
+                    
+                    TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+                    MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
+                    MySqlDataReader DataReader = queryCmd.ExecuteReader();
+
+
+
 
                 if (DataReader.HasRows)
                 {
-                    for (int i = 0; i < DataReader.FieldCount; i++)
-                    { 
-                        CBoxCampo.Items.Add(DataReader.GetName(i));
+                    while (DataReader.Read())
+                    {
+                        CBoxReg.Items.Add(DataReader.GetValue(0));
                     }
-                    CBoxCampo.SelectedIndex = 0;
+                    CBoxReg.SelectedIndex = 0;
+
+                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    {
+
+                        int colw = TabelaDataGrid.Columns[i].Width;
+
+                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+
+                        TabelaDataGrid.Columns[i].Width = colw;
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Esta tabela está vazia...", "AVISO!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Esta tabelá está vazia!!", "AVISO!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
-                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+               
 
 
-                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
-                {
-
-                    int colw = TabelaDataGrid.Columns[i].Width;
-
-                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-
-                    TabelaDataGrid.Columns[i].Width = colw;
-                }
             }
             catch(MySqlException ex)
             {
@@ -112,32 +122,23 @@ namespace PapPrototipo
         }
 
         private void CBoxCampo_SelectedIndexChanged(object sender, EventArgs e)
+        { }
+
+        private void CBoxReg_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CBoxReg.Items.Clear();
-            
-            string consultaSql = "SELECT "+CBoxCampo.Text+" FROM " + tabelaSelect;
-            string ConnectS = "data source= localhost; database=pap1; user id= root; pwd=''";
-            MySqlConnection Conn = new MySqlConnection(ConnectS);
 
-            try
+        }
+
+        private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            switch(CBoxTabela.Text)
             {
-                Conn.Open();
-
-                MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
-                MySqlDataReader DataReader = queryCmd.ExecuteReader();
-
-                if(DataReader.HasRows)
-                {
-                     while(DataReader.Read())
-                    { 
-                        CBoxReg.Items.Add(DataReader.GetValue(0));
-                    }
-                     CBoxReg.SelectedIndex = 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                case "Veículos":
+                    CBoxReg.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    break;
+                default:
+                    CBoxReg.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    break;
             }
         }
     }

@@ -105,7 +105,7 @@
             // ListaDePeçasGroupBox
             // 
             this.ListaDePeçasGroupBox.Controls.Add(this.TabelaDataGrid);
-            this.ListaDePeçasGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListaDePeçasGroupBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ListaDePeçasGroupBox.ForeColor = System.Drawing.Color.White;
             this.ListaDePeçasGroupBox.Location = new System.Drawing.Point(6, 12);
             this.ListaDePeçasGroupBox.Name = "ListaDePeçasGroupBox";
@@ -118,11 +118,11 @@
             // 
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
             this.TabelaDataGrid.Location = new System.Drawing.Point(6, 22);
@@ -169,10 +169,11 @@
             // 
             this.CBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.CBox1.FormattingEnabled = true;
             this.CBox1.Location = new System.Drawing.Point(412, 20);
             this.CBox1.Name = "CBox1";
-            this.CBox1.Size = new System.Drawing.Size(173, 28);
+            this.CBox1.Size = new System.Drawing.Size(173, 27);
             this.CBox1.TabIndex = 35;
             this.CBox1.Visible = false;
             // 
@@ -180,15 +181,16 @@
             // 
             this.MesAnoV.CustomFormat = "MM/yy";
             this.MesAnoV.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.MesAnoV.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.MesAnoV.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.MesAnoV.Location = new System.Drawing.Point(412, 177);
             this.MesAnoV.Name = "MesAnoV";
-            this.MesAnoV.Size = new System.Drawing.Size(173, 26);
+            this.MesAnoV.Size = new System.Drawing.Size(173, 27);
             this.MesAnoV.TabIndex = 34;
             // 
             // labelIns8
             // 
-            this.labelIns8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns8.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns8.ForeColor = System.Drawing.Color.White;
             this.labelIns8.Location = new System.Drawing.Point(306, 177);
             this.labelIns8.Name = "labelIns8";
@@ -201,14 +203,15 @@
             // 
             this.TBox6.BackColor = System.Drawing.Color.White;
             this.TBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBox6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.TBox6.Location = new System.Drawing.Point(412, 137);
             this.TBox6.Name = "TBox6";
-            this.TBox6.Size = new System.Drawing.Size(173, 26);
+            this.TBox6.Size = new System.Drawing.Size(173, 27);
             this.TBox6.TabIndex = 32;
             // 
             // labelIns7
             // 
-            this.labelIns7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns7.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns7.ForeColor = System.Drawing.Color.White;
             this.labelIns7.Location = new System.Drawing.Point(306, 137);
             this.labelIns7.Name = "labelIns7";
@@ -221,14 +224,15 @@
             // 
             this.TBox5.BackColor = System.Drawing.Color.White;
             this.TBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBox5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.TBox5.Location = new System.Drawing.Point(412, 96);
             this.TBox5.Name = "TBox5";
-            this.TBox5.Size = new System.Drawing.Size(173, 26);
+            this.TBox5.Size = new System.Drawing.Size(173, 27);
             this.TBox5.TabIndex = 30;
             // 
             // labelIns6
             // 
-            this.labelIns6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns6.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns6.ForeColor = System.Drawing.Color.White;
             this.labelIns6.Location = new System.Drawing.Point(298, 95);
             this.labelIns6.Name = "labelIns6";
@@ -241,14 +245,15 @@
             // 
             this.TBox4.BackColor = System.Drawing.Color.White;
             this.TBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBox4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.TBox4.Location = new System.Drawing.Point(412, 55);
             this.TBox4.Name = "TBox4";
-            this.TBox4.Size = new System.Drawing.Size(173, 26);
+            this.TBox4.Size = new System.Drawing.Size(173, 27);
             this.TBox4.TabIndex = 28;
             // 
             // labelIns5
             // 
-            this.labelIns5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns5.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns5.ForeColor = System.Drawing.Color.White;
             this.labelIns5.Location = new System.Drawing.Point(302, 55);
             this.labelIns5.Name = "labelIns5";
@@ -261,6 +266,7 @@
             // 
             this.CBoxTab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBoxTab.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CBoxTab.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.CBoxTab.FormattingEnabled = true;
             this.CBoxTab.Items.AddRange(new object[] {
             "Clientes",
@@ -269,13 +275,13 @@
             "Veículos"});
             this.CBoxTab.Location = new System.Drawing.Point(119, 20);
             this.CBoxTab.Name = "CBoxTab";
-            this.CBoxTab.Size = new System.Drawing.Size(173, 28);
+            this.CBoxTab.Size = new System.Drawing.Size(173, 27);
             this.CBoxTab.TabIndex = 26;
             this.CBoxTab.SelectedIndexChanged += new System.EventHandler(this.CBoxTab_SelectedIndexChanged);
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(6, 20);
             this.label4.Name = "label4";
@@ -288,6 +294,7 @@
             // 
             this.RTBDescricao.BackColor = System.Drawing.Color.White;
             this.RTBDescricao.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RTBDescricao.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.RTBDescricao.Location = new System.Drawing.Point(643, 55);
             this.RTBDescricao.Name = "RTBDescricao";
             this.RTBDescricao.Size = new System.Drawing.Size(400, 192);
@@ -296,7 +303,7 @@
             // 
             // labelIns9
             // 
-            this.labelIns9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns9.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns9.ForeColor = System.Drawing.Color.White;
             this.labelIns9.Location = new System.Drawing.Point(643, 20);
             this.labelIns9.Name = "labelIns9";
@@ -309,15 +316,16 @@
             // 
             this.Data1.CustomFormat = "dd/MM/yyyy";
             this.Data1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.Data1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.Data1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.Data1.Location = new System.Drawing.Point(119, 177);
             this.Data1.Name = "Data1";
-            this.Data1.Size = new System.Drawing.Size(173, 26);
+            this.Data1.Size = new System.Drawing.Size(173, 27);
             this.Data1.TabIndex = 22;
             // 
             // labelIns4
             // 
-            this.labelIns4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns4.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns4.ForeColor = System.Drawing.Color.White;
             this.labelIns4.Location = new System.Drawing.Point(6, 177);
             this.labelIns4.Name = "labelIns4";
@@ -330,14 +338,15 @@
             // 
             this.TBox3.BackColor = System.Drawing.Color.White;
             this.TBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.TBox3.Location = new System.Drawing.Point(119, 137);
             this.TBox3.Name = "TBox3";
-            this.TBox3.Size = new System.Drawing.Size(173, 26);
+            this.TBox3.Size = new System.Drawing.Size(173, 27);
             this.TBox3.TabIndex = 20;
             // 
             // labelIns3
             // 
-            this.labelIns3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns3.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns3.ForeColor = System.Drawing.Color.White;
             this.labelIns3.Location = new System.Drawing.Point(6, 137);
             this.labelIns3.Name = "labelIns3";
@@ -350,14 +359,15 @@
             // 
             this.TBox2.BackColor = System.Drawing.Color.White;
             this.TBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBox2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.TBox2.Location = new System.Drawing.Point(119, 96);
             this.TBox2.Name = "TBox2";
-            this.TBox2.Size = new System.Drawing.Size(173, 26);
+            this.TBox2.Size = new System.Drawing.Size(173, 27);
             this.TBox2.TabIndex = 18;
             // 
             // labelIns2
             // 
-            this.labelIns2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns2.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns2.ForeColor = System.Drawing.Color.White;
             this.labelIns2.Location = new System.Drawing.Point(6, 96);
             this.labelIns2.Name = "labelIns2";
@@ -370,9 +380,10 @@
             // 
             this.TBox1.BackColor = System.Drawing.Color.White;
             this.TBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.TBox1.Location = new System.Drawing.Point(119, 55);
             this.TBox1.Name = "TBox1";
-            this.TBox1.Size = new System.Drawing.Size(173, 26);
+            this.TBox1.Size = new System.Drawing.Size(173, 27);
             this.TBox1.TabIndex = 13;
             // 
             // InsButton
@@ -385,7 +396,7 @@
             this.InsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.InsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.InsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.InsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InsButton.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.InsButton.ForeColor = System.Drawing.Color.White;
             this.InsButton.Location = new System.Drawing.Point(10, 214);
             this.InsButton.Name = "InsButton";
@@ -397,7 +408,7 @@
             // 
             // labelIns1
             // 
-            this.labelIns1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIns1.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelIns1.ForeColor = System.Drawing.Color.White;
             this.labelIns1.Location = new System.Drawing.Point(6, 55);
             this.labelIns1.Name = "labelIns1";

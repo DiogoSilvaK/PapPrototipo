@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ListaDePeçasGroupBox = new System.Windows.Forms.GroupBox();
             this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,7 +60,7 @@
             // ListaDePeçasGroupBox
             // 
             this.ListaDePeçasGroupBox.Controls.Add(this.TabelaDataGrid);
-            this.ListaDePeçasGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListaDePeçasGroupBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ListaDePeçasGroupBox.ForeColor = System.Drawing.Color.White;
             this.ListaDePeçasGroupBox.Location = new System.Drawing.Point(12, 0);
             this.ListaDePeçasGroupBox.Name = "ListaDePeçasGroupBox";
@@ -71,15 +72,24 @@
             // TabelaDataGrid
             // 
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TabelaDataGrid.Location = new System.Drawing.Point(6, 23);
-            this.TabelaDataGrid.Name = "TabelaDataGrid";
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.TabelaDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            this.TabelaDataGrid.Location = new System.Drawing.Point(6, 23);
+            this.TabelaDataGrid.Name = "TabelaDataGrid";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Firebrick;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.TabelaDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.TabelaDataGrid.Size = new System.Drawing.Size(1049, 315);
             this.TabelaDataGrid.TabIndex = 0;
             this.TabelaDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TabelaDataGrid_CellClick);
+            this.TabelaDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TabelaDataGrid_CellContentClick);
             // 
             // panel1
             // 
@@ -129,11 +139,11 @@
             // 
             // labelat5
             // 
-            this.labelat5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelat5.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelat5.ForeColor = System.Drawing.Color.White;
             this.labelat5.Location = new System.Drawing.Point(6, 46);
             this.labelat5.Name = "labelat5";
-            this.labelat5.Size = new System.Drawing.Size(79, 23);
+            this.labelat5.Size = new System.Drawing.Size(91, 23);
             this.labelat5.TabIndex = 26;
             this.labelat5.Text = " Tabela:";
             this.labelat5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -141,15 +151,16 @@
             // TabelaCBox1
             // 
             this.TabelaCBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TabelaCBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabelaCBox1.FormattingEnabled = true;
             this.TabelaCBox1.Items.AddRange(new object[] {
             "Clientes",
             "Serviços",
             "Lista de peças",
             "Veículos"});
-            this.TabelaCBox1.Location = new System.Drawing.Point(86, 45);
+            this.TabelaCBox1.Location = new System.Drawing.Point(103, 45);
             this.TabelaCBox1.Name = "TabelaCBox1";
-            this.TabelaCBox1.Size = new System.Drawing.Size(122, 28);
+            this.TabelaCBox1.Size = new System.Drawing.Size(156, 29);
             this.TabelaCBox1.TabIndex = 2;
             this.TabelaCBox1.SelectedIndexChanged += new System.EventHandler(this.TabelaCBox1_SelectedIndexChanged);
             // 
@@ -163,7 +174,7 @@
             this.ButAt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ButAt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
             this.ButAt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButAt.Font = new System.Drawing.Font("Century Gothic", 9F);
             this.ButAt.ForeColor = System.Drawing.Color.White;
             this.ButAt.Location = new System.Drawing.Point(531, 262);
             this.ButAt.Name = "ButAt";
@@ -177,6 +188,7 @@
             // 
             this.DescricaoRTR.BackColor = System.Drawing.Color.White;
             this.DescricaoRTR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DescricaoRTR.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DescricaoRTR.Location = new System.Drawing.Point(531, 44);
             this.DescricaoRTR.Name = "DescricaoRTR";
             this.DescricaoRTR.Size = new System.Drawing.Size(509, 212);
@@ -185,7 +197,7 @@
             // 
             // labelat6
             // 
-            this.labelat6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelat6.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelat6.ForeColor = System.Drawing.Color.White;
             this.labelat6.Location = new System.Drawing.Point(527, 18);
             this.labelat6.Name = "labelat6";
@@ -198,27 +210,30 @@
             // 
             this.DataServicos.CustomFormat = "dd/MM/yyyy";
             this.DataServicos.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.DataServicos.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataServicos.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DataServicos.Location = new System.Drawing.Point(86, 258);
+            this.DataServicos.Location = new System.Drawing.Point(103, 258);
             this.DataServicos.Name = "DataServicos";
-            this.DataServicos.Size = new System.Drawing.Size(173, 26);
+            this.DataServicos.Size = new System.Drawing.Size(156, 27);
             this.DataServicos.TabIndex = 22;
             // 
             // labelat1
             // 
+            this.labelat1.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelat1.ForeColor = System.Drawing.Color.White;
             this.labelat1.Location = new System.Drawing.Point(11, 194);
             this.labelat1.Name = "labelat1";
-            this.labelat1.Size = new System.Drawing.Size(69, 26);
+            this.labelat1.Size = new System.Drawing.Size(81, 26);
             this.labelat1.TabIndex = 5;
             this.labelat1.Text = "Campo:";
             // 
             // labelat4
             // 
+            this.labelat4.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelat4.ForeColor = System.Drawing.Color.White;
             this.labelat4.Location = new System.Drawing.Point(11, 101);
             this.labelat4.Name = "labelat4";
-            this.labelat4.Size = new System.Drawing.Size(69, 26);
+            this.labelat4.Size = new System.Drawing.Size(81, 26);
             this.labelat4.TabIndex = 5;
             this.labelat4.Text = "Campo:";
             // 
@@ -227,12 +242,12 @@
             this.Campo2.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.Campo2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Campo2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Campo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Campo2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Campo2.ForeColor = System.Drawing.Color.White;
             this.Campo2.FormattingEnabled = true;
-            this.Campo2.Location = new System.Drawing.Point(86, 191);
+            this.Campo2.Location = new System.Drawing.Point(103, 191);
             this.Campo2.Name = "Campo2";
-            this.Campo2.Size = new System.Drawing.Size(173, 26);
+            this.Campo2.Size = new System.Drawing.Size(156, 29);
             this.Campo2.TabIndex = 4;
             this.Campo2.SelectedIndexChanged += new System.EventHandler(this.Campo2_SelectedIndexChanged);
             // 
@@ -241,22 +256,22 @@
             this.Campo1.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.Campo1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Campo1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Campo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Campo1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Campo1.ForeColor = System.Drawing.Color.White;
             this.Campo1.FormattingEnabled = true;
-            this.Campo1.Location = new System.Drawing.Point(86, 98);
+            this.Campo1.Location = new System.Drawing.Point(103, 98);
             this.Campo1.Name = "Campo1";
-            this.Campo1.Size = new System.Drawing.Size(171, 26);
+            this.Campo1.Size = new System.Drawing.Size(154, 29);
             this.Campo1.TabIndex = 4;
             this.Campo1.SelectedIndexChanged += new System.EventHandler(this.Campo1_SelectedIndexChanged);
             // 
             // labelat3
             // 
-            this.labelat3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelat3.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelat3.ForeColor = System.Drawing.Color.White;
             this.labelat3.Location = new System.Drawing.Point(20, 262);
             this.labelat3.Name = "labelat3";
-            this.labelat3.Size = new System.Drawing.Size(60, 23);
+            this.labelat3.Size = new System.Drawing.Size(72, 23);
             this.labelat3.TabIndex = 21;
             this.labelat3.Text = "Data:";
             this.labelat3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -265,18 +280,19 @@
             // 
             this.NovoReg.BackColor = System.Drawing.Color.White;
             this.NovoReg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NovoReg.Location = new System.Drawing.Point(86, 225);
+            this.NovoReg.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NovoReg.Location = new System.Drawing.Point(103, 225);
             this.NovoReg.Name = "NovoReg";
-            this.NovoReg.Size = new System.Drawing.Size(173, 26);
+            this.NovoReg.Size = new System.Drawing.Size(156, 27);
             this.NovoReg.TabIndex = 18;
             // 
             // labelat2
             // 
-            this.labelat2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelat2.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelat2.ForeColor = System.Drawing.Color.White;
             this.labelat2.Location = new System.Drawing.Point(39, 229);
             this.labelat2.Name = "labelat2";
-            this.labelat2.Size = new System.Drawing.Size(41, 23);
+            this.labelat2.Size = new System.Drawing.Size(53, 23);
             this.labelat2.TabIndex = 17;
             this.labelat2.Text = "Por:";
             this.labelat2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -285,18 +301,19 @@
             // 
             this.AntigoReg.BackColor = System.Drawing.Color.White;
             this.AntigoReg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AntigoReg.Location = new System.Drawing.Point(86, 130);
+            this.AntigoReg.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AntigoReg.Location = new System.Drawing.Point(103, 130);
             this.AntigoReg.Name = "AntigoReg";
-            this.AntigoReg.Size = new System.Drawing.Size(173, 26);
+            this.AntigoReg.Size = new System.Drawing.Size(156, 27);
             this.AntigoReg.TabIndex = 13;
             // 
             // labelat0
             // 
-            this.labelat0.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelat0.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelat0.ForeColor = System.Drawing.Color.White;
             this.labelat0.Location = new System.Drawing.Point(3, 135);
             this.labelat0.Name = "labelat0";
-            this.labelat0.Size = new System.Drawing.Size(79, 23);
+            this.labelat0.Size = new System.Drawing.Size(91, 23);
             this.labelat0.TabIndex = 12;
             this.labelat0.Text = "Substitui:";
             this.labelat0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

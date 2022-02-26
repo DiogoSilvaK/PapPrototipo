@@ -33,6 +33,7 @@
             this.TabelaBox = new System.Windows.Forms.GroupBox();
             this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.PesquisarBox = new System.Windows.Forms.GroupBox();
+            this.DataServicos = new System.Windows.Forms.DateTimePicker();
             this.PesquisarBut = new System.Windows.Forms.Button();
             this.PesqTBox = new System.Windows.Forms.TextBox();
             this.CampoCBox = new System.Windows.Forms.ComboBox();
@@ -42,7 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.DataServicos = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.TabelaBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).BeginInit();
@@ -75,7 +75,7 @@
             // 
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
@@ -109,6 +109,16 @@
             this.PesquisarBox.TabStop = false;
             this.PesquisarBox.Text = "Pesquisar";
             // 
+            // DataServicos
+            // 
+            this.DataServicos.CustomFormat = "dd/MM/yyyy";
+            this.DataServicos.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.DataServicos.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DataServicos.Location = new System.Drawing.Point(763, 30);
+            this.DataServicos.Name = "DataServicos";
+            this.DataServicos.Size = new System.Drawing.Size(308, 27);
+            this.DataServicos.TabIndex = 23;
+            // 
             // PesquisarBut
             // 
             this.PesquisarBut.BackColor = System.Drawing.Color.DimGray;
@@ -139,7 +149,7 @@
             // CampoCBox
             // 
             this.CampoCBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CampoCBox.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CampoCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.CampoCBox.FormattingEnabled = true;
             this.CampoCBox.Items.AddRange(new object[] {
             "Serviço",
@@ -148,14 +158,14 @@
             "Veiculo"});
             this.CampoCBox.Location = new System.Drawing.Point(364, 30);
             this.CampoCBox.Name = "CampoCBox";
-            this.CampoCBox.Size = new System.Drawing.Size(121, 28);
+            this.CampoCBox.Size = new System.Drawing.Size(121, 29);
             this.CampoCBox.TabIndex = 1;
             this.CampoCBox.SelectedIndexChanged += new System.EventHandler(this.CampoCBox_SelectedIndexChanged);
             // 
             // CBoxTabela
             // 
             this.CBoxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBoxTabela.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBoxTabela.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.CBoxTabela.FormattingEnabled = true;
             this.CBoxTabela.Items.AddRange(new object[] {
             "Clientes",
@@ -164,14 +174,14 @@
             "Veículos"});
             this.CBoxTabela.Location = new System.Drawing.Point(145, 30);
             this.CBoxTabela.Name = "CBoxTabela";
-            this.CBoxTabela.Size = new System.Drawing.Size(121, 28);
+            this.CBoxTabela.Size = new System.Drawing.Size(121, 29);
             this.CBoxTabela.TabIndex = 1;
             this.CBoxTabela.SelectedIndexChanged += new System.EventHandler(this.CBoxTabela_SelectedIndexChanged);
             // 
             // CBoxOperadores
             // 
             this.CBoxOperadores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBoxOperadores.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CBoxOperadores.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.CBoxOperadores.FormattingEnabled = true;
             this.CBoxOperadores.Items.AddRange(new object[] {
             "maior",
@@ -182,7 +192,7 @@
             "diferente"});
             this.CBoxOperadores.Location = new System.Drawing.Point(562, 30);
             this.CBoxOperadores.Name = "CBoxOperadores";
-            this.CBoxOperadores.Size = new System.Drawing.Size(148, 28);
+            this.CBoxOperadores.Size = new System.Drawing.Size(148, 29);
             this.CBoxOperadores.TabIndex = 1;
             this.CBoxOperadores.SelectedIndexChanged += new System.EventHandler(this.OperadoresCbox_SelectedIndexChanged);
             // 
@@ -226,16 +236,6 @@
             this.label1.Size = new System.Drawing.Size(142, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mostrar na tabela";
-            // 
-            // DataServicos
-            // 
-            this.DataServicos.CustomFormat = "dd/MM/yyyy";
-            this.DataServicos.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.DataServicos.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DataServicos.Location = new System.Drawing.Point(763, 30);
-            this.DataServicos.Name = "DataServicos";
-            this.DataServicos.Size = new System.Drawing.Size(308, 27);
-            this.DataServicos.TabIndex = 23;
             // 
             // FormPesquisar
             // 
