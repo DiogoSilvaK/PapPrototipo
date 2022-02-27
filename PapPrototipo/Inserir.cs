@@ -84,7 +84,7 @@ namespace PapPrototipo
                     
                     
 
-                    ConsultaSql = "Select Titulo from servico";
+                    ConsultaSql = "Select * from servico";
                     MySqlCommand queryCmd = new MySqlCommand(ConsultaSql,Conn);
                     try
                     {
@@ -201,7 +201,7 @@ namespace PapPrototipo
                 break;
                 case "Veículos":
                     CBox1.Items.Clear();
-                    ConsultaSql = "Select Nome from Cliente";
+                    ConsultaSql = "Select * from Cliente";
                     MySqlCommand queryCmd2 = new MySqlCommand(ConsultaSql, Conn);
                     try
                     {

@@ -73,6 +73,8 @@
             // 
             // TabelaDataGrid
             // 
+            this.TabelaDataGrid.AllowUserToAddRows = false;
+            this.TabelaDataGrid.AllowUserToDeleteRows = false;
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;

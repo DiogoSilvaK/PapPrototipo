@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabelaPag = new System.Windows.Forms.TabPage();
@@ -45,8 +45,6 @@
             this.labelimp4 = new System.Windows.Forms.Label();
             this.labelimp3 = new System.Windows.Forms.Label();
             this.CBoxReg = new System.Windows.Forms.ComboBox();
-            this.labelimp1 = new System.Windows.Forms.Label();
-            this.CBoxTabela = new System.Windows.Forms.ComboBox();
             this.labelimp0 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -91,15 +89,17 @@
             // 
             // TabelaDataGrid
             // 
+            this.TabelaDataGrid.AllowUserToAddRows = false;
+            this.TabelaDataGrid.AllowUserToDeleteRows = false;
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Firebrick;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.TabelaDataGrid.Location = new System.Drawing.Point(6, 6);
             this.TabelaDataGrid.Name = "TabelaDataGrid";
             this.TabelaDataGrid.Size = new System.Drawing.Size(1058, 491);
@@ -119,16 +119,16 @@
             // 
             // Graf
             // 
-            chartArea1.Name = "ChartArea1";
-            this.Graf.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.Graf.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.Graf.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.Graf.Legends.Add(legend2);
             this.Graf.Location = new System.Drawing.Point(8, 45);
             this.Graf.Name = "Graf";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.Graf.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.Graf.Series.Add(series2);
             this.Graf.Size = new System.Drawing.Size(1056, 452);
             this.Graf.TabIndex = 0;
             this.Graf.Text = "chart1";
@@ -141,8 +141,6 @@
             this.groupBox2.Controls.Add(this.labelimp4);
             this.groupBox2.Controls.Add(this.labelimp3);
             this.groupBox2.Controls.Add(this.CBoxReg);
-            this.groupBox2.Controls.Add(this.labelimp1);
-            this.groupBox2.Controls.Add(this.CBoxTabela);
             this.groupBox2.Controls.Add(this.labelimp0);
             this.groupBox2.Location = new System.Drawing.Point(4, 2);
             this.groupBox2.Name = "groupBox2";
@@ -161,6 +159,7 @@
             this.SOGPbut.TabIndex = 21;
             this.SOGPbut.Text = "Gerar PDF";
             this.SOGPbut.UseVisualStyleBackColor = false;
+            this.SOGPbut.Click += new System.EventHandler(this.SOGPbut_Click);
             // 
             // GPIbut
             // 
@@ -201,9 +200,9 @@
             this.labelimp3.ForeColor = System.Drawing.Color.White;
             this.labelimp3.Location = new System.Drawing.Point(8, 87);
             this.labelimp3.Name = "labelimp3";
-            this.labelimp3.Size = new System.Drawing.Size(74, 22);
+            this.labelimp3.Size = new System.Drawing.Size(197, 22);
             this.labelimp3.TabIndex = 15;
-            this.labelimp3.Text = "Registro:";
+            this.labelimp3.Text = "Codigo do Serviço:";
             this.labelimp3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CBoxReg
@@ -217,39 +216,11 @@
             "Lista de peças",
             "Serviços",
             "Veículos"});
-            this.CBoxReg.Location = new System.Drawing.Point(88, 84);
+            this.CBoxReg.Location = new System.Drawing.Point(211, 85);
             this.CBoxReg.Name = "CBoxReg";
-            this.CBoxReg.Size = new System.Drawing.Size(275, 29);
+            this.CBoxReg.Size = new System.Drawing.Size(222, 29);
             this.CBoxReg.TabIndex = 14;
             this.CBoxReg.SelectedIndexChanged += new System.EventHandler(this.CBoxReg_SelectedIndexChanged);
-            // 
-            // labelimp1
-            // 
-            this.labelimp1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.labelimp1.ForeColor = System.Drawing.Color.White;
-            this.labelimp1.Location = new System.Drawing.Point(8, 16);
-            this.labelimp1.Name = "labelimp1";
-            this.labelimp1.Size = new System.Drawing.Size(74, 28);
-            this.labelimp1.TabIndex = 13;
-            this.labelimp1.Text = "Tabela:";
-            this.labelimp1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // CBoxTabela
-            // 
-            this.CBoxTabela.BackColor = System.Drawing.Color.White;
-            this.CBoxTabela.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CBoxTabela.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.CBoxTabela.FormattingEnabled = true;
-            this.CBoxTabela.Items.AddRange(new object[] {
-            "Clientes",
-            "Lista de peças",
-            "Serviços",
-            "Veículos"});
-            this.CBoxTabela.Location = new System.Drawing.Point(88, 16);
-            this.CBoxTabela.Name = "CBoxTabela";
-            this.CBoxTabela.Size = new System.Drawing.Size(275, 29);
-            this.CBoxTabela.TabIndex = 12;
-            this.CBoxTabela.SelectedIndexChanged += new System.EventHandler(this.CBoxTabela_SelectedIndexChanged);
             // 
             // labelimp0
             // 
@@ -299,8 +270,6 @@
         private System.Windows.Forms.Label labelimp4;
         private System.Windows.Forms.Label labelimp3;
         private System.Windows.Forms.ComboBox CBoxReg;
-        private System.Windows.Forms.Label labelimp1;
-        private System.Windows.Forms.ComboBox CBoxTabela;
         private System.Windows.Forms.Label labelimp0;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage TabelaPag;
