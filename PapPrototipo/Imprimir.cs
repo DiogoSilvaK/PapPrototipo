@@ -13,6 +13,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MySql.Data.MySqlClient;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.draw;
 using System.IO;
 
 namespace PapPrototipo
@@ -108,11 +109,11 @@ namespace PapPrototipo
 
             documento.Open();
             string tituloPDF = "Relatório do serviço\n\n\n\n";
-
+            Paragraph linhaSeparadora = new Paragraph(new Chunk(new LineSeparator(0.0F, 100.0F, lineColor:BaseColor.BLACK , Element.ALIGN_CENTER, 1)));
             iTextSharp.text.Font tituloFont = FontFactory.GetFont("Century Gothic", 24, iTextSharp.text.Font.BOLD, BaseColor.BLUE);
 
             documento.Add(new Paragraph(tituloPDF, tituloFont) { Alignment = Element.ALIGN_CENTER, Leading = 10.0F, });
-
+            documento.Add(linhaSeparadora);
             string ConnectS = "data source= localhost; database= pap1; user id= root; pwd=''";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
@@ -121,22 +122,23 @@ namespace PapPrototipo
             Graf.Series.Clear();
             Graf.Series.Add("Serviço");
 
-            Graf.Series["Serviço"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            Graf.Series["Serviço"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.;
 
             Graf.Series["Serviço"].Color = Color.Green;
             Graf.Series["Serviço"].IsValueShownAsLabel = true;
 
            
 
-            Graf.Series["Serviço"].Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 12, FontStyle.Regular);
-            Graf.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 8, FontStyle.Regular);
+            Graf.Series["Serviço"].Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 16, FontStyle.Regular);
+            Graf.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 12, FontStyle.Regular);
+            Graf.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 12, FontStyle.Regular);
             Graf.ChartAreas[0].AxisX.TitleForeColor = Color.Green;
             Graf.ChartAreas[0].AxisY.TitleForeColor = Color.Violet;
-            Graf.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Century Gothic, Arial, Microsoft Sans Serif", 14, FontStyle.Regular);
-            Graf.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Century Gothic, Arial, Microsoft Sans Serif", 14, FontStyle.Regular);
+            Graf.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Century Gothic", 18, FontStyle.Regular);
+            Graf.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Century Gothic", 18, FontStyle.Regular);
 
             Title Titulo = new Title("Estátistica do serviço", Docking.Top, new System.Drawing.Font("Arial",15),Color.DarkViolet);
-
+            Graf.Titles.Clear();
             Graf.Titles.Add(Titulo);
             //Graf.ChartAreas[0].AxisX.Title = "";
             //Graf.ChartAreas[0].AxisY.Title = "Quantidade";

@@ -57,7 +57,7 @@ namespace PapPrototipo
                     MySqlCommand queryCmd = new MySqlCommand(ConsultaSql, Conn);
                     Conn.Open();
                     MySqlDataReader LeitorConsulta = queryCmd.ExecuteReader();
-                    if (LeitorConsulta.Read())
+                    if (!LeitorConsulta.Read())
                     {
                         
                         //Login f1 = new Login();
