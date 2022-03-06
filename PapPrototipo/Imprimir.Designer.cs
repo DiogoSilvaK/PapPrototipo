@@ -37,6 +37,8 @@
             this.TabelaPag = new System.Windows.Forms.TabPage();
             this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.GrafPag = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Graf = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SOGPbut = new System.Windows.Forms.Button();
@@ -46,8 +48,8 @@
             this.labelimp3 = new System.Windows.Forms.Label();
             this.CBoxReg = new System.Windows.Forms.ComboBox();
             this.labelimp0 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.PAHUD = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.TabelaPag.SuspendLayout();
@@ -55,6 +57,7 @@
             this.GrafPag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Graf)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PAHUD)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -121,6 +124,31 @@
             this.GrafPag.TabIndex = 1;
             this.GrafPag.Text = "Gráfico";
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(4, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(197, 22);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Codigo do Serviço:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Barras",
+            "Circular"});
+            this.comboBox1.Location = new System.Drawing.Point(207, 10);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(222, 29);
+            this.comboBox1.TabIndex = 16;
+            // 
             // Graf
             // 
             chartArea1.Name = "ChartArea1";
@@ -140,6 +168,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.PAHUD);
             this.groupBox2.Controls.Add(this.SOGPbut);
             this.groupBox2.Controls.Add(this.GPIbut);
             this.groupBox2.Controls.Add(this.TBoxND);
@@ -231,37 +261,42 @@
             // 
             this.labelimp0.Font = new System.Drawing.Font("Century Gothic", 24F);
             this.labelimp0.ForeColor = System.Drawing.Color.White;
-            this.labelimp0.Location = new System.Drawing.Point(407, 17);
+            this.labelimp0.Location = new System.Drawing.Point(455, 17);
             this.labelimp0.Name = "labelimp0";
             this.labelimp0.Size = new System.Drawing.Size(154, 39);
             this.labelimp0.TabIndex = 6;
             this.labelimp0.Text = "Imprimir";
             this.labelimp0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // PAHUD
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(4, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 22);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Codigo do Serviço:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PAHUD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PAHUD.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PAHUD.Location = new System.Drawing.Point(211, 52);
+            this.PAHUD.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.PAHUD.Name = "PAHUD";
+            this.PAHUD.Size = new System.Drawing.Size(222, 27);
+            this.PAHUD.TabIndex = 22;
+            this.PAHUD.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             // 
-            // comboBox1
+            // label2
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Barras",
-            "Circular"});
-            this.comboBox1.Location = new System.Drawing.Point(207, 10);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(222, 29);
-            this.comboBox1.TabIndex = 16;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(8, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(197, 22);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Preço por Hora:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ImprimirForm
             // 
@@ -285,6 +320,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Graf)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PAHUD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,5 +342,7 @@
         private System.Windows.Forms.TabPage GrafPag;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.NumericUpDown PAHUD;
+        private System.Windows.Forms.Label label2;
     }
 }
