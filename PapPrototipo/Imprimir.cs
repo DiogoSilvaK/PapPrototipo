@@ -395,10 +395,18 @@ namespace PapPrototipo
                 }
 
                 documento.Add(tableLDP);
-                
-                
 
+                PdfPTable DescTab = new PdfPTable(1);
+                DescTab.WidthPercentage = 100;
+                PdfPCell DescTCell = new PdfPCell(new Phrase("Descrição: ", textoFont));
+                PdfPCell DescPCell = new PdfPCell(new Phrase(DescrServ, textoFont));
 
+                DescTab.AddCell(DescTCell);
+                DescTab.AddCell(DescPCell);
+
+                documento.Add(DescTab);
+
+                documento.Add(new Paragraph("Eu, "+NomeCliente+", declaro que recebi o meu veículo imaculado e com respectivo serviço realizado."));
 
 
 
