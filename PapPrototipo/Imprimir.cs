@@ -105,7 +105,7 @@ namespace PapPrototipo
         {
             Document documento = new Document(PageSize.A4);
             string NomePDF = TBoxND.Text + ".pdf";
-            PdfWriter.GetInstance(documento, new FileStream(NomePDF, FileMode.Create));
+            PdfWriter.GetInstance(documento, new FileStream("C:/"+NomePDF, FileMode.Create));
 
             documento.Open();
            // string tituloPDF = "Relatório do serviço";
@@ -180,14 +180,16 @@ namespace PapPrototipo
                 cellCab.Border = 0;
                 cellCab.HorizontalAlignment = Element.ALIGN_CENTER;
 
-
+                /*
                 var img = iTextSharp.text.Image.GetInstance("F:/Downloads/AMMLogo.png");
                 img.ScalePercent(34,34);
                 img.Alignment = Element.ALIGN_CENTER;
-                PdfPCell Cellimg = new PdfPCell(img);
+                */
+                PdfPCell Cellimg = new PdfPCell(new Phrase("LOGOTIPO AQUI!!",textoFont));
                 //Cellimg.Rowspan = 2;
                 Cellimg.Border = 0;
                 Cellimg.Padding = 20;
+                
                 
                 Cabecalho.AddCell(cellCab);
                 Cabecalho.AddCell(Cellimg);
@@ -450,7 +452,7 @@ namespace PapPrototipo
                 //documento.Add(img);
                 */
                 documento.Close();
-                System.Diagnostics.Process.Start(NomePDF);
+                System.Diagnostics.Process.Start("C:/"+NomePDF);
             }
             finally
             {

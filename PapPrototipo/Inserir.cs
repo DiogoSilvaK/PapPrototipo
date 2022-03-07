@@ -296,7 +296,7 @@ namespace PapPrototipo
                 case "Serviços":
                     consultaSql1 = "SELECT * FROM servico";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
-                    consultaSql = "insert into servico(Cod_Servico,Titulo, Descrição,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
+                    consultaSql = "insert into servico(Cod_Servico,Titulo, Descricao,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
 
 
@@ -401,7 +401,7 @@ namespace PapPrototipo
                 case "Lista de Peças":
                     consultaSql1 = "SELECT * FROM Lista_de_pecas";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
-                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox4.Text + "','" + TBox5.Text + "','" + CBox1.Text + "')";
+                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox5.Text + "','" + TBox4.Text + "','" + CBox1.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
 
                     Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
@@ -636,6 +636,32 @@ namespace PapPrototipo
 
         }
 
+        private void TBox1_Validating(object sender, CancelEventArgs e)
+        {
+            switch(CBoxTab.Text)
+            {
+                case "Clientes":
+                    Regex CodClienteCheck = new Regex(@"^[0-9]{1,11}$");
+                    if (!CodClienteCheck.IsMatch(TBox1.Text))
+                    {
+                        errorProvider1.SetError(TBox1, "Insira apenas números!!");
+                        //aut1 = false;
+                    }
+                    else
+                    {
+                        errorProvider1.SetError(TBox1, "");
 
+                    }
+
+
+                    break;
+                case "Lista_de_Peças":
+                    break;
+                case "Serviços":
+                    break;
+                case "Veiculos":
+                    break;
+            }
+        }
     }
 }
