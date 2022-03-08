@@ -105,7 +105,15 @@ namespace PapPrototipo
         {
             Document documento = new Document(PageSize.A4);
             string NomePDF = TBoxND.Text + ".pdf";
-            PdfWriter.GetInstance(documento, new FileStream("C:/"+NomePDF, FileMode.Create));
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Ficheiro PDF | .pdf ";
+            saveFileDialog1.Title = "Guardar o ficheiro PDF";
+            saveFileDialog1.FileName = NomePDF;
+
+            saveFileDialog1.ShowDialog(); 
+            NomePDF = saveFileDialog1.FileName;
+            MessageBox.Show(NomePDF);
+            PdfWriter.GetInstance(documento, new FileStream(NomePDF, FileMode.Create));
 
             documento.Open();
            // string tituloPDF = "Relatório do serviço";
@@ -410,6 +418,8 @@ namespace PapPrototipo
 
                 documento.Add(new Paragraph("Eu, "+NomeCliente+", declaro que recebi o meu veículo imaculado e com respectivo serviço realizado."));
 
+                documento.Add(new Paragraph(new Paragraph(new Chunk(new LineSeparator(0.0F, 15.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)))));
+
 
 
                 /*
@@ -452,7 +462,7 @@ namespace PapPrototipo
                 //documento.Add(img);
                 */
                 documento.Close();
-                System.Diagnostics.Process.Start("C:/"+NomePDF);
+                System.Diagnostics.Process.Start(NomePDF);
             }
             finally
             {

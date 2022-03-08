@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ListaDePeçasGroupBox = new System.Windows.Forms.GroupBox();
@@ -119,18 +119,18 @@
             this.TabelaDataGrid.AllowUserToAddRows = false;
             this.TabelaDataGrid.AllowUserToDeleteRows = false;
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Firebrick;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Firebrick;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.TabelaDataGrid.DefaultCellStyle = dataGridViewCellStyle7;
             this.TabelaDataGrid.Location = new System.Drawing.Point(6, 22);
             this.TabelaDataGrid.Name = "TabelaDataGrid";
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.TabelaDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            this.TabelaDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.TabelaDataGrid.Size = new System.Drawing.Size(1037, 349);
             this.TabelaDataGrid.TabIndex = 0;
             this.TabelaDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TabelaDataGrid_CellClick);
@@ -231,6 +231,7 @@
             this.TBox5.Name = "TBox5";
             this.TBox5.Size = new System.Drawing.Size(173, 27);
             this.TBox5.TabIndex = 30;
+            this.TBox5.Validating += new System.ComponentModel.CancelEventHandler(this.TBox5_Validating);
             // 
             // labelIns6
             // 
@@ -252,6 +253,7 @@
             this.TBox4.Name = "TBox4";
             this.TBox4.Size = new System.Drawing.Size(173, 27);
             this.TBox4.TabIndex = 28;
+            this.TBox4.Validating += new System.ComponentModel.CancelEventHandler(this.TBox4_Validating);
             // 
             // labelIns5
             // 
@@ -345,6 +347,7 @@
             this.TBox3.Name = "TBox3";
             this.TBox3.Size = new System.Drawing.Size(173, 27);
             this.TBox3.TabIndex = 20;
+            this.TBox3.Validating += new System.ComponentModel.CancelEventHandler(this.TBox3_Validating);
             // 
             // labelIns3
             // 
@@ -366,6 +369,7 @@
             this.TBox2.Name = "TBox2";
             this.TBox2.Size = new System.Drawing.Size(173, 27);
             this.TBox2.TabIndex = 18;
+            this.TBox2.Validating += new System.ComponentModel.CancelEventHandler(this.TBox2_Validating);
             // 
             // labelIns2
             // 
