@@ -105,9 +105,41 @@ namespace PapPrototipo
                     }
                     Campo1.SelectedIndex = 0;
                     Campo2.SelectedIndex = 0;
+
+                    // Set your desired AutoSize Mode:
+                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    {
+                        // Store Auto Sized Widths:
+                        int colw = TabelaDataGrid.Columns[i].Width;
+
+                        // Remove AutoSizing:
+                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                        // Set Width to calculated AutoSize value:
+                        TabelaDataGrid.Columns[i].Width = colw;
+                    }
+
                 }
                 else
                 {
+                    // Set your desired AutoSize Mode:
+                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    {
+                        // Store Auto Sized Widths:
+                        int colw = TabelaDataGrid.Columns[i].Width;
+
+                        // Remove AutoSizing:
+                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                        // Set Width to calculated AutoSize value:
+                        TabelaDataGrid.Columns[i].Width = colw;
+                    }
                     MessageBox.Show("Esta tabela está vazia...", "AVISO!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
@@ -119,21 +151,7 @@ namespace PapPrototipo
             }
             finally
             {
-                // Set your desired AutoSize Mode:
-                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
-                {
-                    // Store Auto Sized Widths:
-                    int colw = TabelaDataGrid.Columns[i].Width;
 
-                    // Remove AutoSizing:
-                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-                    // Set Width to calculated AutoSize value:
-                    TabelaDataGrid.Columns[i].Width = colw;
-                }
 
             }
 

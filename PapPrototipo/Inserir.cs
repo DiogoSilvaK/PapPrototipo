@@ -16,6 +16,8 @@ namespace PapPrototipo
     public partial class FormInserir : Form
     {
         static string consultaSql;
+        static bool aut1 = true;
+
         public FormInserir()
         {
             InitializeComponent();
@@ -58,17 +60,18 @@ namespace PapPrototipo
                     labelIns2.Text = "Nome:";
                     labelIns3.Text = "NumContr:";
                     labelIns4.Text = "Morada:";
-                    labelIns7.Text = "Localidade:";
+                    labelIns5.Text = "Localidade:";
 
                     TBox4.Visible = true;
                     TBox4.Location = new Point(119,177);
+                    TBox6.Location = new Point(412, 55);
                     CBox1.Visible = false;
                     TBox5.Enabled = true;
                     TBox5.Clear();
                     labelIns4.Visible = true;
-                    labelIns5.Visible = false;
+                    labelIns5.Visible = true;
                     labelIns6.Visible = false;
-                    labelIns7.Visible = true;
+                    labelIns7.Visible = false;
                     labelIns8.Visible = false;
                     labelIns9.Visible = false;
                     TBox5.Visible = false;
@@ -102,6 +105,7 @@ namespace PapPrototipo
                         else
                         {
                             MessageBox.Show("ERRO! IMPOSSIVEL INSERIR NESTA TABELA(NÃO EXISTEM SERVIÇOS!)", "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CBoxTab.SelectedValue = "Serviços";
                         }
                         Conn.Close();
                     }
@@ -159,6 +163,11 @@ namespace PapPrototipo
                             {
                                 CBox1.Items.Add(leitor.GetValue(0));
                             }
+                            CBox1.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            MessageBox.Show("ERRO! Não há veículos na disponivel!!!!!!", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         Conn.Close();
                     }
@@ -168,7 +177,7 @@ namespace PapPrototipo
                     }
                     finally
                     {
-                        CBox1.SelectedIndex = 0;
+                     
                     }
 
                     labelIns1.Text = "CodServiço:";
@@ -272,20 +281,24 @@ namespace PapPrototipo
 
         private void InsButton_Click(object sender, EventArgs e)
         {
-            errorProvider1.Clear();
-            errorProvider2.Clear();
-            errorProvider3.Clear();
-            errorProvider4.Clear();
-            errorProvider5.Clear();
-            errorProvider6.Clear();
-            errorProvider7.Clear();
-            errorProvider8.Clear();
-
+            if (errorProvider1.GetError(TBox1) == "" && errorProvider2.GetError(TBox2) == "" && errorProvider3.GetError(TBox3) == "" && errorProvider4.GetError(TBox4) == "" && errorProvider5.GetError(TBox5) == "" && errorProvider6.GetError(TBox6) == "")
+            {
+                aut1 = true;
+                errorProvider1.Clear();
+                errorProvider2.Clear();
+                errorProvider3.Clear();
+                errorProvider4.Clear();
+                errorProvider5.Clear();
+                errorProvider6.Clear();
+                errorProvider7.Clear();
+                errorProvider8.Clear();
+            }
+        
 
 
             bool aut = true;
-            bool aut1 = true; 
-            String consultaSql1 = "SELECT * FROM Cliente ";
+             
+            string consultaSql1 = "SELECT * FROM Cliente ";
             string SDR ="";
             switch (CBoxTab.Text)
             {
@@ -303,8 +316,8 @@ namespace PapPrototipo
                 case "Clientes":
                     consultaSql1 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
-                    consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "')";
-                    if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "") aut = false;
+                    consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada, Localidade) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "','"+TBox6.Text+"')";
+                    if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "") aut = false;
                     break;
 
                 case "Lista de Peças":
@@ -325,7 +338,7 @@ namespace PapPrototipo
                     string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
                     MySqlConnection Conn = new MySqlConnection(ConnectS);
 
-            if (aut)
+            if (aut && aut1)
             {
                 DialogResult DR = MessageBox.Show(SDR, "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 try
@@ -338,6 +351,33 @@ namespace PapPrototipo
                     if (DR == DialogResult.Yes)
                     {
                         queryCmd.ExecuteNonQuery();
+
+
+                        MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
+                        DataSet DataTemp = new DataSet();
+
+
+                        //DataAdapter = new MySqlDataAdapter(query2, Conn);
+                        //DataTemp = new DataSet("tabela");
+                        DataAdapter.Fill(DataTemp, "tabela");
+                        TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+
+
+                        TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+                        for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                        {
+
+                            int colw = TabelaDataGrid.Columns[i].Width;
+
+                            TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+
+                            TabelaDataGrid.Columns[i].Width = colw;
+                        }
                     }
 
 
@@ -348,33 +388,6 @@ namespace PapPrototipo
                 }
                 finally
                 {
-                    
-
-                    MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
-                    DataSet DataTemp = new DataSet();
-
-
-                    //DataAdapter = new MySqlDataAdapter(query2, Conn);
-                    //DataTemp = new DataSet("tabela");
-                    DataAdapter.Fill(DataTemp, "tabela");
-                    TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
-
-                    
-                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-                    
-                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
-                    {
-                        
-                        int colw = TabelaDataGrid.Columns[i].Width;
-
-                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-                        
-                        TabelaDataGrid.Columns[i].Width = colw;
-                    }
                     Conn.Close();
                 }
                 aut = true;
@@ -397,44 +410,55 @@ namespace PapPrototipo
                 case "Serviços":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
-                        TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
-                        TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
-                        TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
-                        Data1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
-                        CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
-                        TBox5.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        if (e.RowIndex > 0)
+                        {
+                            TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                            TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                            TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                            TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                            Data1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                            CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                            TBox5.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        }
                     }
                     break;
                 case "Clientes":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
-                        TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
-                        TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
-                        TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
-                        
+                        if (e.RowIndex >= 0)
+                        {
+                            TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                            TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                            TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                            TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        }
                     }
                     break;
                 case "Lista de Peças":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
+                        if (e.RowIndex >= 0)
+                        {
                         TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
                         TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
                         TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
                         TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
                         TBox5.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
                         CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        }
                     }
                     break;
                 case "Veiculos":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
-                        TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
-                        TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
-                        TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
-                        TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
-                        CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        if (e.RowIndex >= 0)
+                        {
+                            TBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                            TBox2.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                            TBox3.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                            TBox4.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                            CBox1.Text = TabelaDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        }
                     }
                     break;
             }
@@ -455,6 +479,8 @@ namespace PapPrototipo
                     {
                         errorProvider1.SetError(TBox1, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
+                        aut1 = false;
                     break;
                 case "Lista de Peças":
                     Regex CodPecaCheck = new Regex(@"^[0-9]{1,11}$");
@@ -466,6 +492,8 @@ namespace PapPrototipo
                     {
                         errorProvider1.SetError(TBox1, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider5.GetError(TBox5) != "")
+                        aut1 = false;
                     break;
                 case "Serviços":
 
@@ -478,6 +506,8 @@ namespace PapPrototipo
                     {
                         errorProvider2.SetError(TBox1, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider5.GetError(TBox5) != "")
+                        aut1 = false;
                     break;
                 case "Veiculos":
                     Regex Marca1Check = new Regex(@"^[0-9a-zA-Z\.\-\,_ ]{3,40}$");
@@ -489,6 +519,8 @@ namespace PapPrototipo
                     {
                         errorProvider1.SetError(TBox1, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
+                        aut1 = false;
                     break;
             }
         }
@@ -507,6 +539,8 @@ namespace PapPrototipo
                     {
                         errorProvider2.SetError(TBox2, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
+                        aut1 = false;
                     break;
                 case "Lista de Peças":
                     Regex Nome1Check = new Regex(@"^[0-9a-zA-Zçáâãàéèêõôóòíìîúùû\.\-\,_ ]{3,40}$");
@@ -518,6 +552,8 @@ namespace PapPrototipo
                     {
                         errorProvider2.SetError(TBox2, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider5.GetError(TBox5) != "")
+                        aut1 = false;
                     break;
                 case "Serviços":
                     Regex TituloCheck = new Regex(@"^[0-9a-zA-Záàâãéèêíóôõúçñ\-\._ ]{3,40}$");
@@ -529,6 +565,8 @@ namespace PapPrototipo
                     {
                         errorProvider2.SetError(TBox2, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != ""|| errorProvider5.GetError(TBox5) != "")
+                        aut1 = false;
                     break;
                 case "Veículos":
                     Regex ModeloCheck = new Regex(@"^[0-9a-zA-Z\.\-\,_ ]{3,40}$");
@@ -540,6 +578,9 @@ namespace PapPrototipo
                     {
                         errorProvider2.SetError(TBox2, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
+                        aut1 = false;
+
                     break;
             }
         }
@@ -560,6 +601,8 @@ namespace PapPrototipo
                     {
                         errorProvider3.SetError(TBox3, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
+                        aut1 = false;
                     break;
                 case "Lista de Peças":
                     Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9\-\._ ]{3,40}$");
@@ -571,10 +614,12 @@ namespace PapPrototipo
                     {
                         errorProvider3.SetError(TBox3, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider5.GetError(TBox5) != "")
+                        aut1 = false;
                     break;
                 case "Serviços":
                     break;
-                case "Veiculos":
+                case "Veículos":
                     Regex MatriculaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
                     if (!MatriculaCheck.IsMatch(TBox3.Text))
                     {
@@ -584,6 +629,8 @@ namespace PapPrototipo
                     {
                         errorProvider3.SetError(TBox3, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "")
+                        aut1 = false;
                     break;
             }
         }
@@ -602,6 +649,8 @@ namespace PapPrototipo
                     {
                         errorProvider4.SetError(TBox4, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
+                        aut1 = false;
                     break;
                 case "Lista de Peças":
                     Regex PrecoCheck = new Regex(@"^[0-9]{1,4}$");
@@ -613,8 +662,12 @@ namespace PapPrototipo
                     {
                         errorProvider4.SetError(TBox4, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider5.GetError(TBox5) != "")
+                        aut1 = false;
                     break;
+                    
                 case "Serviços":
+
                     break;
                 case "Veículos":
                     Regex HorasCheck = new Regex(@"^[0-9]{1,3}$");
@@ -626,6 +679,8 @@ namespace PapPrototipo
                     {
                         errorProvider4.SetError(TBox4, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "")
+                        aut1 = false;
                     break;
             }
         }
@@ -650,7 +705,37 @@ namespace PapPrototipo
                     {
                         errorProvider5.SetError(TBox5, "");
                     }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "")
+                        aut1 = false;
                     break;
+            }
+        }
+
+        private void TBox6_Validating(object sender, CancelEventArgs e)
+        {
+            switch(CBoxTab.Text)
+            {
+                case "Clientes:":
+                    Regex LocalidadeCheck = new Regex(@"^[A-Za-z\.\,\-_ ]{3,80}$");
+                    if (!LocalidadeCheck.IsMatch(TBox6.Text))
+                    {
+                        errorProvider6.SetError(TBox6, "Insira uma localidade validade");
+                    }
+                    else
+                    {
+                        errorProvider6.SetError(TBox6, "");
+                    }
+                    if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
+                        aut1 = false;
+                    break;
+                case "Lista de peças":
+                    
+                    break;
+                case "Serviços":
+                    break;
+                case "Veículos":
+                    break;
+
             }
         }
     }
