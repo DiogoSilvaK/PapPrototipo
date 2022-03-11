@@ -1,6 +1,6 @@
 ﻿namespace PapPrototipo
 {
-    partial class Form1
+    partial class DefinForms
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BackDBBut = new System.Windows.Forms.Button();
+            this.RestDBBut = new System.Windows.Forms.Button();
+            this.CancelBut = new System.Windows.Forms.Button();
+            this.AplicarBut = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
@@ -41,81 +41,82 @@
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // BackDBBut
             // 
-            this.button1.BackColor = System.Drawing.Color.DimGray;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button1.FlatAppearance.BorderSize = 2;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(12, 14);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 28);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Backup DB";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BackDBBut.BackColor = System.Drawing.Color.DimGray;
+            this.BackDBBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BackDBBut.FlatAppearance.BorderSize = 2;
+            this.BackDBBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackDBBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.BackDBBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackDBBut.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BackDBBut.ForeColor = System.Drawing.Color.White;
+            this.BackDBBut.Location = new System.Drawing.Point(12, 14);
+            this.BackDBBut.Name = "BackDBBut";
+            this.BackDBBut.Size = new System.Drawing.Size(79, 28);
+            this.BackDBBut.TabIndex = 0;
+            this.BackDBBut.Text = "Backup DB";
+            this.BackDBBut.UseVisualStyleBackColor = false;
+            this.BackDBBut.Click += new System.EventHandler(this.BackDBBut_Click);
             // 
-            // button2
+            // RestDBBut
             // 
-            this.button2.BackColor = System.Drawing.Color.DimGray;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button2.FlatAppearance.BorderSize = 2;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(95, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 28);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Restaurar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.RestDBBut.BackColor = System.Drawing.Color.DimGray;
+            this.RestDBBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RestDBBut.FlatAppearance.BorderSize = 2;
+            this.RestDBBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.RestDBBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.RestDBBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RestDBBut.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RestDBBut.ForeColor = System.Drawing.Color.White;
+            this.RestDBBut.Location = new System.Drawing.Point(95, 14);
+            this.RestDBBut.Name = "RestDBBut";
+            this.RestDBBut.Size = new System.Drawing.Size(79, 28);
+            this.RestDBBut.TabIndex = 1;
+            this.RestDBBut.Text = "Restaurar";
+            this.RestDBBut.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // CancelBut
             // 
-            this.button3.BackColor = System.Drawing.Color.DimGray;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button3.FlatAppearance.BorderSize = 2;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(180, 14);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(79, 28);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Cancelar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.CancelBut.BackColor = System.Drawing.Color.DimGray;
+            this.CancelBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.CancelBut.FlatAppearance.BorderSize = 2;
+            this.CancelBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CancelBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.CancelBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelBut.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBut.ForeColor = System.Drawing.Color.White;
+            this.CancelBut.Location = new System.Drawing.Point(180, 14);
+            this.CancelBut.Name = "CancelBut";
+            this.CancelBut.Size = new System.Drawing.Size(79, 28);
+            this.CancelBut.TabIndex = 2;
+            this.CancelBut.Text = "Cancelar";
+            this.CancelBut.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // AplicarBut
             // 
-            this.button4.BackColor = System.Drawing.Color.DimGray;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button4.FlatAppearance.BorderSize = 2;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(265, 14);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(79, 28);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Aplicar";
-            this.button4.UseVisualStyleBackColor = false;
+            this.AplicarBut.BackColor = System.Drawing.Color.DimGray;
+            this.AplicarBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.AplicarBut.FlatAppearance.BorderSize = 2;
+            this.AplicarBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.AplicarBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.AplicarBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AplicarBut.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AplicarBut.ForeColor = System.Drawing.Color.White;
+            this.AplicarBut.Location = new System.Drawing.Point(265, 14);
+            this.AplicarBut.Name = "AplicarBut";
+            this.AplicarBut.Size = new System.Drawing.Size(79, 28);
+            this.AplicarBut.TabIndex = 3;
+            this.AplicarBut.Text = "Aplicar";
+            this.AplicarBut.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.BackDBBut);
+            this.panel1.Controls.Add(this.AplicarBut);
+            this.panel1.Controls.Add(this.RestDBBut);
+            this.panel1.Controls.Add(this.CancelBut);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 126);
             this.panel1.Name = "panel1";
@@ -201,7 +202,7 @@
             this.button8.Text = "button8";
             this.button8.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // DefinForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -213,8 +214,10 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button8);
-            this.Name = "Form1";
+            this.Name = "DefinForms";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DefinForms_FormClosing);
+            this.Load += new System.EventHandler(this.DefinForms_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -222,10 +225,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BackDBBut;
+        private System.Windows.Forms.Button RestDBBut;
+        private System.Windows.Forms.Button CancelBut;
+        private System.Windows.Forms.Button AplicarBut;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button5;

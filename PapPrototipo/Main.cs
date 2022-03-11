@@ -119,6 +119,10 @@ namespace PapPrototipo
             }
         }
 
-
+        private void DefinBut_Click(object sender, EventArgs e)
+        {
+            DefinForms d1 = new DefinForms();
+            d1.Show();
+        }
     }
 }

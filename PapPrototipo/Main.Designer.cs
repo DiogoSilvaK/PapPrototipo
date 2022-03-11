@@ -33,6 +33,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.DefinBut = new System.Windows.Forms.Button();
             this.InicioBut = new System.Windows.Forms.Button();
             this.Sair = new System.Windows.Forms.Button();
             this.InserirBut = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.VTC = new System.Windows.Forms.Button();
             this.VTS = new System.Windows.Forms.Button();
             this.panelf3 = new System.Windows.Forms.Panel();
-            this.DefinBut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -121,6 +121,28 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(160, 563);
             this.panel2.TabIndex = 1;
+            // 
+            // DefinBut
+            // 
+            this.DefinBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DefinBut.BackColor = System.Drawing.Color.DimGray;
+            this.DefinBut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DefinBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.DefinBut.FlatAppearance.BorderSize = 2;
+            this.DefinBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DefinBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DefinBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.DefinBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DefinBut.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DefinBut.ForeColor = System.Drawing.Color.White;
+            this.DefinBut.Location = new System.Drawing.Point(3, 487);
+            this.DefinBut.Margin = new System.Windows.Forms.Padding(4);
+            this.DefinBut.Name = "DefinBut";
+            this.DefinBut.Size = new System.Drawing.Size(151, 31);
+            this.DefinBut.TabIndex = 2;
+            this.DefinBut.Text = "Definições";
+            this.DefinBut.UseVisualStyleBackColor = false;
+            this.DefinBut.Click += new System.EventHandler(this.DefinBut_Click);
             // 
             // InicioBut
             // 
@@ -303,27 +325,6 @@
             this.panelf3.Name = "panelf3";
             this.panelf3.Size = new System.Drawing.Size(1085, 675);
             this.panelf3.TabIndex = 0;
-            // 
-            // DefinBut
-            // 
-            this.DefinBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DefinBut.BackColor = System.Drawing.Color.DimGray;
-            this.DefinBut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DefinBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.DefinBut.FlatAppearance.BorderSize = 2;
-            this.DefinBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DefinBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.DefinBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.DefinBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DefinBut.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DefinBut.ForeColor = System.Drawing.Color.White;
-            this.DefinBut.Location = new System.Drawing.Point(3, 487);
-            this.DefinBut.Margin = new System.Windows.Forms.Padding(4);
-            this.DefinBut.Name = "DefinBut";
-            this.DefinBut.Size = new System.Drawing.Size(151, 31);
-            this.DefinBut.TabIndex = 2;
-            this.DefinBut.Text = "Definições";
-            this.DefinBut.UseVisualStyleBackColor = false;
             // 
             // Main
             // 
