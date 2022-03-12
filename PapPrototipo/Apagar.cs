@@ -149,6 +149,22 @@ namespace PapPrototipo
                         CampoCBox.Items.Add(DataReader.GetName(i));
                     }
                     CampoCBox.SelectedIndex = 0;
+
+                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    {
+
+                        int colw = TabelaDataGrid.Columns[i].Width;
+
+
+                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+
+                        TabelaDataGrid.Columns[i].Width = colw;
+
+                    }
                 }
                 else
                 {
@@ -163,22 +179,7 @@ namespace PapPrototipo
             }
             finally
             {
-                
-                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
-                {
-                   
-                    int colw = TabelaDataGrid.Columns[i].Width;
 
-                    
-                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-                    
-                    TabelaDataGrid.Columns[i].Width = colw;
-
-                }
             }
 
         }
@@ -216,10 +217,13 @@ namespace PapPrototipo
 
         private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-            DelReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();
-            
-            CampoCBox.SelectedItem = TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString();
+            if (e.RowIndex > 0)
+            {
+
+                DelReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();
+
+                CampoCBox.SelectedItem = TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString();
+            }
         }
     }
 }

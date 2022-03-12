@@ -421,46 +421,6 @@ namespace PapPrototipo
                 documento.Add(new Paragraph(new Paragraph(new Chunk(new LineSeparator(0.0F, 15.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)))));
 
 
-
-                /*
-                Graf.Series.Clear();
-                Graf.Series.Add("Serviço");
-                //Graf.Series["Serviço"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.;
-                Graf.Series["Serviço"].Color = Color.Green;
-
-
-                Graf.Series["Serviço"].IsValueShownAsLabel = true;
-
-                Graf.Series["Serviço"].Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 16, FontStyle.Regular);
-                Graf.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 12, FontStyle.Regular);
-                Graf.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 12, FontStyle.Regular);
-                Graf.ChartAreas[0].AxisX.TitleForeColor = Color.Green;
-                Graf.ChartAreas[0].AxisY.TitleForeColor = Color.Violet;
-                Graf.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Century Gothic", 18, FontStyle.Regular);
-                Graf.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Century Gothic", 18, FontStyle.Regular);
-
-                Title Titulo = new Title("Estátistica do serviço", Docking.Top, new System.Drawing.Font("Arial", 15), Color.DarkCyan);
-                Graf.Titles.Clear();
-                Graf.Titles.Add(Titulo);
-                //Graf.ChartAreas[0].AxisX.Title = "";
-                //Graf.ChartAreas[0].AxisY.Title = "Quantidade";
-
-
-                //Graf.Series["Serviço"].Points.AddXY("Valor total das peças", queryCmd.ExecuteScalar());
-
-
-                double intervalo = 0;
-
-
-                Graf.ChartAreas[0].AxisY.Interval = 200;
-                
-                MemoryStream memoryStream = new MemoryStream();
-                Graf.SaveImage(memoryStream, ChartImageFormat.Png);
-                iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(memoryStream.GetBuffer());
-                img.Alignment = Element.ALIGN_CENTER;
-                img.ScalePercent(50, 50);
-                //documento.Add(img);
-                */
                 documento.Close();
                 System.Diagnostics.Process.Start(NomePDF);
             }

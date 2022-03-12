@@ -30,10 +30,10 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.RefreshBut = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CBoxCampo = new System.Windows.Forms.ComboBox();
-            this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TabelaDataGrid)).BeginInit();
@@ -59,6 +59,14 @@
             this.groupBox1.Size = new System.Drawing.Size(1079, 635);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // TabelaDataGrid
+            // 
+            this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TabelaDataGrid.Location = new System.Drawing.Point(9, 20);
+            this.TabelaDataGrid.Name = "TabelaDataGrid";
+            this.TabelaDataGrid.Size = new System.Drawing.Size(1061, 570);
+            this.TabelaDataGrid.TabIndex = 2;
             // 
             // RefreshBut
             // 
@@ -104,14 +112,7 @@
             this.CBoxCampo.Name = "CBoxCampo";
             this.CBoxCampo.Size = new System.Drawing.Size(139, 38);
             this.CBoxCampo.TabIndex = 2;
-            // 
-            // TabelaDataGrid
-            // 
-            this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TabelaDataGrid.Location = new System.Drawing.Point(9, 20);
-            this.TabelaDataGrid.Name = "TabelaDataGrid";
-            this.TabelaDataGrid.Size = new System.Drawing.Size(1061, 570);
-            this.TabelaDataGrid.TabIndex = 2;
+            this.CBoxCampo.SelectedIndexChanged += new System.EventHandler(this.CBoxCampo_SelectedIndexChanged);
             // 
             // VTForm
             // 

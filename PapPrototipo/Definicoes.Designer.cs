@@ -75,6 +75,7 @@
             this.RestDBBut.TabIndex = 1;
             this.RestDBBut.Text = "Restaurar";
             this.RestDBBut.UseVisualStyleBackColor = false;
+            this.RestDBBut.Click += new System.EventHandler(this.RestDBBut_Click);
             // 
             // CancelBut
             // 
