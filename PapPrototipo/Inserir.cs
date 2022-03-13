@@ -46,6 +46,7 @@ namespace PapPrototipo
             TBox4.Clear();
             TBox5.Clear();
             TBox6.Clear();
+            RTBDescricao.Clear();
             Data1.ResetText();
             MesAnoV.ResetText();
 
@@ -510,7 +511,7 @@ namespace PapPrototipo
                         aut1 = false;
                     break;
                 case "Veiculos":
-                    Regex Marca1Check = new Regex(@"^[0-9a-zA-Z\.\-\,_ ]{3,40}$");
+                    Regex Marca1Check = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\-\,_ ]{3,40}$");
                     if (!Marca1Check.IsMatch(TBox1.Text))
                     {
                         errorProvider1.SetError(TBox1, "Insira uma marca válida!!");
@@ -530,7 +531,7 @@ namespace PapPrototipo
             switch(CBoxTab.Text)
             {
                 case "Clientes":
-                    Regex NomeCheck = new Regex(@"^[a-zA-Zçáâãàéèêõôóòíìîúùû_ ]{3,40}$");
+                    Regex NomeCheck = new Regex(@"^[a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ_ ]{3,40}$");
                     if (!NomeCheck.IsMatch(TBox2.Text))
                     {
                         errorProvider2.SetError(TBox2, "Insira um nome válida!");
@@ -543,7 +544,7 @@ namespace PapPrototipo
                         aut1 = false;
                     break;
                 case "Lista de Peças":
-                    Regex Nome1Check = new Regex(@"^[0-9a-zA-Zçáâãàéèêõôóòíìîúùû\.\-\,_ ]{3,40}$");
+                    Regex Nome1Check = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\-\,_ ]{3,40}$");
                     if (!Nome1Check.IsMatch(TBox2.Text))
                     {
                         errorProvider2.SetError(TBox2, "Insira um nome válido!!");
@@ -556,7 +557,7 @@ namespace PapPrototipo
                         aut1 = false;
                     break;
                 case "Serviços":
-                    Regex TituloCheck = new Regex(@"^[0-9a-zA-Záàâãéèêíóôõúçñ\-\._ ]{3,40}$");
+                    Regex TituloCheck = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\-\._ ]{3,40}$");
                     if (!TituloCheck.IsMatch(TBox2.Text))
                     {
                         errorProvider2.SetError(TBox2, "Insira um titulo válido!!");
@@ -569,7 +570,7 @@ namespace PapPrototipo
                         aut1 = false;
                     break;
                 case "Veículos":
-                    Regex ModeloCheck = new Regex(@"^[0-9a-zA-Z\.\-\,_ ]{3,40}$");
+                    Regex ModeloCheck = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\-\,_ ]{3,40}$");
                     if (!ModeloCheck.IsMatch(TBox2.Text))
                     {
                         errorProvider2.SetError(TBox2, "Insira um modelo válido!!");
@@ -605,7 +606,7 @@ namespace PapPrototipo
                         aut1 = false;
                     break;
                 case "Lista de Peças":
-                    Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9\-\._ ]{3,40}$");
+                    Regex MarcaCheck = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\-\._ ]{3,40}$");
                     if (!MarcaCheck.IsMatch(TBox3.Text))
                     {
                         errorProvider3.SetError(TBox3, "Insira uma marca válida!!");
@@ -640,7 +641,7 @@ namespace PapPrototipo
             switch(CBoxTab.Text)
             {
                 case "Clientes":
-                    Regex MoradaCheck = new Regex(@"^[a-zA-Z0-9\.\,\-_ ]{10,40}$");
+                    Regex MoradaCheck = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛºª\.\,\-_ ]{10,40}$");
                     if (!MoradaCheck.IsMatch(TBox4.Text))
                     {
                         errorProvider4.SetError(TBox4, "Insira uma morada válida!!");
@@ -715,8 +716,8 @@ namespace PapPrototipo
         {
             switch(CBoxTab.Text)
             {
-                case "Clientes:":
-                    Regex LocalidadeCheck = new Regex(@"^[A-Za-z\.\,\-_ ]{3,80}$");
+                case "Clientes":
+                    Regex LocalidadeCheck = new Regex(@"^[A-Za-zçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\,\-_ ]{3,80}$");
                     if (!LocalidadeCheck.IsMatch(TBox6.Text))
                     {
                         errorProvider6.SetError(TBox6, "Insira uma localidade validade");

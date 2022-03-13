@@ -123,8 +123,8 @@ namespace PapPrototipo
 
 
             Paragraph linhaSeparadora = new Paragraph(new Chunk(new LineSeparator(0.0F, 100.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)));
-            iTextSharp.text.Font tituloFont = FontFactory.GetFont("Microsoft Sans Serif", 24, iTextSharp.text.Font.BOLD, BaseColor.RED);
-            iTextSharp.text.Font tituloCabFont = FontFactory.GetFont("Microsoft Sans Serif", 20, iTextSharp.text.Font.BOLD, BaseColor.BLUE);
+            iTextSharp.text.Font tituloFont = FontFactory.GetFont("Microsoft Sans Serif", 24, iTextSharp.text.Font.BOLD, BaseColor.BLACK );
+            iTextSharp.text.Font tituloCabFont = FontFactory.GetFont("Microsoft Sans Serif", 20, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
             iTextSharp.text.Font textoFont = FontFactory.GetFont("Microsoft Sans Serif", 10, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             //documento.Add(new Paragraph(tituloPDF, tituloFont) { Alignment = Element.ALIGN_CENTER, Leading = 10.0F, });
 
@@ -134,7 +134,7 @@ namespace PapPrototipo
             string TituloServ = String.Empty, DescrServ = String.Empty, DataServ = String.Empty;
             int HorasServ = 0;
 
-            string NomeCliente = String.Empty, MoradaCliente = String.Empty;
+            string NomeCliente = String.Empty, MoradaCliente = String.Empty, LocalCliente = String.Empty;  
             int NContr = 0;
 
             string MarcaV = String.Empty, ModeloV = String.Empty, MesAnoV = String.Empty, MatriculaV = String.Empty;
@@ -163,7 +163,7 @@ namespace PapPrototipo
                 string consultaSql = "Select SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
                 string consultaSqlLogin = "SELECT Nome, Email from login where Email='" + Login.UserLogado + "'";
                 string consultaSqlServico = "SELECT Titulo, Descricao, Horas,Data FROM servico where cod_servico='" + CBoxReg.Text + "'";
-                string consultaSqlCliente = "SELECT Nome, N_Contr,Morada FROM cliente where Cod_Cliente=(Select Cod_Cliente from veiculo where Matricula=(Select VeiculoMatricula from servico where Cod_Servico='" + CBoxReg.Text + "'))";
+                string consultaSqlCliente = "SELECT Nome, N_Contr,Morada,Localidade FROM cliente where Cod_Cliente=(Select Cod_Cliente from veiculo where Matricula=(Select VeiculoMatricula from servico where Cod_Servico='" + CBoxReg.Text + "'))";
                 string consultaSqlVeiculo = "SELECT Marca, Modelo,Matricula, Cilindrada, Mes_Ano FROM Veiculo where Matricula=(SELECT VeiculoMatricula from servico where Cod_Servico ='" + CBoxReg.Text + "')";
                 string consultaSqlLDP = "SELECT (@row_num:=@row_num+1) AS 'N', Marca, Nome, Num_Serie, Preco FROM Lista_de_pecas where cod_servico=(Select Cod_Servico from Servico where cod_servico='" + CBoxReg.Text + "')";
                 MySqlCommand queryCmdLogin = new MySqlCommand(consultaSqlLogin, Conn);
@@ -277,6 +277,7 @@ namespace PapPrototipo
                         NomeCliente = DataReader.GetValue(0).ToString();
                         NContr = ((int)DataReader.GetValue(1));
                         MoradaCliente = DataReader.GetValue(2).ToString();
+                        LocalCliente = DataReader.GetValue(3).ToString();
 
                     }
                 }
@@ -386,7 +387,7 @@ namespace PapPrototipo
                 }
 
 
-
+                        
 
                 for (int linhas = 0; linhas < nl; linhas++)
                 {
@@ -394,7 +395,7 @@ namespace PapPrototipo
                     {
 
                         stemp = DataTemp.Tables["tabela"].Rows[linhas][colunas].ToString();
-
+                                
 
 
                         tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
@@ -409,9 +410,33 @@ namespace PapPrototipo
                     }
                 }
 
-                documento.Add(tableLDP);
 
-                PdfPTable DescTab = new PdfPTable(1);
+                DataReader.Close();
+                string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
+                        double precoTot = 0.0;
+                        MySqlCommand queryTotPCmd = new MySqlCommand(TotalPCs, Conn);
+                DataReader = queryTotPCmd.ExecuteReader();
+                if(DataReader.HasRows)
+                {
+                            while(DataReader.Read())
+                            {
+                                precoTot = DataReader.GetDouble(0);
+                            }
+                }
+
+                        PdfPCell TotalPrecCell = new PdfPCell(new Phrase("Total: " + precoTot.ToString()+ "€", textoFont));
+                        TotalPrecCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                        TotalPrecCell.Colspan = 5;
+                        TotalPrecCell.BorderWidth = 1;
+                        TotalPrecCell.PaddingRight = 4;
+                        tableLDP.AddCell(TotalPrecCell);
+
+                        documento.Add(tableLDP);
+
+                        //documento.Add(new Paragraph());
+
+
+                        PdfPTable DescTab = new PdfPTable(1);
                 DescTab.WidthPercentage = 100;
                 PdfPCell DescTCell = new PdfPCell(new Phrase("Descrição: ", textoFont));
                 PdfPCell DescPCell = new PdfPCell(new Phrase(DescrServ, textoFont));
@@ -535,7 +560,9 @@ namespace PapPrototipo
                         HorasCell.Border = 0;
                         PdfPCell PrecoCell = new PdfPCell(new Phrase("Preço por Hora: " + PAHUD.Value, textoFont));
                         PrecoCell.Border = 0;
-                        PdfPCell TotalPCell = new PdfPCell(new Phrase("Total: " + HorasServ * PAHUD.Value, textoFont));
+
+                        double MOPT = (double)HorasServ * (double)PAHUD.Value ;
+                        PdfPCell TotalPCell = new PdfPCell(new Phrase("Total: " + MOPT, textoFont));
                         TotalPCell.Border = 0;
 
                         DataPrT.WidthPercentage = 100;
@@ -688,6 +715,26 @@ namespace PapPrototipo
                             }
                         }
 
+                        DataReader.Close();
+                        string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
+                        double precoTot = 0.0;
+                        MySqlCommand queryTotPCmd = new MySqlCommand(TotalPCs, Conn);
+                        DataReader = queryTotPCmd.ExecuteReader();
+                        if (DataReader.HasRows)
+                        {
+                            while (DataReader.Read())
+                            {
+                                precoTot = DataReader.GetDouble(0);
+                            }
+                        }
+
+                        PdfPCell TotalPrecCell = new PdfPCell(new Phrase("Total: " + precoTot.ToString() + "€", textoFont));
+                        TotalPrecCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                        TotalPrecCell.Colspan = 5;
+                        TotalPrecCell.BorderWidth = 1;
+                        TotalPrecCell.PaddingRight = 4;
+                        tableLDP.AddCell(TotalPrecCell);
+
                         documento.Add(tableLDP);
 
                         PdfPTable DescTab = new PdfPTable(1);
@@ -700,9 +747,48 @@ namespace PapPrototipo
 
                         documento.Add(DescTab);
 
-                        documento.Add(new Paragraph("Eu, " + NomeCliente + ", declaro que recebi o meu veículo imaculado e com respectivo serviço realizado."));
+                        Graf.Series.Clear();Graf.Series.Add("Servico");
+                        Graf.Series["Servico"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+                        Graf.Series["Servico"].Color = Color.Red;
 
-                        documento.Add(new Paragraph(new Paragraph(new Chunk(new LineSeparator(0.0F, 15.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)))));
+                        Graf.Series["Servico"].IsValueShownAsLabel = true;
+
+                        Graf.Series["Servico"].Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif,Sans-Serif", 28, FontStyle.Regular);
+                      //  Graf.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif,Sans-Serif", 50, FontStyle.Regular);
+                       // Graf.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 50, FontStyle.Regular);
+                        Graf.ChartAreas[0].AxisX.TitleForeColor = Color.Black;
+                        Graf.ChartAreas[0].AxisY.TitleForeColor = Color.Black;
+                        Graf.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Century Gothic", 22, FontStyle.Regular);
+                        Graf.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Century Gothic", 22, FontStyle.Regular);
+
+                        
+                        Title Titulo = new Title("Estátistica do serviço", Docking.Top, new System.Drawing.Font("Arial", 24), Color.Black);
+                        Graf.Titles.Clear();
+                        Graf.Titles.Add(Titulo);
+                        //Graf.ChartAreas[0].AxisX.Title = "";
+                        //Graf.ChartAreas[0].AxisY.Title = "Quantidade";
+
+
+                        //Graf.Series["Serviço"].Points.AddXY("Valor total das peças", queryCmd.ExecuteScalar());
+
+
+                        double precoFinal = MOPT+precoTot;
+
+                        Graf.Series["Servico"].Points.AddXY("Valor Total das Peças", (int)((precoTot*100)/precoFinal));
+                        Graf.Series["Servico"].Points.AddXY("Valor da Mão de Obra", (int)((MOPT * 100) / precoFinal));
+
+
+
+
+                        //Graf.ChartAreas[0].AxisY.Interval = 200;
+
+                        MemoryStream memoryStream = new MemoryStream();
+                        Graf.SaveImage(memoryStream, ChartImageFormat.Png);
+                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(memoryStream.GetBuffer());
+                        img.Alignment = Element.ALIGN_CENTER;
+                        img.ScalePercent(50, 50);
+                        documento.Add(img);
+
 
 
                         documento.Close();
