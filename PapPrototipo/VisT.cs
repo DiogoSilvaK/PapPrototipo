@@ -20,7 +20,7 @@ namespace PapPrototipo
 
         private void FormVTC_Load(object sender, EventArgs e)
         {
-            
+            CBoxCampo.SelectedIndex = 0;
         }
 
         private void RefreshBut_Click(object sender, EventArgs e)
@@ -40,16 +40,16 @@ namespace PapPrototipo
             switch (CBoxCampo.Text)
             {
                 case "Clientes":
-                    consultaSql = "SELECT * FROM cliente where Cod_Cliente='(Select Cod_Cliente From Veiculo where Matricula='(Select VeiculoMatricula from servico where LoginEmail ='"+ Login.UserLogado+"' )')'";
+                    consultaSql = "SELECT * FROM cliente where Cod_Cliente=(Select Cod_Cliente From Veiculo where Matricula=(Select VeiculoMatricula from servico where LoginEmail ='"+ Login.UserLogado+"' ))";
                     break;
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM lista_de_pecas WHERE cod_servico='(Select Cod_Servico From servico where Loginemail='"+Login.UserLogado+"')'";
+                    consultaSql = "SELECT * FROM lista_de_pecas WHERE cod_servico=(Select Cod_Servico From servico where LoginEmail='"+Login.UserLogado+"')";
                     break;
                 case "Serviços":
                     consultaSql = "SELECT * FROM servico where LoginEmail='"+Login.UserLogado+"'";
                     break;
                 case "Veículos":
-                    consultaSql = "SELECT * FROM veiculo where";
+                    consultaSql = "SELECT * FROM veiculo where Matricula=(SELECT VeiculoMatricula from servico where LoginEmail='"+Login.UserLogado+"')";
                     break;
             }
 

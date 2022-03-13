@@ -31,7 +31,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TabelaDataGrid = new System.Windows.Forms.DataGridView();
-            this.RefreshBut = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CBoxCampo = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
@@ -53,7 +52,6 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.TabelaDataGrid);
-            this.groupBox1.Controls.Add(this.RefreshBut);
             this.groupBox1.Location = new System.Drawing.Point(3, -6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1079, 635);
@@ -65,27 +63,8 @@
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TabelaDataGrid.Location = new System.Drawing.Point(9, 20);
             this.TabelaDataGrid.Name = "TabelaDataGrid";
-            this.TabelaDataGrid.Size = new System.Drawing.Size(1061, 570);
+            this.TabelaDataGrid.Size = new System.Drawing.Size(1061, 606);
             this.TabelaDataGrid.TabIndex = 2;
-            // 
-            // RefreshBut
-            // 
-            this.RefreshBut.BackColor = System.Drawing.Color.DimGray;
-            this.RefreshBut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RefreshBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.RefreshBut.FlatAppearance.BorderSize = 2;
-            this.RefreshBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.RefreshBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.RefreshBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RefreshBut.Font = new System.Drawing.Font("Century Gothic", 11F);
-            this.RefreshBut.ForeColor = System.Drawing.Color.White;
-            this.RefreshBut.Location = new System.Drawing.Point(6, 596);
-            this.RefreshBut.Name = "RefreshBut";
-            this.RefreshBut.Size = new System.Drawing.Size(1064, 30);
-            this.RefreshBut.TabIndex = 1;
-            this.RefreshBut.Text = "Atualizar";
-            this.RefreshBut.UseVisualStyleBackColor = false;
-            this.RefreshBut.Click += new System.EventHandler(this.RefreshBut_Click);
             // 
             // label1
             // 
@@ -141,7 +120,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button RefreshBut;
         private System.Windows.Forms.ComboBox CBoxCampo;
         private System.Windows.Forms.DataGridView TabelaDataGrid;
     }
