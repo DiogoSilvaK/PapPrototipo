@@ -323,8 +323,8 @@ namespace PapPrototipo
 
                 case "Lista de Peças":
                     consultaSql1 = "SELECT * FROM Lista_de_pecas";
-                    SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ TBox6.Text+"?";
-                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox5.Text + "','" + TBox4.Text + "','" + CBox1.Text + "')";
+                    SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ CBox1.Text+"?";
+                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox6.Text + "','" + TBox4.Text + "','" + CBox1.Text + "')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
                     break;
 
