@@ -109,7 +109,7 @@ namespace PapPrototipo
             }
             else 
             {
-                MessageBox.Show("Não foi possível gravar o ficheiro - tente Novamente", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Não foi possível abrir o ficheiro - tente Novamente", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 

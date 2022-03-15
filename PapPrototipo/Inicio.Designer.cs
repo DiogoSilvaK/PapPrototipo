@@ -53,10 +53,12 @@
             this.TBoxInicio.BackColor = System.Drawing.Color.DimGray;
             this.TBoxInicio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TBoxInicio.Cursor = System.Windows.Forms.Cursors.Default;
+            this.TBoxInicio.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TBoxInicio.ForeColor = System.Drawing.Color.White;
             this.TBoxInicio.Location = new System.Drawing.Point(36, 39);
             this.TBoxInicio.Name = "TBoxInicio";
             this.TBoxInicio.ReadOnly = true;
-            this.TBoxInicio.Size = new System.Drawing.Size(261, 420);
+            this.TBoxInicio.Size = new System.Drawing.Size(340, 420);
             this.TBoxInicio.TabIndex = 1;
             this.TBoxInicio.Text = "";
             // 
@@ -100,6 +102,7 @@
             this.Name = "FormInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormInicio";
+            this.Load += new System.EventHandler(this.FormInicio_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
