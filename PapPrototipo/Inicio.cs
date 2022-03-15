@@ -34,29 +34,30 @@ namespace PapPrototipo
                 Conn.Open();
                 
                 DataReader = queryCmdUser.ExecuteReader();
+                string[] BomDiaArray = new string[14];
 
                 if (DataReader.HasRows)
                 { 
                     UserN = DataReader.GetValue(0).ToString();
-                string[] BomDiaArray = new string[]
-                {
-                "Bom-dia " + UserN,//Portugues
-            "Buenos-dias " + UserN,//Espanol
-            "Guten-Morgen "+ UserN,//Alemão
-            "Good Morning "+ UserN,//Inglês
-            "Bonjour "+ UserN,//Francês
-            "Buongiorno "+UserN,//Italiano
-            "Goedemorgen "+UserN,//Holandês
-            "Ohayōgozaimasu "+ UserN,//Japonês
-            "Hyvää huomenta "+ UserN,//Finlandês
-            "Zǎoshang hǎo " + UserN, //Chinês
-            "Buen día "+UserN, //Mexicano
-            "Bonum mane "+UserN, //Latim
-            "Dzień dobry"+UserN, //Polaco
-            "God dag "+UserN, //Norueguês
-            "Dobroho ranku"+UserN //Ucraniano
+                    BomDiaArray =
+                    {
+                "Bom-dia " + UserN,//Portugues 0
+            "Buenos-dias " + UserN,//Espanol 1
+            "Guten-Morgen "+ UserN,//Alemão 2
+            "Good Morning "+ UserN,//Inglês 3
+            "Bonjour "+ UserN,//Francês 4
+            "Buongiorno "+UserN,//Italiano 5
+            "Goedemorgen "+UserN,//Holandês 6
+            "Ohayōgozaimasu "+ UserN,//Japonês 7 
+            "Hyvää huomenta "+ UserN,//Finlandês 8
+            "Zǎoshang hǎo " + UserN, //Chinês 9 
+            "Buen día "+UserN, //Mexicano 10
+            "Bonum mane "+UserN, //Latim 11
+            "Dzień dobry"+UserN, //Polaco 12
+            "God dag "+UserN, //Norueguês 13
+            "Dobroho ranku"+UserN //Ucraniano 14
                 };
-
+               
 
                }
                 
