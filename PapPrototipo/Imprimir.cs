@@ -765,22 +765,20 @@ namespace PapPrototipo
                         Title Titulo = new Title("Estátistica do serviço", Docking.Top, new System.Drawing.Font("Arial", 24), Color.Black);
                         Graf.Titles.Clear();
                         Graf.Titles.Add(Titulo);
-                        //Graf.ChartAreas[0].AxisX.Title = "";
-                        //Graf.ChartAreas[0].AxisY.Title = "Quantidade";
 
-
-                        //Graf.Series["Serviço"].Points.AddXY("Valor total das peças", queryCmd.ExecuteScalar());
 
 
                         double precoFinal = MOPT+precoTot;
+                        double VTPF = (double)(decimal.Round((decimal)((precoTot*100)/precoFinal), 2));
+                        double VMOF = (double)(decimal.Round((decimal)((MOPT*100)/precoFinal), 2));
 
-                        Graf.Series["Servico"].Points.AddXY("Valor Total das Peças", (int)((precoTot*100)/precoFinal));
-                        Graf.Series["Servico"].Points.AddXY("Valor da Mão de Obra", (int)((MOPT * 100) / precoFinal));
+                        Graf.Series["Servico"].Points.AddXY("Valor Total das Peças", VTPF);
+                        Graf.Series["Servico"].Points.AddXY("Valor da Mão de Obra", VMOF);
+                       
+                        
 
 
 
-
-                        //Graf.ChartAreas[0].AxisY.Interval = 200;
 
                         MemoryStream memoryStream = new MemoryStream();
                         Graf.SaveImage(memoryStream, ChartImageFormat.Png);

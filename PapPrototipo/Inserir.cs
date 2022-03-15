@@ -126,21 +126,22 @@ namespace PapPrototipo
                     labelIns4.Text = "NumSerie:"; //TBox6
                     labelIns5.Text = "Preço:"; //TBox4
                     labelIns6.Text = "Cod_Servico:"; //CBox1
+                    labelIns7.Text = "Desconto:";//TBox5
 
                     CBox1.Visible = true;
                     CBox1.Location = new Point(412, 96);
                     TBox4.Location = new Point(412, 55);
                     TBox6.Location = new Point(119, 177);
-                    TBox5.Clear();
-                    TBox5.Enabled = false;
+                    TBox5.Location = new Point(412, 137);
+                    TBox5.Enabled = true;
                     labelIns4.Visible = true;
                     labelIns5.Visible = true;
                     labelIns6.Visible = true;
-                    labelIns7.Visible = false;
+                    labelIns7.Visible = true;
                     labelIns8.Visible = false;
                     labelIns9.Visible = false;
                     TBox4.Visible = true;
-                    TBox5.Visible = false;
+                    TBox5.Visible = true;
                     TBox6.Visible = true;
                     Data1.Visible = false;
                     MesAnoV.Visible = false;
@@ -169,6 +170,7 @@ namespace PapPrototipo
                         else
                         {
                             MessageBox.Show("ERRO! Não há veículos na disponivel!!!!!!", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            CBoxTab.SelectedIndex = 1;
                         }
                         Conn.Close();
                     }
@@ -199,6 +201,7 @@ namespace PapPrototipo
                     Data1.Visible = true;
                     TBox6.Location = new Point(412, 137);
                     TBox4.Location = new Point(412, 55);
+                    TBox5.Location = new Point(412, 96);
                     labelIns4.Visible = true;
                     labelIns5.Visible = true;
                     labelIns6.Visible = true;
@@ -244,11 +247,12 @@ namespace PapPrototipo
                     labelIns6.Text = "Cilindrada:";
                     
 
-                    TBox5.Clear();
+                    
 
                     CBox1.Location = new Point(412, 55);
                     TBox6.Location = new Point(412, 137);
                     TBox4.Location = new Point(412, 55);
+                    TBox5.Location = new Point(412, 96); 
                     TBox5.Enabled = true;
                     CBox1.Visible = true;
                     TBox4.Visible = false;
@@ -693,6 +697,15 @@ namespace PapPrototipo
                 case "Clientes":
                     break;
                 case "Lista de Peças":
+                    Regex DescontoCheck = new Regex(@"^[0-9]{1,3}$");
+                    if(!DescontoCheck.IsMatch(TBox5.Text) || TBox5.Text.Length > 3)
+                    {
+                        errorProvider5.SetError(TBox5, "Insira apenas números e com menos de 3 digitos");
+                    }
+                    else
+                    {
+                        errorProvider5.SetError(TBox5, "");
+                    }
                     break;
                 case "Serviços":
                     break;

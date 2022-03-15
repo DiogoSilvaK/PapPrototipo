@@ -60,6 +60,8 @@
             // 
             // TabelaDataGrid
             // 
+            this.TabelaDataGrid.AllowUserToAddRows = false;
+            this.TabelaDataGrid.AllowUserToDeleteRows = false;
             this.TabelaDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TabelaDataGrid.Location = new System.Drawing.Point(9, 20);
             this.TabelaDataGrid.Name = "TabelaDataGrid";
