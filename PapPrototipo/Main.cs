@@ -30,6 +30,7 @@ namespace PapPrototipo
             FormInserir fir = new FormInserir();
             FormInicio fi = new FormInicio();
             fi.TopLevel = false;
+            string Log = Login.UserLogado;
             panelf3.Controls.Add(fi);
             fi.Show();
             

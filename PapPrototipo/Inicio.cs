@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace PapPrototipo
 {
@@ -22,25 +23,38 @@ namespace PapPrototipo
         {
 
             string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
-            MySqlConnection Conn = new MySqlConnection(ConnectS);
-
-            string consultaSqlUserN = "SELECT Nome FROM Login where Email='" + Login.UserLogado + "'";
-            MySqlCommand queryCmdUser = new MySqlCommand(consultaSqlUserN, Conn);
-            MySqlDataReader DataReader = null;
-
             string UserN = String.Empty;
-            try
-            {
+            MySqlConnection Conn = new MySqlConnection(ConnectS);
+            
+
+
+
+            //MySqlDataReader DataReader = null;
+
+            
+
+                string consultaSqlUserN = "select Nome from Login where Email ='" + Login.UserLogado + "'";
+
                 Conn.Open();
+
+                MySqlCommand queryCmdUser = new MySqlCommand(consultaSqlUserN, Conn);
+                MySqlDataReader DataReader = queryCmdUser.ExecuteReader();
                 
-                DataReader = queryCmdUser.ExecuteReader();
-                string[] BomDiaArray = new string[14];
 
                 if (DataReader.HasRows)
-                { 
-                    UserN = DataReader.GetValue(0).ToString();
-                    BomDiaArray =
+                {
+                    while (DataReader.Read())
                     {
+                        UserN = DataReader.GetValue(0).ToString();
+                    }
+               }
+                else
+                {
+                    MessageBox.Show("ERRO FATAL!!"+Login.UserLogado);
+                }
+                MessageBox.Show(Login.UserLogado);
+                string[] BomDiaArray = new string[]
+                {
                 "Bom-dia " + UserN,//Portugues 0
             "Buenos-dias " + UserN,//Espanol 1
             "Guten-Morgen "+ UserN,//Alemão 2
@@ -56,16 +70,58 @@ namespace PapPrototipo
             "Dzień dobry"+UserN, //Polaco 12
             "God dag "+UserN, //Norueguês 13
             "Dobroho ranku"+UserN //Ucraniano 14
-                };
-               
+               };
 
-               }
-                
-            }
-            catch(MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+                string[] BoaTardeArray = new string[]
+                {
+                "Boa-tarde "+ UserN, //Portugues 0
+                "Buenas-tardes "+ UserN, //Espanol 1
+                "Guten-Tag "+UserN, //Alemão 2
+                "Good Afternoon "+ UserN, //Inglês 3
+                "Bon après-midi "+UserN, //Francês 4
+                "Buon pomeriggio "+UserN, //Italiano 5
+                "Goedemiddag " + UserN, // Holandês 6
+                "Kon'nichiwa "+ UserN, //Japonês 7
+                "Hyvää iltapäivää" + UserN, //Finlandês 8
+                "Xiàwǔ hǎo "+ UserN, // Chinês 9
+                "Buenas tardes "+ UserN, //Mexicano 10
+                "Bona dies "+ UserN, //Latim 11
+                "Dzień dobry "+ UserN, //Polaco 12
+                "God ettermiddag "+UserN, //Norueguês 13
+                "Dobroho dnya "+ UserN, //Ucraniano 14
+                };
+
+                string[] BoaNoiteArray = new string[]
+                {
+                "Boa-noite "+ UserN, //Português 0
+                "Buenas noches "+UserN, //Espanol 1
+                "Gute-Nacht "+ UserN, //Alemão 2
+                "Good Night "+UserN, //Inglês 3
+                "Bonne nuit "+UserN, //Francês 4
+                "Buona Notte "+ UserN,//Italiano 5
+                "Goedenacht "+UserN, //Holandês 6
+                "Oyasumi "+ UserN, //Japonês 7
+                "Hyvää yötä "+ UserN, //Finlândês 8
+                "Wǎn'ān "+ UserN, //Chinês 9
+                "Buenas noches "+ UserN, //Mexicano 10
+                "Bonum noctis "+ UserN, //Latim 11
+                "Dobranoc "+UserN, //Polaco 12
+                "God natt "+UserN, //Ñorueguês 13
+                "Nadobranich "+ UserN, //Ucraniano 14
+                };
+
+
+                Random rand = new Random();
+
+                int LinguaRandom = rand.Next(0,14);
+
+                if (DateTime.Now.Hour > 17)
+                {
+                    BemVindoLabel.Text = BoaNoiteArray[LinguaRandom];
+                }
+                Conn.Close();
+            
+
             
 
             string consultaSql = "SELECT Titulo, Cod_Servico,Data FROM servico where LoginEmail='"+Login.UserLogado+"'";
@@ -77,8 +133,8 @@ namespace PapPrototipo
             {
                 
                 Conn.Open();
-                DataReader.Close();
-                DataReader = queryCmd.ExecuteReader();
+               DataReader.Close();
+            DataReader = queryCmd.ExecuteReader();
 
                 if (DataReader.HasRows)
                 {

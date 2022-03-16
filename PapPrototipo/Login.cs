@@ -57,13 +57,15 @@ namespace PapPrototipo
                     MySqlCommand queryCmd = new MySqlCommand(ConsultaSql, Conn);
                     Conn.Open();
                     MySqlDataReader LeitorConsulta = queryCmd.ExecuteReader();
-                    if (LeitorConsulta.Read())
+                    if (LeitorConsulta.HasRows)
                     {
                         
                         //Login f1 = new Login();
                         Main f2 = new Main();
                         this.Hide();
                         f2.Show();
+                        suc = true;
+                         UserLogado = UserT; 
                     }
                     else
                     {
@@ -79,7 +81,7 @@ namespace PapPrototipo
                 {
                     
                     Conn.Close();
-                    if (suc) { UserLogado = UserT; }
+                    
                 }
             }
             

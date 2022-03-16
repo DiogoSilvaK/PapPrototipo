@@ -88,7 +88,7 @@ namespace PapPrototipo
                     
                     
 
-                    ConsultaSql = "Select * from servico";
+                    ConsultaSql = "Select * from servico where LoginEmail='"+Login.UserLogado+"'";
                     MySqlCommand queryCmd = new MySqlCommand(ConsultaSql,Conn);
                     try
                     {

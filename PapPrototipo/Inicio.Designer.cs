@@ -80,10 +80,10 @@
             this.BemVindoLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.BemVindoLabel.Font = new System.Drawing.Font("Century Gothic", 42F);
             this.BemVindoLabel.ForeColor = System.Drawing.Color.White;
-            this.BemVindoLabel.Location = new System.Drawing.Point(170, 5);
+            this.BemVindoLabel.Location = new System.Drawing.Point(0, 5);
             this.BemVindoLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BemVindoLabel.Name = "BemVindoLabel";
-            this.BemVindoLabel.Size = new System.Drawing.Size(755, 135);
+            this.BemVindoLabel.Size = new System.Drawing.Size(1085, 135);
             this.BemVindoLabel.TabIndex = 1;
             this.BemVindoLabel.Text = "Bem-Vindo";
             this.BemVindoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
