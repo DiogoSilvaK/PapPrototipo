@@ -21,7 +21,7 @@ namespace PapPrototipo
 
         private void FormInicio_Load(object sender, EventArgs e)
         {
-
+            //panel1.BackColor = Main.PredC;
             string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
             string UserN = String.Empty;
             MySqlConnection Conn = new MySqlConnection(ConnectS);
@@ -34,12 +34,13 @@ namespace PapPrototipo
             
 
                 string consultaSqlUserN = "select Nome from Login where Email ='" + Login.UserLogado + "'";
-
+            try
+            {
                 Conn.Open();
 
                 MySqlCommand queryCmdUser = new MySqlCommand(consultaSqlUserN, Conn);
                 MySqlDataReader DataReader = queryCmdUser.ExecuteReader();
-                
+
 
                 if (DataReader.HasRows)
                 {
@@ -47,12 +48,12 @@ namespace PapPrototipo
                     {
                         UserN = DataReader.GetValue(0).ToString();
                     }
-               }
+                }
                 else
                 {
-                    MessageBox.Show("ERRO FATAL!!"+Login.UserLogado);
+                    MessageBox.Show("ERRO FATAL!!");
                 }
-                MessageBox.Show(Login.UserLogado);
+
                 string[] BomDiaArray = new string[]
                 {
                 "Bom-dia " + UserN,//Portugues 0
@@ -69,7 +70,8 @@ namespace PapPrototipo
             "Bonum mane "+UserN, //Latim 11
             "Dzień dobry"+UserN, //Polaco 12
             "God dag "+UserN, //Norueguês 13
-            "Dobroho ranku"+UserN //Ucraniano 14
+            "Dobroho ranku"+UserN, //Ucraniano 14
+            "Bom-dia "+UserN
                };
 
                 string[] BoaTardeArray = new string[]
@@ -89,6 +91,7 @@ namespace PapPrototipo
                 "Dzień dobry "+ UserN, //Polaco 12
                 "God ettermiddag "+UserN, //Norueguês 13
                 "Dobroho dnya "+ UserN, //Ucraniano 14
+                "Boa-Tarde "+UserN
                 };
 
                 string[] BoaNoiteArray = new string[]
@@ -108,19 +111,42 @@ namespace PapPrototipo
                 "Dobranoc "+UserN, //Polaco 12
                 "God natt "+UserN, //Ñorueguês 13
                 "Nadobranich "+ UserN, //Ucraniano 14
+                "Boa-noite "+UserN 
                 };
 
+                Random randSeed = new Random();
+                int seed = randSeed.Next(1, 80000);
+                Random rand = new Random(seed);
 
-                Random rand = new Random();
+                int LinguaRandom = rand.Next(0, 15);
 
-                int LinguaRandom = rand.Next(0,14);
-
-                if (DateTime.Now.Hour > 17)
+                if (DateTime.Now.Hour > 18 || DateTime.Now.Hour < 7)
                 {
                     BemVindoLabel.Text = BoaNoiteArray[LinguaRandom];
                 }
+                else if (DateTime.Now.Hour > 7 || DateTime.Now.Hour < 13)
+                {
+                    BemVindoLabel.Text = BoaTardeArray[LinguaRandom];
+                }
+                else if (DateTime.Now.Hour > 13 || DateTime.Now.Hour < 18)
+                {
+                    BemVindoLabel.Text = BomDiaArray[LinguaRandom];
+                }
+
+                if (LinguaRandom == 14)
+                {
+                    panel1.BackColor = Color.FromArgb(255, 213, 0);
+                    BackColor = Color.FromArgb(0, 91, 187);
+                    USLabel.ForeColor = Color.Black;
+
+                }
+
                 Conn.Close();
-            
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             
 
@@ -133,8 +159,8 @@ namespace PapPrototipo
             {
                 
                 Conn.Open();
-               DataReader.Close();
-            DataReader = queryCmd.ExecuteReader();
+              
+            MySqlDataReader DataReader = queryCmd.ExecuteReader();
 
                 if (DataReader.HasRows)
                 {

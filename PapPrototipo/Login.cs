@@ -59,13 +59,13 @@ namespace PapPrototipo
                     MySqlDataReader LeitorConsulta = queryCmd.ExecuteReader();
                     if (LeitorConsulta.HasRows)
                     {
-                        
+                        UserLogado = UserT;
                         //Login f1 = new Login();
                         Main f2 = new Main();
                         this.Hide();
                         f2.Show();
                         suc = true;
-                         UserLogado = UserT; 
+                          
                     }
                     else
                     {
