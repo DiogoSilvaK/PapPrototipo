@@ -23,7 +23,7 @@ namespace PapPrototipo
 
         private void FormAtualizar_Load(object sender, EventArgs e)
         {
-
+            panel1.BackColor = Login.corMenu;
         }
 
 

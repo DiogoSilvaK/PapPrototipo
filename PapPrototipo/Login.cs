@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace PapPrototipo
 {
     public partial class Login : Form
     {
-
+        public static Color corMenu = new Color();
         public static string UserLogado;
         public Login()
         {
@@ -24,6 +25,37 @@ namespace PapPrototipo
         
         private void Form1_Load(object sender, EventArgs e)
         {
+            try
+            {
+                StreamReader leitorTxt = new StreamReader(@"colorconfig.ini");
+                string corSF = "Color = " + Color.Firebrick;
+                string corSB = "Color = " + SystemColors.HotTrack;
+                string corSG = "Color = " + Color.Green;
+                //ERRO AQUI
+                if (leitorTxt.ReadLine() == (corSF))
+                {
+                    panel1.BackColor = Color.Firebrick;
+                    corMenu = Color.Firebrick;
+                    leitorTxt.Close();
+                }
+                if (leitorTxt.ReadLine() == (corSB))
+                {
+                    panel1.BackColor = SystemColors.HotTrack;
+                    corMenu = SystemColors.HotTrack;
+                    leitorTxt.Close();
+                }
+                else if (leitorTxt.ReadLine() == (corSG))
+                {
+                    panel1.BackColor = Color.Green;
+                    corMenu = Color.Green;
+                }
+                leitorTxt.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
 
         }
 

@@ -26,6 +26,7 @@ namespace PapPrototipo
 
         private void FormInserir_Load(object sender, EventArgs e)
         {
+            panel1.BackColor = Login.corMenu;
             CBoxTab.SelectedIndex = 0;
 
         }

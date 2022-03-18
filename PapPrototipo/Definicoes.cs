@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.IO;
+
 
 namespace PapPrototipo
 {
@@ -21,7 +23,7 @@ namespace PapPrototipo
 
         public void DefinForms_Load(object sender, EventArgs e)
         {
-            
+            panel1.BackColor = Login.corMenu;
         }
 
         private void BackDBBut_Click(object sender, EventArgs e)
@@ -113,6 +115,69 @@ namespace PapPrototipo
             }
 
 
+        }
+
+        private void RedBut_Click(object sender, EventArgs e)
+        {
+            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Vermelha('Firebrick')?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DR == DialogResult.Yes)
+            {
+                try
+                {
+                    StreamWriter gravTxt = new StreamWriter(@"colorconfig.ini");
+                    gravTxt.WriteLine("Color = " + Color.Firebrick);
+                    gravTxt.Close();
+                    panel1.BackColor = Color.Firebrick;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Não foi possível gravar o ficheiro - " + ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Application.Exit();
+            }
+
+
+        }
+
+        private void BlueBut_Click(object sender, EventArgs e)
+        {
+            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Azul('Hottrack')?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DR == DialogResult.Yes)
+            {
+                try
+                {
+                    StreamWriter gravTxt = new StreamWriter(@"colorconfig.ini");
+                    gravTxt.WriteLine("Color = " + SystemColors.HotTrack);
+                    gravTxt.Close();
+                    panel1.BackColor = SystemColors.HotTrack;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Não foi possível gravar o ficheiro - " + ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Application.Exit();
+            }
+        }
+
+        private void GreenBut_Click(object sender, EventArgs e)
+        {
+            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Verde?","Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (DR == DialogResult.Yes)
+            {
+                try
+                {
+                    StreamWriter gravTxt = new StreamWriter(@"colorconfig.ini");
+                    gravTxt.WriteLine("Color = " + Color.Green);
+                    gravTxt.Close();
+                    panel1.BackColor = Color.Green;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Não foi possível gravar o ficheiro - " + ex.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Application.Exit();
+            }
         }
     }
 }

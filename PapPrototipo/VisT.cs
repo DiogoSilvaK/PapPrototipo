@@ -20,6 +20,7 @@ namespace PapPrototipo
 
         private void FormVTC_Load(object sender, EventArgs e)
         {
+            panel1.BackColor = Login.corMenu;
             CBoxCampo.SelectedIndex = 0;
         }
 

@@ -99,7 +99,7 @@
             // PassLabel
             // 
             this.PassLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.PassLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.PassLabel.BackColor = System.Drawing.Color.Transparent;
             this.PassLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PassLabel.ForeColor = System.Drawing.Color.White;
             this.PassLabel.Location = new System.Drawing.Point(110, 208);
@@ -123,7 +123,7 @@
             // UserLabel
             // 
             this.UserLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.UserLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.UserLabel.BackColor = System.Drawing.Color.Transparent;
             this.UserLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserLabel.ForeColor = System.Drawing.Color.White;
             this.UserLabel.Location = new System.Drawing.Point(109, 116);

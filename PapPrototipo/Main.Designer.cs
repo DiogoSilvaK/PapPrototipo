@@ -100,6 +100,7 @@
             // 
             // panel2
             // 
+            this.panel2.AccessibleName = "panel2";
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -358,7 +359,7 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button VTS;
-        private System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button Sair;
         private System.Windows.Forms.Button InserirBut;

@@ -212,6 +212,7 @@ namespace PapPrototipo
 
         private void FormApagar_Load(object sender, EventArgs e)
         {
+            panel1.BackColor = Login.corMenu;
             CBoxTabela.SelectedIndex = 0;
         }
 

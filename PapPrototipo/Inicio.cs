@@ -21,7 +21,8 @@ namespace PapPrototipo
 
         private void FormInicio_Load(object sender, EventArgs e)
         {
-            //panel1.BackColor = Main.PredC;
+            
+            panel1.BackColor = Login.corMenu;
             string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
             string UserN = String.Empty;
             MySqlConnection Conn = new MySqlConnection(ConnectS);
