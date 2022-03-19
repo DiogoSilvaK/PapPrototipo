@@ -27,35 +27,41 @@ namespace PapPrototipo
         {
             try
             {
-                StreamReader leitorTxt = new StreamReader(@"colorconfig.ini");
+               // StreamReader leitorTxt = new StreamReader(@"colorconfig.ini");
                 string corSF = "Color = " + Color.Firebrick;
                 string corSB = "Color = " + SystemColors.HotTrack;
                 string corSG = "Color = " + Color.Green;
                 //ERRO AQUI
-                if (leitorTxt.ReadLine() == (corSF))
+                string[] arquivo = File.ReadAllLines(@"colorconfig.ini");
+                if (arquivo[0] == (corSF))
                 {
                     panel1.BackColor = Color.Firebrick;
                     corMenu = Color.Firebrick;
-                    leitorTxt.Close();
+                    
                 }
-                if (leitorTxt.ReadLine() == (corSB))
+                if (arquivo[0] == (corSB))
                 {
                     panel1.BackColor = SystemColors.HotTrack;
                     corMenu = SystemColors.HotTrack;
-                    leitorTxt.Close();
+                    //leitorTxt.Close();
                 }
-                else if (leitorTxt.ReadLine() == (corSG))
+                if (arquivo[0] == (corSG))
                 {
                     panel1.BackColor = Color.Green;
                     corMenu = Color.Green;
                 }
-                leitorTxt.Close();
+                //leitorTxt.Close();
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-
+                StreamWriter gravErro = new StreamWriter(@"colorconfig.ini");
+                gravErro.WriteLine("Color = " + SystemColors.HotTrack);
+                //MessageBox.Show(ex.Message);
+                corMenu = SystemColors.HotTrack;
+                gravErro.Close();
             }
+
 
         }
 

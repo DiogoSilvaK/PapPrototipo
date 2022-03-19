@@ -313,23 +313,23 @@ namespace PapPrototipo
 
                 //Caso ComboBox das tabelas tiver como opção "servicos"
                 case "Serviços":
-                    consultaSql1 = "SELECT * FROM servico";
+                    consultaSql1 = "SELECT * FROM servico where LoginEmail='"+Login.UserLogado+"'";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
                     consultaSql = "insert into servico(Cod_Servico,Titulo, Descricao,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
                     break;
 
                 case "Clientes":
-                    consultaSql1 = "SELECT * FROM Cliente";
+                    consultaSql1 = "SELECT * FROM Cliente where Cod_Cliente=(SELECT Cod_Cliente FROM Veiculo WHERE Matricula=(SELECT VeiculoMatricula FROM Servico WHERE LoginEmail='"+Login.UserLogado+"'))";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
                     consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada, Localidade) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "','"+TBox6.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "") aut = false;
                     break;
 
                 case "Lista de Peças":
-                    consultaSql1 = "SELECT * FROM Lista_de_pecas";
+                    consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico=(SELECT Cod_Servico FROM )";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ CBox1.Text+"?";
-                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox6.Text + "','" + TBox4.Text + "','" + CBox1.Text + "')";
+                    consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico, Desconto) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox6.Text + "','" + TBox4.Text + "','" + CBox1.Text + "', '"+ TBox5.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
                     break;
 
