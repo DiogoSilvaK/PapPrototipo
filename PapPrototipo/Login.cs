@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PapPrototipo
 {
@@ -140,6 +141,11 @@ namespace PapPrototipo
         private void Login_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void UserTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            Regex emailCheck = new Regex("");
         }
     }
 }

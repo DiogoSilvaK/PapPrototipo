@@ -84,9 +84,9 @@ namespace PapPrototipo
                 "Bon après-midi "+UserN, //Francês 4
                 "Buon pomeriggio "+UserN, //Italiano 5
                 "Goedemiddag " + UserN, // Holandês 6
-                "Kon'nichiwa "+ UserN, //Japonês 7
-                "Hyvää iltapäivää" + UserN, //Finlandês 8
-                "Xiàwǔ hǎo "+ UserN, // Chinês 9
+                "こんにちは "+ UserN, //Japonês 7
+                "Hyvää iltapäivää " + UserN, //Finlandês 8
+                "下午好 "+ UserN, // Chinês 9
                 "Buenas tardes "+ UserN, //Mexicano 10
                 "Bona dies "+ UserN, //Latim 11
                 "Dzień dobry "+ UserN, //Polaco 12

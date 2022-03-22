@@ -142,6 +142,7 @@
             this.UserTextBox.Name = "UserTextBox";
             this.UserTextBox.Size = new System.Drawing.Size(160, 27);
             this.UserTextBox.TabIndex = 2;
+            this.UserTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.UserTextBox_Validating);
             // 
             // LoginLabel
             // 
