@@ -145,7 +145,28 @@ namespace PapPrototipo
 
         private void UserTextBox_Validating(object sender, CancelEventArgs e)
         {
-            Regex emailCheck = new Regex("");
+            Regex emailCheck = new Regex(@"\A(?:[a-z0 - 9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+        
+            if(!emailCheck.IsMatch(UserTextBox.Text))
+            {
+                errorProvider1.SetError(UserTextBox, "Insira um Email válido!");
+            }
+            else
+            {
+                errorProvider1.SetError(UserTextBox, "");
+            }
+        }
+
+        private void PassTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            if(UserTextBox.Text == "")
+            {
+                errorProvider2.SetError(PassTextBox, "Insira uma password!!");
+            }
+            else
+            {
+                errorProvider2.SetError(PassTextBox, "");
+            }
         }
     }
 }
