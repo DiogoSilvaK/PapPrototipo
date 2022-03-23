@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.UserPicBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.VoltarBut = new System.Windows.Forms.Button();
             this.NomeLabel = new System.Windows.Forms.Label();
             this.NomeTextBox = new System.Windows.Forms.TextBox();
             this.RegistrarBut = new System.Windows.Forms.Button();
@@ -39,10 +41,15 @@
             this.UserLabel = new System.Windows.Forms.Label();
             this.UserTextBox = new System.Windows.Forms.TextBox();
             this.LoginLabel = new System.Windows.Forms.Label();
-            this.VoltarBut = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserPicBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -86,6 +93,27 @@
             this.panel1.Size = new System.Drawing.Size(383, 477);
             this.panel1.TabIndex = 3;
             // 
+            // VoltarBut
+            // 
+            this.VoltarBut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.VoltarBut.BackColor = System.Drawing.Color.DimGray;
+            this.VoltarBut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.VoltarBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.VoltarBut.FlatAppearance.BorderSize = 2;
+            this.VoltarBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
+            this.VoltarBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.VoltarBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.VoltarBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.VoltarBut.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VoltarBut.ForeColor = System.Drawing.Color.White;
+            this.VoltarBut.Location = new System.Drawing.Point(3, 441);
+            this.VoltarBut.Name = "VoltarBut";
+            this.VoltarBut.Size = new System.Drawing.Size(185, 31);
+            this.VoltarBut.TabIndex = 9;
+            this.VoltarBut.Text = "Voltar";
+            this.VoltarBut.UseVisualStyleBackColor = false;
+            this.VoltarBut.Click += new System.EventHandler(this.VoltarBut_Click);
+            // 
             // NomeLabel
             // 
             this.NomeLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -108,6 +136,7 @@
             this.NomeTextBox.Name = "NomeTextBox";
             this.NomeTextBox.Size = new System.Drawing.Size(160, 27);
             this.NomeTextBox.TabIndex = 8;
+            this.NomeTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NomeTextBox_Validating);
             // 
             // RegistrarBut
             // 
@@ -153,6 +182,7 @@
             this.PassTextBox.Size = new System.Drawing.Size(160, 27);
             this.PassTextBox.TabIndex = 4;
             this.PassTextBox.UseSystemPasswordChar = true;
+            this.PassTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.PassTextBox_Validating);
             // 
             // UserLabel
             // 
@@ -176,6 +206,7 @@
             this.UserTextBox.Name = "UserTextBox";
             this.UserTextBox.Size = new System.Drawing.Size(160, 27);
             this.UserTextBox.TabIndex = 2;
+            this.UserTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.UserTextBox_Validating);
             // 
             // LoginLabel
             // 
@@ -189,26 +220,17 @@
             this.LoginLabel.Text = "AutoMobil Manager";
             this.LoginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // VoltarBut
+            // errorProvider1
             // 
-            this.VoltarBut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.VoltarBut.BackColor = System.Drawing.Color.DimGray;
-            this.VoltarBut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.VoltarBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.VoltarBut.FlatAppearance.BorderSize = 2;
-            this.VoltarBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
-            this.VoltarBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.VoltarBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.VoltarBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.VoltarBut.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VoltarBut.ForeColor = System.Drawing.Color.White;
-            this.VoltarBut.Location = new System.Drawing.Point(3, 441);
-            this.VoltarBut.Name = "VoltarBut";
-            this.VoltarBut.Size = new System.Drawing.Size(185, 31);
-            this.VoltarBut.TabIndex = 9;
-            this.VoltarBut.Text = "Voltar";
-            this.VoltarBut.UseVisualStyleBackColor = false;
-            this.VoltarBut.Click += new System.EventHandler(this.VoltarBut_Click);
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
+            // errorProvider3
+            // 
+            this.errorProvider3.ContainerControl = this;
             // 
             // Registro
             // 
@@ -228,6 +250,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.UserPicBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -246,5 +271,8 @@
         private System.Windows.Forms.Label NomeLabel;
         private System.Windows.Forms.TextBox NomeTextBox;
         private System.Windows.Forms.Button VoltarBut;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.ErrorProvider errorProvider3;
     }
 }

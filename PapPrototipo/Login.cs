@@ -159,7 +159,7 @@ namespace PapPrototipo
 
         private void PassTextBox_Validating(object sender, CancelEventArgs e)
         {
-            if(UserTextBox.Text == "")
+            if(PassTextBox.Text == "")
             {
                 errorProvider2.SetError(PassTextBox, "Insira uma password!!");
             }
