@@ -39,7 +39,7 @@ namespace PapPrototipo
 
 
 
-            string consultaSql = "insert into Login(Nome, Email, Pass) VALUES('"+NomeT+"','"+UserT+"','"+passSb+"')";
+            string consultaSql = "INSERT INTO Login(Nome, Email, Pass) VALUES('"+NomeT+"','"+UserT+"','"+passSb+"')";
             if (NomeT != "" || UserT != "" || PassT != "")
             {
                 DialogResult DR = MessageBox.Show("Deseja registrar o(a) utilizador(a) '" + NomeT + "' no endereço email '" + UserT + "'", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

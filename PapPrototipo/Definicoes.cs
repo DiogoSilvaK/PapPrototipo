@@ -119,7 +119,7 @@ namespace PapPrototipo
 
         private void RedBut_Click(object sender, EventArgs e)
         {
-            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Vermelha('Firebrick')?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Vermelha('Firebrick')? Vai precisar de reiniciar a aplicação!", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DR == DialogResult.Yes)
             {
                 try
@@ -141,7 +141,7 @@ namespace PapPrototipo
 
         private void BlueBut_Click(object sender, EventArgs e)
         {
-            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Azul('Hottrack')?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Azul('Hottrack')? Vai precisar de reiniciar a aplicação!", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DR == DialogResult.Yes)
             {
                 try
@@ -162,7 +162,7 @@ namespace PapPrototipo
 
         private void GreenBut_Click(object sender, EventArgs e)
         {
-            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Verde?","Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult DR = MessageBox.Show("Deseja trocar a cor do tema para Verde? Vai precisar de reiniciar a aplicação!", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (DR == DialogResult.Yes)
             {
                 try

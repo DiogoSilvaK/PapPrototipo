@@ -23,73 +23,79 @@ namespace PapPrototipo
         private void ButDel_Click(object sender, EventArgs e)
         {
            string tabelaSelect = string.Empty;
-
-            switch(CBoxTabela.Text)
+            if (errorProvider1.GetError(DelReg)!= "")
             {
-                case "Clientes":
-                    tabelaSelect = "cliente";
-                    break;
-                case "Lista de peças":
-                    tabelaSelect = "lista_de_pecas";
-                    break;
-                case "Serviços":
-                    tabelaSelect = "servico";
-                    break;
-                case "Veículos":
-                    tabelaSelect = "veiculo";
-                    break;
-            }
-
-            string ConnectS = "data source= localhost; database= pap1; user id= root; pwd=''";
-            MySqlConnection Conn = new MySqlConnection(ConnectS);
-
-            string consultaSql = "DELETE FROM " + tabelaSelect + " WHERE " + CampoCBox.Text + "='" + WREG + "'";
-            DialogResult DR = MessageBox.Show("Deseja eliminar o(s) registo(s) cujo campo " + CampoCBox.Text + " contem o valor '" + WREG + "'?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question); 
-            try
-            {
-                MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
-                Conn.Open();
-                if(DR == DialogResult.Yes)
+                switch (CBoxTabela.Text)
                 {
-                    queryCmd.ExecuteNonQuery();
-                }
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                string consultaSql1 = "SELECT * FROM " + tabelaSelect;
-                MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
-                DataSet DataTemp = new DataSet();
-
-
-                //DataAdapter = new MySqlDataAdapter(query2, Conn);
-                //DataTemp = new DataSet("tabela");
-                DataAdapter.Fill(DataTemp, "tabela");
-                TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
-
-                // Set your desired AutoSize Mode:
-                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
-                {
-                    // Store Auto Sized Widths:
-                    int colw = TabelaDataGrid.Columns[i].Width;
-
-                    // Remove AutoSizing:
-                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-                    // Set Width to calculated AutoSize value:
-                    TabelaDataGrid.Columns[i].Width = colw;
-
+                    case "Clientes":
+                        tabelaSelect = "cliente";
+                        break;
+                    case "Lista de peças":
+                        tabelaSelect = "lista_de_pecas";
+                        break;
+                    case "Serviços":
+                        tabelaSelect = "servico";
+                        break;
+                    case "Veículos":
+                        tabelaSelect = "veiculo";
+                        break;
                 }
 
-                Conn.Close();
-            }
+                string ConnectS = "data source= localhost; database= pap1; user id= root; pwd=''";
+                MySqlConnection Conn = new MySqlConnection(ConnectS);
 
+                string consultaSql = "DELETE FROM " + tabelaSelect + " WHERE " + CampoCBox.Text + "='" + WREG + "'";
+                DialogResult DR = MessageBox.Show("Deseja eliminar o(s) registo(s) cujo campo " + CampoCBox.Text + " contem o valor '" + WREG + "'?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                try
+                {
+                    MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
+                    Conn.Open();
+                    if (DR == DialogResult.Yes)
+                    {
+                        queryCmd.ExecuteNonQuery();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    string consultaSql1 = "SELECT * FROM " + tabelaSelect;
+                    MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
+                    DataSet DataTemp = new DataSet();
+
+
+                    //DataAdapter = new MySqlDataAdapter(query2, Conn);
+                    //DataTemp = new DataSet("tabela");
+                    DataAdapter.Fill(DataTemp, "tabela");
+                    TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+
+                    // Set your desired AutoSize Mode:
+                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    {
+                        // Store Auto Sized Widths:
+                        int colw = TabelaDataGrid.Columns[i].Width;
+
+                        // Remove AutoSizing:
+                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                        // Set Width to calculated AutoSize value:
+                        TabelaDataGrid.Columns[i].Width = colw;
+
+                    }
+
+                    Conn.Close();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("ERRO! PREENCHA TODOS OS CAMPOS!!", "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CBoxTabela_SelectedIndexChanged(object sender, EventArgs e)
@@ -224,6 +230,18 @@ namespace PapPrototipo
                 DelReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();
 
                 CampoCBox.SelectedItem = TabelaDataGrid.Columns[e.ColumnIndex].Name.ToString();
+            }
+        }
+
+        private void DelReg_Validating(object sender, CancelEventArgs e)
+        {
+            if(DelReg.Text == "")
+            {
+                errorProvider1.SetError(DelReg,"Insira alguma coisa!");
+            }
+            else
+            {
+                errorProvider1.SetError(DelReg, "");
             }
         }
     }
