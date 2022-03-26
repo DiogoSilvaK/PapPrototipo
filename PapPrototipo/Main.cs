@@ -38,7 +38,7 @@ namespace PapPrototipo
             panelf3.Controls.Add(fi);
             fi.Show();
 
-
+            LogoBox.Image = Login.logotipoMain;
 
 
         }
@@ -112,11 +112,14 @@ namespace PapPrototipo
 
         public void Sair_Click(object sender, EventArgs e)
         {
-
-            logout = true;
-            this.Close();
-            Login f1 = new Login();
-            f1.Show();
+            DialogResult DR = MessageBox.Show("Deseja fazer logout?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DR == DialogResult.Yes)
+            {
+                logout = true;
+                this.Close();
+                Login f1 = new Login();
+                f1.Show();
+            }
         }
         public void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {

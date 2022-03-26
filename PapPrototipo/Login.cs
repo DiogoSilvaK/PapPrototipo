@@ -18,13 +18,14 @@ namespace PapPrototipo
     {
         public static Color corMenu = new Color();
         public static string UserLogado;
+        public static Bitmap logotipoMain;
         public Login()
         {
             InitializeComponent();
 
             }
         
-        private void Form1_Load(object sender, EventArgs e)
+        public void Form1_Load(object sender, EventArgs e)
         {
             try
             {
@@ -32,24 +33,28 @@ namespace PapPrototipo
                 string corSF = "Color = " + Color.Firebrick;
                 string corSB = "Color = " + SystemColors.HotTrack;
                 string corSG = "Color = " + Color.Green;
+                
                 //ERRO AQUI
                 string[] arquivo = File.ReadAllLines(@"colorconfig.ini");
                 if (arquivo[0] == (corSF))
                 {
                     panel1.BackColor = Color.Firebrick;
                     corMenu = Color.Firebrick;
-                    
+                    logotipoMain = PapPrototipo.Properties.Resources.LogoAMMv2FireBrick;
                 }
                 if (arquivo[0] == (corSB))
                 {
                     panel1.BackColor = SystemColors.HotTrack;
                     corMenu = SystemColors.HotTrack;
                     //leitorTxt.Close();
+                    logotipoMain = PapPrototipo.Properties.Resources.LogoAMMv2Azul;
                 }
                 if (arquivo[0] == (corSG))
                 {
                     panel1.BackColor = Color.Green;
                     corMenu = Color.Green;
+                    logotipoMain = PapPrototipo.Properties.Resources.LogoAMMv2GreenGasco;
+                    
                 }
                 //leitorTxt.Close();
                 

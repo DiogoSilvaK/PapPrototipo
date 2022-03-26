@@ -31,9 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.DefinBut = new System.Windows.Forms.Button();
             this.InicioBut = new System.Windows.Forms.Button();
             this.Sair = new System.Windows.Forms.Button();
             this.InserirBut = new System.Windows.Forms.Button();
@@ -43,13 +41,17 @@
             this.VTC = new System.Windows.Forms.Button();
             this.VTS = new System.Windows.Forms.Button();
             this.panelf3 = new System.Windows.Forms.Panel();
+            this.DefinBut = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.LogoBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -80,70 +82,31 @@
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Controls.Add(this.LogoBox);
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(154, 141);
             this.panel3.TabIndex = 2;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Image = global::PapPrototipo.Properties.Resources.LogoAMM;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 141);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel2
             // 
-            this.panel2.AccessibleName = "panel2";
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.CausesValidation = false;
-            this.panel2.Controls.Add(this.DefinBut);
+            this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.InicioBut);
-            this.panel2.Controls.Add(this.Sair);
             this.panel2.Controls.Add(this.InserirBut);
             this.panel2.Controls.Add(this.AtualizarBut);
             this.panel2.Controls.Add(this.ApagarBut);
             this.panel2.Controls.Add(this.PesquisarBut);
             this.panel2.Controls.Add(this.VTC);
             this.panel2.Controls.Add(this.VTS);
-            this.panel2.ForeColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(0, 112);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(160, 563);
             this.panel2.TabIndex = 1;
-            // 
-            // DefinBut
-            // 
-            this.DefinBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DefinBut.BackColor = System.Drawing.Color.DimGray;
-            this.DefinBut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DefinBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.DefinBut.FlatAppearance.BorderSize = 2;
-            this.DefinBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DefinBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.DefinBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.DefinBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DefinBut.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DefinBut.ForeColor = System.Drawing.Color.White;
-            this.DefinBut.Location = new System.Drawing.Point(3, 487);
-            this.DefinBut.Margin = new System.Windows.Forms.Padding(4);
-            this.DefinBut.Name = "DefinBut";
-            this.DefinBut.Size = new System.Drawing.Size(151, 31);
-            this.DefinBut.TabIndex = 2;
-            this.DefinBut.Text = "Definições";
-            this.DefinBut.UseVisualStyleBackColor = false;
-            this.DefinBut.Click += new System.EventHandler(this.DefinBut_Click);
             // 
             // InicioBut
             // 
@@ -169,7 +132,7 @@
             // Sair
             // 
             this.Sair.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Sair.BackColor = System.Drawing.Color.DimGray;
+            this.Sair.BackColor = System.Drawing.Color.Firebrick;
             this.Sair.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Sair.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.Sair.FlatAppearance.BorderSize = 2;
@@ -179,12 +142,12 @@
             this.Sair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Sair.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Sair.ForeColor = System.Drawing.Color.White;
-            this.Sair.Location = new System.Drawing.Point(3, 526);
+            this.Sair.Location = new System.Drawing.Point(83, 5);
             this.Sair.Margin = new System.Windows.Forms.Padding(4);
             this.Sair.Name = "Sair";
-            this.Sair.Size = new System.Drawing.Size(151, 31);
+            this.Sair.Size = new System.Drawing.Size(70, 43);
             this.Sair.TabIndex = 1;
-            this.Sair.Text = "Sair";
+            this.Sair.Text = "❌";
             this.Sair.UseVisualStyleBackColor = false;
             this.Sair.Click += new System.EventHandler(this.Sair_Click);
             // 
@@ -321,11 +284,57 @@
             // 
             // panelf3
             // 
+            this.panelf3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.panelf3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelf3.Location = new System.Drawing.Point(0, 0);
             this.panelf3.Name = "panelf3";
             this.panelf3.Size = new System.Drawing.Size(1085, 675);
             this.panelf3.TabIndex = 0;
+            // 
+            // DefinBut
+            // 
+            this.DefinBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DefinBut.BackColor = System.Drawing.Color.DimGray;
+            this.DefinBut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DefinBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.DefinBut.FlatAppearance.BorderSize = 2;
+            this.DefinBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DefinBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DefinBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.DefinBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DefinBut.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DefinBut.ForeColor = System.Drawing.Color.White;
+            this.DefinBut.Location = new System.Drawing.Point(2, 5);
+            this.DefinBut.Margin = new System.Windows.Forms.Padding(4);
+            this.DefinBut.Name = "DefinBut";
+            this.DefinBut.Size = new System.Drawing.Size(70, 43);
+            this.DefinBut.TabIndex = 2;
+            this.DefinBut.Text = "🔧";
+            this.DefinBut.UseVisualStyleBackColor = false;
+            this.DefinBut.Click += new System.EventHandler(this.DefinBut_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.panel1.Controls.Add(this.Sair);
+            this.panel1.Controls.Add(this.DefinBut);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 509);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(158, 52);
+            this.panel1.TabIndex = 3;
+            // 
+            // LogoBox
+            // 
+            this.LogoBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.LogoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LogoBox.Image = global::PapPrototipo.Properties.Resources.LogoAMMv2;
+            this.LogoBox.Location = new System.Drawing.Point(0, 0);
+            this.LogoBox.Name = "LogoBox";
+            this.LogoBox.Size = new System.Drawing.Size(153, 141);
+            this.LogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LogoBox.TabIndex = 2;
+            this.LogoBox.TabStop = false;
             // 
             // Main
             // 
@@ -341,7 +350,7 @@
             this.MaximumSize = new System.Drawing.Size(1262, 714);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "A.M.M";
+            this.Text = "G.A.S.C.O";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -349,8 +358,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -360,7 +370,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button VTS;
         public System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox LogoBox;
         private System.Windows.Forms.Button Sair;
         private System.Windows.Forms.Button InserirBut;
         private System.Windows.Forms.Button ApagarBut;
@@ -371,5 +381,6 @@
         private System.Windows.Forms.Panel panelf3;
         private System.Windows.Forms.Button AtualizarBut;
         private System.Windows.Forms.Button DefinBut;
+        private System.Windows.Forms.Panel panel1;
     }
 }

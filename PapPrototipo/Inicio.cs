@@ -134,12 +134,22 @@ namespace PapPrototipo
                     BemVindoLabel.Text = BomDiaArray[LinguaRandom];
                 }
 
+                Main M1 = (Main)Application.OpenForms["Main"];
+
                 if (LinguaRandom == 14)
                 {
                     panel1.BackColor = Color.FromArgb(255, 213, 0);
                     BackColor = Color.FromArgb(0, 91, 187);
                     USLabel.ForeColor = Color.Black;
+                   
 
+                    M1.panel2.BackColor = Color.FromArgb(255, 213, 0);
+                      
+
+                }
+                else
+                {
+                    M1.panel2.BackColor = Login.corMenu;
                 }
 
                 Conn.Close();

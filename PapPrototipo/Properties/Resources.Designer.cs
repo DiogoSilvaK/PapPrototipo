@@ -63,9 +63,9 @@ namespace PapPrototipo.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap A_M {
+        internal static System.Drawing.Bitmap LogoAMMv2 {
             get {
-                object obj = ResourceManager.GetObject("A.M", resourceCulture);
+                object obj = ResourceManager.GetObject("LogoAMMv2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,29 @@ namespace PapPrototipo.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LogoAMM {
+        internal static System.Drawing.Bitmap LogoAMMv2Azul {
             get {
-                object obj = ResourceManager.GetObject("LogoAMM", resourceCulture);
+                object obj = ResourceManager.GetObject("LogoAMMv2Azul", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoAMMv2FireBrick {
+            get {
+                object obj = ResourceManager.GetObject("LogoAMMv2FireBrick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoAMMv2GreenGasco {
+            get {
+                object obj = ResourceManager.GetObject("LogoAMMv2GreenGasco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -86,6 +106,16 @@ namespace PapPrototipo.Properties {
         internal static System.Drawing.Bitmap User_Icon {
             get {
                 object obj = ResourceManager.GetObject("User-Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap wrench {
+            get {
+                object obj = ResourceManager.GetObject("wrench", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

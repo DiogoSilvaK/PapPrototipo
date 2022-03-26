@@ -19,6 +19,7 @@ namespace PapPrototipo
         public FormPesquisar()
         {
             InitializeComponent();
+            panel1.BackColor = Login.corMenu;
         }
 
         private void OperadoresCbox_SelectedIndexChanged(object sender, EventArgs e)
