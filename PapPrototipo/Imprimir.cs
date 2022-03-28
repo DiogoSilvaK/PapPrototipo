@@ -20,8 +20,6 @@ namespace PapPrototipo
 {
     public partial class ImprimirForm : Form
     {
-        //static string ImpressorasDisp;
-        static string tabelaSelect;
 
         public ImprimirForm()
         {

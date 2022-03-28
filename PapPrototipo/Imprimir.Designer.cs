@@ -83,7 +83,7 @@
             // 
             // TabelaPag
             // 
-            this.TabelaPag.BackColor = System.Drawing.SystemColors.Highlight;
+            this.TabelaPag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.TabelaPag.Controls.Add(this.TabelaDataGrid);
             this.TabelaPag.Location = new System.Drawing.Point(4, 30);
             this.TabelaPag.Name = "TabelaPag";
@@ -113,7 +113,7 @@
             // 
             // GrafPag
             // 
-            this.GrafPag.BackColor = System.Drawing.SystemColors.Highlight;
+            this.GrafPag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.GrafPag.Controls.Add(this.Graf);
             this.GrafPag.Location = new System.Drawing.Point(4, 30);
             this.GrafPag.Name = "GrafPag";

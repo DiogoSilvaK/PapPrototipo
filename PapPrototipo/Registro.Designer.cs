@@ -66,7 +66,7 @@
             this.UserPicBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.UserPicBox.BackColor = System.Drawing.Color.White;
             this.UserPicBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UserPicBox.Image = global::PapPrototipo.Properties.Resources.User_Icon;
+            this.UserPicBox.Image = global::G.A.S.C.O.Properties.Resources.User_Icon;
             this.UserPicBox.Location = new System.Drawing.Point(0, 0);
             this.UserPicBox.Name = "UserPicBox";
             this.UserPicBox.Size = new System.Drawing.Size(160, 160);

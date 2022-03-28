@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace PapPrototipo
 {
     public partial class FormAtualizar : Form
     {
-        bool notchange1=true, notchange2=true;
+        bool notchange1 = true;
         static string AtNReg = String.Empty;
-
+        static Regex campo1Regex;
         public FormAtualizar()
         {
             InitializeComponent();
@@ -174,6 +175,16 @@ namespace PapPrototipo
                     Campo1.Items.Remove("Descricao");
                     Campo1.Items.Remove("Data");
            
+            switch(Campo1.Text)
+            {
+                case "Nome": case "Titulo": case "Modelo": case "Marca":
+                    if(TabelaCBox1.Text == "Clientes")
+                    campo1Regex = new Regex(@"^[a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ_ ]{3,40}$");
+                    else
+                    campo1Regex = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\-\.\,_ ]{3,40}$");
+                    break;
+
+            }
 
 
 
@@ -306,6 +317,11 @@ namespace PapPrototipo
 
             }
             NovoReg.Clear();
+        }
+
+        private void AntigoReg_Validating(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

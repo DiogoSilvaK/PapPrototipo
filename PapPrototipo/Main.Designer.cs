@@ -328,7 +328,7 @@
             // 
             this.LogoBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
             this.LogoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LogoBox.Image = global::PapPrototipo.Properties.Resources.LogoAMMv2;
+            this.LogoBox.Image = global::G.A.S.C.O.Properties.Resources.LogoAMMv2;
             this.LogoBox.Location = new System.Drawing.Point(0, 0);
             this.LogoBox.Name = "LogoBox";
             this.LogoBox.Size = new System.Drawing.Size(153, 141);

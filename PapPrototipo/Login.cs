@@ -40,20 +40,20 @@ namespace PapPrototipo
                 {
                     panel1.BackColor = Color.Firebrick;
                     corMenu = Color.Firebrick;
-                    logotipoMain = PapPrototipo.Properties.Resources.LogoAMMv2FireBrick;
+                    logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2FireBrick;
                 }
                 if (arquivo[0] == (corSB))
                 {
                     panel1.BackColor = SystemColors.HotTrack;
                     corMenu = SystemColors.HotTrack;
                     //leitorTxt.Close();
-                    logotipoMain = PapPrototipo.Properties.Resources.LogoAMMv2Azul;
+                    logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2Azul;
                 }
                 if (arquivo[0] == (corSG))
                 {
                     panel1.BackColor = Color.Green;
                     corMenu = Color.Green;
-                    logotipoMain = PapPrototipo.Properties.Resources.LogoAMMv2GreenGasco;
+                    logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2GreenGasco;
                     
                 }
                 //leitorTxt.Close();
@@ -61,6 +61,7 @@ namespace PapPrototipo
             }
             catch (Exception ex)
             {
+                string erro = ex.Message;
                 StreamWriter gravErro = new StreamWriter(@"colorconfig.ini");
                 gravErro.WriteLine("Color = " + SystemColors.HotTrack);
                 //MessageBox.Show(ex.Message);
@@ -73,7 +74,7 @@ namespace PapPrototipo
 
         public void LoginBut_Click(object sender, EventArgs e)
         {
-            bool suc = true;
+           
             string ConnectS = "data source= localhost; database= pap1; user id= root; pwd= ''";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
@@ -108,7 +109,7 @@ namespace PapPrototipo
                         Main f2 = new Main();
                         this.Hide();
                         f2.Show();
-                        suc = true;
+                       
                           
                     }
                     else
@@ -118,7 +119,7 @@ namespace PapPrototipo
                 }
                 catch (MySqlException MySqlEx)
                 {
-                    suc = false;
+                   
                     MessageBox.Show(MySqlEx.Message);
                 }
                 finally
