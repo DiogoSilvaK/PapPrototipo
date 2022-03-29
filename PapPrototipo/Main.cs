@@ -29,7 +29,8 @@ namespace PapPrototipo
 
         bool logout = false;
         public void Form2_Load(object sender, EventArgs e) {
-
+            Main M1 = (Main)Application.OpenForms["Main"];
+            M1.Icon = Login.icoMain;
             panel2.BackColor = Login.corMenu;
             FormInserir fir = new FormInserir();
             FormInicio fi = new FormInicio();

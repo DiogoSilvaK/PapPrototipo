@@ -19,6 +19,7 @@ namespace PapPrototipo
         public static Color corMenu = new Color();
         public static string UserLogado;
         public static Bitmap logotipoMain;
+        public static Icon icoMain;
         public Login()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace PapPrototipo
                     panel1.BackColor = Color.Firebrick;
                     corMenu = Color.Firebrick;
                     logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2FireBrick;
+                    icoMain = G.A.S.C.O.Properties.Resources.TASKBARICONFirebrick;
                 }
                 if (arquivo[0] == (corSB))
                 {
@@ -48,13 +50,15 @@ namespace PapPrototipo
                     corMenu = SystemColors.HotTrack;
                     //leitorTxt.Close();
                     logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2Azul;
+                    icoMain = G.A.S.C.O.Properties.Resources.TASKBARICONAzul;
                 }
                 if (arquivo[0] == (corSG))
                 {
                     panel1.BackColor = Color.Green;
                     corMenu = Color.Green;
                     logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2GreenGasco;
-                    
+                    icoMain = G.A.S.C.O.Properties.Resources.TASKBARICONGreenGasco;
+
                 }
                 //leitorTxt.Close();
                 
@@ -65,6 +69,7 @@ namespace PapPrototipo
                 StreamWriter gravErro = new StreamWriter(@"colorconfig.ini");
                 gravErro.WriteLine("Color = " + SystemColors.HotTrack);
                 //MessageBox.Show(ex.Message);
+                logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2Azul;
                 corMenu = SystemColors.HotTrack;
                 gravErro.Close();
             }
