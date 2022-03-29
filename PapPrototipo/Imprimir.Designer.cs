@@ -241,6 +241,7 @@
             this.GPIbut.TabIndex = 20;
             this.GPIbut.Text = "Gerar PDF e Imprimir";
             this.GPIbut.UseVisualStyleBackColor = false;
+            this.GPIbut.Click += new System.EventHandler(this.GPIbut_Click);
             // 
             // TBoxND
             // 
