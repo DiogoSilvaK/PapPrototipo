@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
 
     public partial class Main : Form

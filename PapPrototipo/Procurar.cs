@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
     public partial class FormPesquisar : Form
     {

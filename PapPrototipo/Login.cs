@@ -12,7 +12,7 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
     public partial class Login : Form
     {

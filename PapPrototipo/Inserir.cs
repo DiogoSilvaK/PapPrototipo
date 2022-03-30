@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Text.RegularExpressions; 
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
     
     public partial class FormInserir : Form

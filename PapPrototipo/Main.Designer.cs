@@ -1,4 +1,4 @@
-﻿namespace PapPrototipo
+﻿namespace G.A.S.C.O
 {
     partial class Main
     {

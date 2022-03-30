@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
     internal static class Program
     {

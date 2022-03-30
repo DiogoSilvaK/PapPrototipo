@@ -1,5 +1,4 @@
-﻿namespace PapPrototipo
-{
+﻿namespace G.A.S.C.O { 
     partial class ImprimirForm
     {
         /// <summary>
@@ -175,6 +174,7 @@
             // 
             this.TipoCBox.BackColor = System.Drawing.Color.White;
             this.TipoCBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.TipoCBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TipoCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.TipoCBox.FormattingEnabled = true;
             this.TipoCBox.Items.AddRange(new object[] {
@@ -279,6 +279,7 @@
             // 
             this.CBoxReg.BackColor = System.Drawing.Color.White;
             this.CBoxReg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBoxReg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CBoxReg.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.CBoxReg.FormattingEnabled = true;
             this.CBoxReg.Items.AddRange(new object[] {

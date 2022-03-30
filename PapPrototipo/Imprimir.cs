@@ -17,7 +17,7 @@ using iTextSharp.text.pdf.draw;
 using System.IO;
 using Spire.Pdf;
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
     public partial class ImprimirForm : Form
     {
@@ -1486,7 +1486,7 @@ namespace PapPrototipo
 
 
 
-                        
+                        documento.Close();
                         //System.Diagnostics.Process.Start(NomePDF);
                     }
                     catch (MySqlException ex)
@@ -1498,15 +1498,18 @@ namespace PapPrototipo
                         Conn.Close();
                     }
                     break;
+                    
             }
             
              Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
              //pdfImp.LoadFromFile(NomePDF);
 
-            ImprimirDialog IF = new ImprimirDialog();
+            PrintDialog IF = new PrintDialog();
             IF.Show();
-
-            documento.Close();
+            Main M1 = new Main();
+            M1.Hide();
+            
+            
         }
 
 

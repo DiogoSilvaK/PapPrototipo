@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
     public partial class Registro : Form
     {

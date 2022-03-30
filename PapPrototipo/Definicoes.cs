@@ -11,7 +11,7 @@ using MySql.Data.MySqlClient;
 using System.IO;
 
 
-namespace PapPrototipo
+namespace G.A.S.C.O
 {
     public partial class DefinForms : Form
     {
