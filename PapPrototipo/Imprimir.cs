@@ -1501,7 +1501,11 @@ namespace PapPrototipo
             }
             
              Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
-             pdfImp.LoadFromFile(NomePDF);
+             //pdfImp.LoadFromFile(NomePDF);
+
+            ImprimirDialog IF = new ImprimirDialog();
+            IF.Show();
+
             documento.Close();
         }
 

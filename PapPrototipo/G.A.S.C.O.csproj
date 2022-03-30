@@ -82,9 +82,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MySqlBackup.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.License, Version=1.4.0.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.PDF.8.3.9\lib\net40\Spire.License.dll</HintPath>
-    </Reference>
     <Reference Include="Spire.Pdf, Version=8.3.9.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.PDF.8.3.9\lib\net40\Spire.Pdf.dll</HintPath>
     </Reference>
@@ -107,6 +104,12 @@
     </Compile>
     <Compile Include="Definicoes.Designer.cs">
       <DependentUpon>Definicoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImprimirDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImprimirDialog.Designer.cs">
+      <DependentUpon>ImprimirDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintDialog.cs">
       <SubType>Form</SubType>
@@ -178,6 +181,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Definicoes.resx">
       <DependentUpon>Definicoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImprimirDialog.resx">
+      <DependentUpon>ImprimirDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintDialog.resx">
       <DependentUpon>PrintDialog.cs</DependentUpon>
