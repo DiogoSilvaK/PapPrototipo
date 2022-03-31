@@ -14,6 +14,11 @@ namespace G.A.S.C.O
 {
     public partial class PrintDialog : Form
     {
+        public static bool suc= false;
+        public static string ImpressoraSelecionada = String.Empty;
+        public static int NumCopias = 0;
+        public static bool Cores = false;
+
         public PrintDialog()
         {
             InitializeComponent();
@@ -46,6 +51,17 @@ namespace G.A.S.C.O
 
         
 
+        }
+
+        private void CancBut_Click(object sender, EventArgs e)
+        {
+            DialogResult SairResult = MessageBox.Show("Deseja cancelar a impressão?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (SairResult == DialogResult.Yes)
+            {
+                suc= false;
+                this.Close();
+                
+            }
         }
     }
 }

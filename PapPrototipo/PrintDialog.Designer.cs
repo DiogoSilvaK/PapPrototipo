@@ -30,14 +30,14 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.ImpressorasCBox = new System.Windows.Forms.ComboBox();
+            this.CoresCBox = new System.Windows.Forms.ComboBox();
             this.CancBut = new System.Windows.Forms.Button();
             this.ImpBut = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.CoresCBox = new System.Windows.Forms.ComboBox();
-            this.ImpressorasCBox = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +71,38 @@
             this.panel1.Size = new System.Drawing.Size(373, 292);
             this.panel1.TabIndex = 2;
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown1.Location = new System.Drawing.Point(131, 103);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(59, 27);
+            this.numericUpDown1.TabIndex = 17;
+            // 
+            // ImpressorasCBox
+            // 
+            this.ImpressorasCBox.BackColor = System.Drawing.Color.White;
+            this.ImpressorasCBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ImpressorasCBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImpressorasCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.ImpressorasCBox.FormattingEnabled = true;
+            this.ImpressorasCBox.Location = new System.Drawing.Point(131, 18);
+            this.ImpressorasCBox.Name = "ImpressorasCBox";
+            this.ImpressorasCBox.Size = new System.Drawing.Size(230, 29);
+            this.ImpressorasCBox.TabIndex = 16;
+            // 
+            // CoresCBox
+            // 
+            this.CoresCBox.BackColor = System.Drawing.Color.White;
+            this.CoresCBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CoresCBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CoresCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
+            this.CoresCBox.FormattingEnabled = true;
+            this.CoresCBox.Location = new System.Drawing.Point(131, 157);
+            this.CoresCBox.Name = "CoresCBox";
+            this.CoresCBox.Size = new System.Drawing.Size(230, 29);
+            this.CoresCBox.TabIndex = 15;
+            // 
             // CancBut
             // 
             this.CancBut.BackColor = System.Drawing.Color.Firebrick;
@@ -88,6 +120,7 @@
             this.CancBut.TabIndex = 4;
             this.CancBut.Text = "Cancelar";
             this.CancBut.UseVisualStyleBackColor = false;
+            this.CancBut.Click += new System.EventHandler(this.CancBut_Click);
             // 
             // ImpBut
             // 
@@ -143,38 +176,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Impressora:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // CoresCBox
-            // 
-            this.CoresCBox.BackColor = System.Drawing.Color.White;
-            this.CoresCBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CoresCBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CoresCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.CoresCBox.FormattingEnabled = true;
-            this.CoresCBox.Location = new System.Drawing.Point(131, 157);
-            this.CoresCBox.Name = "CoresCBox";
-            this.CoresCBox.Size = new System.Drawing.Size(230, 29);
-            this.CoresCBox.TabIndex = 15;
-            // 
-            // ImpressorasCBox
-            // 
-            this.ImpressorasCBox.BackColor = System.Drawing.Color.White;
-            this.ImpressorasCBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ImpressorasCBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ImpressorasCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.ImpressorasCBox.FormattingEnabled = true;
-            this.ImpressorasCBox.Location = new System.Drawing.Point(131, 18);
-            this.ImpressorasCBox.Name = "ImpressorasCBox";
-            this.ImpressorasCBox.Size = new System.Drawing.Size(230, 29);
-            this.ImpressorasCBox.TabIndex = 16;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(131, 103);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(59, 27);
-            this.numericUpDown1.TabIndex = 17;
             // 
             // PrintDialog
             // 
