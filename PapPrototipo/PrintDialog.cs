@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Printing;  
+using System.Printing;
+using Spire.Pdf;
 
 namespace G.A.S.C.O
 {
@@ -26,6 +27,24 @@ namespace G.A.S.C.O
 
         private void ImpBut_Click(object sender, EventArgs e)
         {
+            DialogResult ImprimirResult = MessageBox.Show("Deseja começar a impressão?", "Pergunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(ImprimirResult == DialogResult.Yes)
+            {
+                switch(CoresCBox.Text)
+                {
+                    case "Cores":
+                        Cores = true;
+                        break;
+                    case "Preto e Branco":
+                        Cores = false;
+                        break;
+                }
+                NumCopias = (int)numericUpDown1.Value;
+                ImpressoraSelecionada = ImpressorasCBox.Text;
+
+                Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
+                //pdfImp.LoadFromFile(NomePDF);
+            }
 
         }
 
