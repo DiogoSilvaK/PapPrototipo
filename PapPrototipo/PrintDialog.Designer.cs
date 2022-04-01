@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 158);
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(373, 292);
+            this.panel1.Size = new System.Drawing.Size(787, 292);
             this.panel1.TabIndex = 2;
             // 
             // numericUpDown1
@@ -177,12 +178,20 @@
             this.label2.Text = "Impressora:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(382, 21);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(393, 417);
+            this.panel2.TabIndex = 18;
+            // 
             // PrintDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.ClientSize = new System.Drawing.Size(373, 450);
+            this.ClientSize = new System.Drawing.Size(787, 450);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -208,5 +217,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ComboBox ImpressorasCBox;
         private System.Windows.Forms.ComboBox CoresCBox;
+        private System.Windows.Forms.Panel panel2;
     }
 }

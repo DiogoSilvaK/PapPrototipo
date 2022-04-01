@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Printing;
 using Spire.Pdf;
+using PdfiumViewer;
 
 namespace G.A.S.C.O
 {
