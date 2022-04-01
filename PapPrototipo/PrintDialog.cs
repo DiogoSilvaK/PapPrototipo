@@ -43,7 +43,36 @@ namespace G.A.S.C.O
                 ImpressoraSelecionada = ImpressorasCBox.Text;
 
                 Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
-                //pdfImp.LoadFromFile(NomePDF);
+                pdfImp.LoadFromFile(ImprimirForm.NomePDF);
+                pdfImp.PrinterName = ImpressoraSelecionada;
+                if (!Cores)
+                    pdfImp.ColorSpace = Spire.Pdf.Graphics.PdfColorSpace.GrayScale;
+                else
+                    pdfImp.ColorSpace = Spire.Pdf.Graphics.PdfColorSpace.RGB;
+                pdfImp.PrintSettings.Color = true;
+                if (NumCopias > 0 && NumCopias < 20)
+                    pdfImp.PrintSettings.Copies = (short)NumCopias;
+                else
+                    MessageBox.Show("ERRO! O NÚMERO DE CÓPIAS DEVE ESTAR ENTRE 1 E 20!!", "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                bool printSuc = false;
+                try
+                {
+                    
+                    pdfImp.Print();
+                    printSuc = true;
+                }
+                catch (Exception ex)
+                {
+                    printSuc = false;
+                    MessageBox.Show(ex.Message);
+                    
+                }
+                finally
+                {
+                    if (printSuc)
+                        MessageBox.Show("Imprimido com sucesso!");
+                }
+
             }
 
         }

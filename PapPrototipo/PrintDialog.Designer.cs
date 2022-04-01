@@ -98,6 +98,9 @@
             this.CoresCBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CoresCBox.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.CoresCBox.FormattingEnabled = true;
+            this.CoresCBox.Items.AddRange(new object[] {
+            "Cores",
+            "Preto e Branco"});
             this.CoresCBox.Location = new System.Drawing.Point(131, 157);
             this.CoresCBox.Name = "CoresCBox";
             this.CoresCBox.Size = new System.Drawing.Size(230, 29);

@@ -21,7 +21,7 @@ namespace G.A.S.C.O
 {
     public partial class ImprimirForm : Form
     {
-
+        public static string NomePDF = String.Empty;
         public ImprimirForm()
         {
             InitializeComponent();
@@ -107,7 +107,7 @@ namespace G.A.S.C.O
         {
 
             Document documento = new Document(PageSize.A4);
-            string NomePDF = TBoxND.Text + ".pdf";
+            NomePDF = TBoxND.Text + ".pdf";
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Ficheiro PDF | .pdf ";
             saveFileDialog1.Title = "Guardar o ficheiro PDF";
@@ -815,7 +815,7 @@ namespace G.A.S.C.O
         private void GPIbut_Click(object sender, EventArgs e)
         {
             Document documento = new Document(PageSize.A4);
-            string NomePDF = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString() +"\\" +TBoxND.Text + ".pdf";
+            NomePDF = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString() +"\\" +TBoxND.Text + ".pdf";
            
             
            
@@ -1500,10 +1500,12 @@ namespace G.A.S.C.O
                     break;
                     
             }
-            
+
+            documento.Close();
+            /*
              Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
              //pdfImp.LoadFromFile(NomePDF);
-
+            */
             PrintDialog IF = new PrintDialog();
             IF.Show();
             Main M1 = new Main();
