@@ -17,6 +17,7 @@ namespace G.A.S.C.O
         bool notchange1 = true;
         static string AtNReg = String.Empty;
         static Regex campo1Regex;
+        static Regex campo2Regex;
         public FormAtualizar()
         {
             InitializeComponent();
@@ -183,12 +184,70 @@ namespace G.A.S.C.O
                     else
                     campo1Regex = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\-\.\,_ ]{3,40}$");
                     break;
+                case "Morada":
+                    campo1Regex = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛºª\.\,\-_ ]{10,80}$");
+                    break;
+                case "Cod_Cliente": case "Cod_Servico": case "Cod_Peca":
+                    campo1Regex = new Regex(@"^[0-9]{1,11}$");
+                    break;
+                case "Localidade":
+                    campo1Regex = new Regex(@"^[A-Za-zçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\,\-_ ]{3,80}$");
+                    break;
+                case "Cilindrada":
+                    campo1Regex = new Regex(@"^[0-9]{2,4}$");
+                    break;
+                case "Desconto": case "Horas":
+                    campo1Regex = new Regex(@"^[0-9]{1,3}$");
+                    break;
+                case "Matricula":
+                    campo1Regex = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
+                    break;
+                case "N_Contr":
+                    campo1Regex = new Regex(@"^[0-9]{9}$");
+                    break;
+            }
 
+            switch (Campo2.Text)
+            {
+                case "Nome":
+                case "Titulo":
+                case "Modelo":
+                case "Marca":
+                    if (TabelaCBox1.Text == "Clientes")
+                        campo2Regex = new Regex(@"^[a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ_ ]{3,40}$");
+                    else
+                        campo2Regex = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\-\.\,_ ]{3,40}$");
+                    break;
+                case "Morada":
+                    campo2Regex = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛºª\.\,\-_ ]{10,80}$");
+                    break;
+                case "Cod_Cliente":
+                case "Cod_Servico":
+                case "Cod_Peca":
+                    campo2Regex = new Regex(@"^[0-9]{1,11}$");
+                    break;
+                case "Loca2lidade":
+                    campo2Regex = new Regex(@"^[A-Za-zçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\,\-_ ]{3,80}$");
+                    break;
+                case "Cilindrada":
+                    campo2Regex = new Regex(@"^[0-9]{2,4}$");
+                    break;
+                case "Desconto":
+                case "Horas":
+                    campo2Regex = new Regex(@"^[0-9]{1,3}$");
+                    break;
+                case "Matricula":
+                    campo2Regex = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
+                    break;
+                case "N_Contr":
+                    campo2Regex = new Regex(@"^[0-9]{9}$");
+                    break;
             }
 
 
 
-            if(!notchange1)
+
+            if (!notchange1)
             AntigoReg.Clear();
             else
             notchange1 = false;
@@ -321,7 +380,18 @@ namespace G.A.S.C.O
 
         private void AntigoReg_Validating(object sender, CancelEventArgs e)
         {
+            if (!campo1Regex.IsMatch(AntigoReg.Text))
+                errorProvider1.SetError(AntigoReg, "Formato inválido!!");
+            else
+                errorProvider1.SetError(AntigoReg, "");
+        }
 
+        private void NovoReg_Validating(object sender, CancelEventArgs e)
+        {
+            if (!campo2Regex.IsMatch(NovoReg.Text))
+                errorProvider2.SetError(NovoReg, "Formato inválido!!");
+            else
+                errorProvider2.SetError(NovoReg, "");
         }
     }
 }

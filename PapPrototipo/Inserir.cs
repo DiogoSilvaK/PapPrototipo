@@ -170,7 +170,7 @@ namespace G.A.S.C.O
                         }
                         else
                         {
-                            MessageBox.Show("ERRO! Não há veículos na disponivel!!!!!!", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("ERRO! Não há veículos disponiveis!!!!!!", "ERRO!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             CBoxTab.SelectedIndex = 1;
                         }
                         Conn.Close();
@@ -646,7 +646,7 @@ namespace G.A.S.C.O
             switch(CBoxTab.Text)
             {
                 case "Clientes":
-                    Regex MoradaCheck = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛºª\.\,\-_ ]{10,40}$");
+                    Regex MoradaCheck = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛºª\.\,\-_ ]{10,80}$");
                     if (!MoradaCheck.IsMatch(TBox4.Text))
                     {
                         errorProvider4.SetError(TBox4, "Insira uma morada válida!!");

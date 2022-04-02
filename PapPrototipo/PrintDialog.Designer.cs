@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.NumCopiasUpDown = new System.Windows.Forms.NumericUpDown();
             this.ImpressorasCBox = new System.Windows.Forms.ComboBox();
             this.CoresCBox = new System.Windows.Forms.ComboBox();
             this.CancBut = new System.Windows.Forms.Button();
@@ -39,9 +39,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pdfRenderer1 = new PdfiumViewer.PdfRenderer();
+            this.pdfViewer1 = new PdfiumViewer.PdfViewer();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumCopiasUpDown)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +59,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.numericUpDown1);
+            this.panel1.Controls.Add(this.NumCopiasUpDown);
             this.panel1.Controls.Add(this.ImpressorasCBox);
             this.panel1.Controls.Add(this.CoresCBox);
             this.panel1.Controls.Add(this.CancBut);
@@ -68,19 +68,35 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 158);
+            this.panel1.Location = new System.Drawing.Point(0, 236);
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(787, 292);
             this.panel1.TabIndex = 2;
             // 
-            // numericUpDown1
+            // NumCopiasUpDown
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(131, 103);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(59, 27);
-            this.numericUpDown1.TabIndex = 17;
+            this.NumCopiasUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NumCopiasUpDown.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumCopiasUpDown.Location = new System.Drawing.Point(131, 103);
+            this.NumCopiasUpDown.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.NumCopiasUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumCopiasUpDown.Name = "NumCopiasUpDown";
+            this.NumCopiasUpDown.Size = new System.Drawing.Size(59, 27);
+            this.NumCopiasUpDown.TabIndex = 17;
+            this.NumCopiasUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // ImpressorasCBox
             // 
@@ -185,29 +201,25 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.pdfRenderer1);
-            this.panel2.Location = new System.Drawing.Point(382, 21);
+            this.panel2.Controls.Add(this.pdfViewer1);
+            this.panel2.Location = new System.Drawing.Point(382, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(393, 417);
+            this.panel2.Size = new System.Drawing.Size(393, 520);
             this.panel2.TabIndex = 18;
             // 
-            // pdfRenderer1
+            // pdfViewer1
             // 
-            this.pdfRenderer1.Location = new System.Drawing.Point(3, 3);
-            this.pdfRenderer1.Name = "pdfRenderer1";
-            this.pdfRenderer1.Page = 0;
-            this.pdfRenderer1.Rotation = PdfiumViewer.PdfRotation.Rotate0;
-            this.pdfRenderer1.Size = new System.Drawing.Size(387, 411);
-            this.pdfRenderer1.TabIndex = 0;
-            this.pdfRenderer1.Text = "pdfRenderer1";
-            this.pdfRenderer1.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitHeight;
+            this.pdfViewer1.Location = new System.Drawing.Point(3, 0);
+            this.pdfViewer1.Name = "pdfViewer1";
+            this.pdfViewer1.Size = new System.Drawing.Size(387, 517);
+            this.pdfViewer1.TabIndex = 1;
             // 
             // PrintDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.ClientSize = new System.Drawing.Size(787, 450);
+            this.ClientSize = new System.Drawing.Size(787, 528);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
@@ -217,7 +229,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.PrintDialog_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumCopiasUpDown)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -232,10 +244,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown NumCopiasUpDown;
         private System.Windows.Forms.ComboBox ImpressorasCBox;
         private System.Windows.Forms.ComboBox CoresCBox;
         private System.Windows.Forms.Panel panel2;
-        private PdfiumViewer.PdfRenderer pdfRenderer1;
+        private PdfiumViewer.PdfViewer pdfViewer1;
     }
 }

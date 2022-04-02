@@ -102,6 +102,7 @@
             this.Name = "FormInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormInicio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormInicio_FormClosing);
             this.Load += new System.EventHandler(this.FormInicio_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

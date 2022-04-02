@@ -21,9 +21,13 @@ namespace G.A.S.C.O
         public static int NumCopias = 0;
         public static bool Cores = false;
 
+       PdfiumViewer.PdfViewer pdfPreview;
+
         public PrintDialog()
         {
             InitializeComponent();
+           /* pdfPreview = new PdfViewer();
+            this.Controls.Add(pdfPreview);*/
         }
 
         private void ImpBut_Click(object sender, EventArgs e)
@@ -40,12 +44,12 @@ namespace G.A.S.C.O
                         Cores = false;
                         break;
                 }
-                NumCopias = (int)numericUpDown1.Value;
+                NumCopias = (int)NumCopiasUpDown.Value;
                 ImpressoraSelecionada = ImpressorasCBox.Text;
 
                 Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
                 pdfImp.LoadFromFile(ImprimirForm.NomePDF);
-                pdfImp.PrinterName = ImpressoraSelecionada;
+                pdfImp.PrintSettings.PrinterName = ImpressoraSelecionada;
                 if (!Cores)
                     pdfImp.ColorSpace = Spire.Pdf.Graphics.PdfColorSpace.GrayScale;
                 else
@@ -96,9 +100,15 @@ namespace G.A.S.C.O
             {
                 ImpressorasCBox.Items.Add(item.FullName);
             }
-            
 
-        
+            byte[] pdfbytes = System.IO.File.ReadAllBytes(ImprimirForm.NomePDF);
+            var stream = new MemoryStream(pdfbytes);
+            PdfiumViewer.PdfDocument pdfDoc = PdfiumViewer.PdfDocument.Load(stream);
+            pdfViewer1.Document = pdfDoc;
+
+            CoresCBox.SelectedIndex = 0;
+            ImpressorasCBox.SelectedIndex = 0;
+
 
         }
 
