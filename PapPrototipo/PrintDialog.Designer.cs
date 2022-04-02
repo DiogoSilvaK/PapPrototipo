@@ -39,8 +39,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pdfRenderer1 = new PdfiumViewer.PdfRenderer();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -183,10 +185,22 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.pdfRenderer1);
             this.panel2.Location = new System.Drawing.Point(382, 21);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(393, 417);
             this.panel2.TabIndex = 18;
+            // 
+            // pdfRenderer1
+            // 
+            this.pdfRenderer1.Location = new System.Drawing.Point(3, 3);
+            this.pdfRenderer1.Name = "pdfRenderer1";
+            this.pdfRenderer1.Page = 0;
+            this.pdfRenderer1.Rotation = PdfiumViewer.PdfRotation.Rotate0;
+            this.pdfRenderer1.Size = new System.Drawing.Size(387, 411);
+            this.pdfRenderer1.TabIndex = 0;
+            this.pdfRenderer1.Text = "pdfRenderer1";
+            this.pdfRenderer1.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitHeight;
             // 
             // PrintDialog
             // 
@@ -204,6 +218,7 @@
             this.Load += new System.EventHandler(this.PrintDialog_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -221,5 +236,6 @@
         private System.Windows.Forms.ComboBox ImpressorasCBox;
         private System.Windows.Forms.ComboBox CoresCBox;
         private System.Windows.Forms.Panel panel2;
+        private PdfiumViewer.PdfRenderer pdfRenderer1;
     }
 }
