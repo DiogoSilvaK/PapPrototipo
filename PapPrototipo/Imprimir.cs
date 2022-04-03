@@ -15,13 +15,14 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
 using System.IO;
-using Spire.Pdf;
-
+//using Spire.Pdf;
+using RawPrint;
 namespace G.A.S.C.O
 {
     public partial class ImprimirForm : Form
     {
         public static string NomePDF = String.Empty;
+        public static string NomePDF2 = String.Empty;
         public ImprimirForm()
         {
             InitializeComponent();
@@ -122,10 +123,10 @@ namespace G.A.S.C.O
             // string tituloPDF = "Relatório do serviço";
 
 
-            Paragraph linhaSeparadora = new Paragraph(new Chunk(new LineSeparator(0.0F, 100.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)));
-            iTextSharp.text.Font tituloFont = FontFactory.GetFont("Microsoft Sans Serif", 24, iTextSharp.text.Font.BOLD, BaseColor.BLACK );
-            iTextSharp.text.Font tituloCabFont = FontFactory.GetFont("Microsoft Sans Serif", 20, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
-            iTextSharp.text.Font textoFont = FontFactory.GetFont("Microsoft Sans Serif", 10, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            Paragraph linhaSeparadora = new Paragraph(new Chunk(new LineSeparator(0.0F, 100.0F, lineColor: BaseColor.BLUE, Element.ALIGN_CENTER, 1)));
+            iTextSharp.text.Font tituloFont = FontFactory.GetFont("Microsoft Sans Serif", 24, iTextSharp.text.Font.BOLD, BaseColor.BLUE );
+            iTextSharp.text.Font tituloCabFont = FontFactory.GetFont("Microsoft Sans Serif", 20, iTextSharp.text.Font.BOLD, BaseColor.BLUE);
+            iTextSharp.text.Font textoFont = FontFactory.GetFont("Microsoft Sans Serif", 10, iTextSharp.text.Font.NORMAL, BaseColor.BLUE);
             //documento.Add(new Paragraph(tituloPDF, tituloFont) { Alignment = Element.ALIGN_CENTER, Leading = 10.0F, });
 
 
@@ -816,9 +817,9 @@ namespace G.A.S.C.O
         {
             Document documento = new Document(PageSize.A4);
             NomePDF = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments).ToString() +"\\" +TBoxND.Text + ".pdf";
-           
-            
-           
+            NomePDF2 = TBoxND.Text + ".pdf";
+
+
             MessageBox.Show(NomePDF);
             PdfWriter.GetInstance(documento, new FileStream(NomePDF, FileMode.Create));
 
@@ -1502,11 +1503,8 @@ namespace G.A.S.C.O
             }
 
             documento.Close();
-            /*
-             Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
-             //pdfImp.LoadFromFile(NomePDF);
-            */
-            PrintDialog IF = new PrintDialog();
+            
+            PrintForm IF = new PrintForm();
             IF.Show();
             Main M1 = new Main();
             M1.Hide();

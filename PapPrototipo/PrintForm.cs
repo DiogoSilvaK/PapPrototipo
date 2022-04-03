@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Printing;
-using Spire.Pdf;
+//using Spire.Pdf;
 using PdfiumViewer;
-
+//using RawPrint;
+using RawPrint.NetStd;
 namespace G.A.S.C.O
 {
-    public partial class PrintDialog : Form
+    public partial class PrintForm : Form
     {
         public static bool suc= false;
         public static string ImpressoraSelecionada = String.Empty;
@@ -23,7 +24,7 @@ namespace G.A.S.C.O
 
        PdfiumViewer.PdfViewer pdfPreview;
 
-        public PrintDialog()
+        public PrintForm()
         {
             InitializeComponent();
            /* pdfPreview = new PdfViewer();
@@ -46,24 +47,27 @@ namespace G.A.S.C.O
                 }
                 NumCopias = (int)NumCopiasUpDown.Value;
                 ImpressoraSelecionada = ImpressorasCBox.Text;
-
+                /*
                 Spire.Pdf.PdfDocument pdfImp = new Spire.Pdf.PdfDocument();
                 pdfImp.LoadFromFile(ImprimirForm.NomePDF);
-                pdfImp.PrintSettings.PrinterName = ImpressoraSelecionada;
+                pdfImp.PrintSettings.PrinterName = ImpressoraSelecionada;*/
                 if (!Cores)
-                    pdfImp.ColorSpace = Spire.Pdf.Graphics.PdfColorSpace.GrayScale;
+                    // pdfImp.ColorSpace = Spire.Pdf.Graphics.PdfColorSpace.GrayScale;
+                    ;
                 else
-                    pdfImp.ColorSpace = Spire.Pdf.Graphics.PdfColorSpace.RGB;
-                pdfImp.PrintSettings.Color = true;
+                    // pdfImp.ColorSpace = Spire.Pdf.Graphics.PdfColorSpace.RGB;
+                    //pdfImp.PrintSettings.Color = true;
+                    ;
                 if (NumCopias > 0 && NumCopias < 20)
-                    pdfImp.PrintSettings.Copies = (short)NumCopias;
+                    // pdfImp.PrintSettings.Copies = (short)NumCopias;;
+                    ;
                 else
                     MessageBox.Show("ERRO! O NÚMERO DE CÓPIAS DEVE ESTAR ENTRE 1 E 20!!", "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bool printSuc = false;
                 try
                 {
-                    
-                    pdfImp.Print();
+                    IPrinter printer = new Printer();
+                    printer.PrintRawFile(ImpressoraSelecionada, ImprimirForm.NomePDF, ImprimirForm.NomePDF2);
                     printSuc = true;
                 }
                 catch (Exception ex)
@@ -100,14 +104,14 @@ namespace G.A.S.C.O
             {
                 ImpressorasCBox.Items.Add(item.FullName);
             }
-
+            ImpressorasCBox.SelectedIndex = 0;
             byte[] pdfbytes = System.IO.File.ReadAllBytes(ImprimirForm.NomePDF);
             var stream = new MemoryStream(pdfbytes);
             PdfiumViewer.PdfDocument pdfDoc = PdfiumViewer.PdfDocument.Load(stream);
             pdfViewer1.Document = pdfDoc;
+            
 
-            CoresCBox.SelectedIndex = 0;
-            ImpressorasCBox.SelectedIndex = 0;
+
 
 
         }
