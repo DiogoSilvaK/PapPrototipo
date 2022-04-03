@@ -43,7 +43,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.PAHUD = new System.Windows.Forms.NumericUpDown();
             this.SOGPbut = new System.Windows.Forms.Button();
-            this.GPIbut = new System.Windows.Forms.Button();
             this.TBoxND = new System.Windows.Forms.TextBox();
             this.labelimp4 = new System.Windows.Forms.Label();
             this.labelimp3 = new System.Windows.Forms.Label();
@@ -147,7 +146,6 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.PAHUD);
             this.groupBox2.Controls.Add(this.SOGPbut);
-            this.groupBox2.Controls.Add(this.GPIbut);
             this.groupBox2.Controls.Add(this.TBoxND);
             this.groupBox2.Controls.Add(this.labelimp4);
             this.groupBox2.Controls.Add(this.labelimp3);
@@ -163,9 +161,9 @@
             // 
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(412, 64);
+            this.label3.Location = new System.Drawing.Point(548, 92);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 22);
+            this.label3.Size = new System.Drawing.Size(68, 29);
             this.label3.TabIndex = 25;
             this.label3.Text = "Para:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -180,7 +178,7 @@
             this.TipoCBox.Items.AddRange(new object[] {
             "Cliente",
             "Servidor"});
-            this.TipoCBox.Location = new System.Drawing.Point(416, 92);
+            this.TipoCBox.Location = new System.Drawing.Point(622, 92);
             this.TipoCBox.Name = "TipoCBox";
             this.TipoCBox.Size = new System.Drawing.Size(176, 29);
             this.TipoCBox.TabIndex = 24;
@@ -221,35 +219,21 @@
             this.SOGPbut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SOGPbut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SOGPbut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SOGPbut.Location = new System.Drawing.Point(615, 92);
+            this.SOGPbut.Location = new System.Drawing.Point(822, 92);
             this.SOGPbut.Name = "SOGPbut";
-            this.SOGPbut.Size = new System.Drawing.Size(226, 29);
+            this.SOGPbut.Size = new System.Drawing.Size(246, 29);
             this.SOGPbut.TabIndex = 21;
             this.SOGPbut.Text = "Gerar PDF";
             this.SOGPbut.UseVisualStyleBackColor = false;
             this.SOGPbut.Click += new System.EventHandler(this.SOGPbut_Click);
             // 
-            // GPIbut
-            // 
-            this.GPIbut.BackColor = System.Drawing.Color.DimGray;
-            this.GPIbut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.GPIbut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GPIbut.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GPIbut.Location = new System.Drawing.Point(846, 92);
-            this.GPIbut.Name = "GPIbut";
-            this.GPIbut.Size = new System.Drawing.Size(226, 29);
-            this.GPIbut.TabIndex = 20;
-            this.GPIbut.Text = "Gerar PDF e Imprimir";
-            this.GPIbut.UseVisualStyleBackColor = false;
-            this.GPIbut.Click += new System.EventHandler(this.GPIbut_Click);
-            // 
             // TBoxND
             // 
             this.TBoxND.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TBoxND.Font = new System.Drawing.Font("Century Gothic", 12F);
-            this.TBoxND.Location = new System.Drawing.Point(615, 59);
+            this.TBoxND.Location = new System.Drawing.Point(822, 59);
             this.TBoxND.Name = "TBoxND";
-            this.TBoxND.Size = new System.Drawing.Size(454, 27);
+            this.TBoxND.Size = new System.Drawing.Size(247, 27);
             this.TBoxND.TabIndex = 17;
             this.TBoxND.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -257,9 +241,9 @@
             // 
             this.labelimp4.Font = new System.Drawing.Font("Century Gothic", 12F);
             this.labelimp4.ForeColor = System.Drawing.Color.White;
-            this.labelimp4.Location = new System.Drawing.Point(615, 34);
+            this.labelimp4.Location = new System.Drawing.Point(822, 34);
             this.labelimp4.Name = "labelimp4";
-            this.labelimp4.Size = new System.Drawing.Size(454, 22);
+            this.labelimp4.Size = new System.Drawing.Size(247, 22);
             this.labelimp4.TabIndex = 16;
             this.labelimp4.Text = "Nome do documento";
             this.labelimp4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -337,7 +321,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart Graf;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button SOGPbut;
-        private System.Windows.Forms.Button GPIbut;
         private System.Windows.Forms.TextBox TBoxND;
         private System.Windows.Forms.Label labelimp4;
         private System.Windows.Forms.Label labelimp3;
