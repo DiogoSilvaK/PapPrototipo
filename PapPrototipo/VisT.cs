@@ -22,12 +22,13 @@ namespace G.A.S.C.O
         {
             panel1.BackColor = Login.corMenu;
             CBoxCampo.SelectedIndex = 0;
+            TabelaDataGrid.DefaultCellStyle.SelectionBackColor = Login.corMenu;
         }
 
         private void RefreshBut_Click(object sender, EventArgs e)
-        { 
+        {
 
-
+           
         }
 
         private void CBoxCampo_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,16 +42,16 @@ namespace G.A.S.C.O
             switch (CBoxCampo.Text)
             {
                 case "Clientes":
-                    consultaSql = "SELECT * FROM cliente where Cod_Cliente=(Select Cod_Cliente From Veiculo where Matricula=(Select VeiculoMatricula from servico where LoginEmail ='"+ Login.UserLogado+"' ))";
+                    consultaSql = "SELECT * FROM cliente where Cod_Cliente in (Select Cod_Cliente From Veiculo where Matricula in (Select VeiculoMatricula from servico where LoginEmail ='"+ Login.UserLogado+"' ))";
                     break;
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM lista_de_pecas WHERE cod_servico=(Select Cod_Servico From servico where LoginEmail='"+Login.UserLogado+"')";
+                    consultaSql = "SELECT * FROM lista_de_pecas WHERE cod_servico in (Select Cod_Servico From servico where LoginEmail='"+Login.UserLogado+"')";
                     break;
                 case "Serviços":
                     consultaSql = "SELECT * FROM servico where LoginEmail='"+Login.UserLogado+"'";
                     break;
                 case "Veículos":
-                    consultaSql = "SELECT * FROM veiculo where Matricula=(SELECT VeiculoMatricula from servico where LoginEmail='"+Login.UserLogado+"')";
+                    consultaSql = "SELECT * FROM veiculo where Matricula in (SELECT VeiculoMatricula from servico where LoginEmail='"+Login.UserLogado+"')";
                     break;
             }
 

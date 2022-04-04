@@ -63,6 +63,36 @@ namespace G.A.S.C.O.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CabecalhoPDFAzul {
+            get {
+                object obj = ResourceManager.GetObject("CabecalhoPDFAzul", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CabecalhoPDFFirebrick {
+            get {
+                object obj = ResourceManager.GetObject("CabecalhoPDFFirebrick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CabecalhoPDFGreenGasco {
+            get {
+                object obj = ResourceManager.GetObject("CabecalhoPDFGreenGasco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LogoAMMv2 {
             get {
                 object obj = ResourceManager.GetObject("LogoAMMv2", resourceCulture);

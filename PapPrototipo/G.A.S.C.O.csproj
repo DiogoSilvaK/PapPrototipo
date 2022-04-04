@@ -310,6 +310,15 @@
   <ItemGroup>
     <None Include="Resources\TASKBARICONFirebrick.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CabecalhoPDFAzul.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CabecalhoPDFFirebrick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CabecalhoPDFGreenGasco.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

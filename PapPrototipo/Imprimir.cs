@@ -130,7 +130,7 @@ namespace G.A.S.C.O
             //documento.Add(new Paragraph(tituloPDF, tituloFont) { Alignment = Element.ALIGN_CENTER, Leading = 10.0F, });
 
 
-            string EmailTec = String.Empty, NomeTec = String.Empty;
+            string EmailTec = String.Empty, NomeTec = String.Empty, NomeEmpTec = String.Empty;
 
             string TituloServ = String.Empty, DescrServ = String.Empty, DataServ = String.Empty;
             int HorasServ = 0;
@@ -162,7 +162,7 @@ namespace G.A.S.C.O
                 DataSet DataTemp;
 
                 string consultaSql = "Select SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
-                string consultaSqlLogin = "SELECT Nome, Email from login where Email='" + Login.UserLogado + "'";
+                string consultaSqlLogin = "SELECT Nome, Email, NomeEmpresa from login where Email='" + Login.UserLogado + "'";
                 string consultaSqlServico = "SELECT Titulo, Descricao, Horas,Data FROM servico where cod_servico='" + CBoxReg.Text + "'";
                 string consultaSqlCliente = "SELECT Nome, N_Contr,Morada,Localidade FROM cliente where Cod_Cliente=(Select Cod_Cliente from veiculo where Matricula=(Select VeiculoMatricula from servico where Cod_Servico='" + CBoxReg.Text + "'))";
                 string consultaSqlVeiculo = "SELECT Marca, Modelo,Matricula, Cilindrada, Mes_Ano FROM Veiculo where Matricula=(SELECT VeiculoMatricula from servico where Cod_Servico ='" + CBoxReg.Text + "')";
@@ -184,19 +184,31 @@ namespace G.A.S.C.O
                     {
                         NomeTec = DataReader.GetValue(0).ToString();
                         EmailTec = DataReader.GetValue(1).ToString();
+                        NomeEmpTec = DataReader.GetValue(2).ToString();
                     }
                 }
                 PdfPTable Cabecalho = new PdfPTable(3);
                 Cabecalho.DefaultCell.Border = 0;
-                PdfPCell cellCab = new PdfPCell(new Phrase("G.A.S.C.O", tituloCabFont));
+                PdfPCell cellCab = new PdfPCell(new Phrase(NomeEmpTec, tituloCabFont));
                 cellCab.Padding = 20;
                 cellCab.Colspan = 2;
                 cellCab.Border = 0;
                 cellCab.HorizontalAlignment = Element.ALIGN_CENTER;
 
-                        
-                 var img = iTextSharp.text.Image.GetInstance("../../Resources/LogoAMMV2Azul.png");
-                 img.ScalePercent(2,2);
+                        var img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
+                        if (panel1.BackColor == SystemColors.HotTrack)
+                        {
+                             img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
+                        }
+                        if (panel1.BackColor == Color.Firebrick)
+                        {
+                             img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFFirebrick.png");
+                        }
+                        if (panel1.BackColor == Color.Green)
+                        {
+                             img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFGreenGasco.png");
+                        }
+                        img.ScalePercent(35,35);
                  img.Alignment = Element.ALIGN_CENTER;
              
                 PdfPCell Cellimg = new PdfPCell(img);
@@ -218,7 +230,7 @@ namespace G.A.S.C.O
                 PdfPCell ETPCell = new PdfPCell(new Phrase("Email do Técnico:\n" + EmailTec, textoFont));
 
                 //ETPCell.Padding= 15;
-                PdfPCell DTPCell = new PdfPCell(new Phrase("Data da Entrega:\n" + DateTime.Now.ToString(), textoFont));
+                PdfPCell DTPCell = new PdfPCell(new Phrase("Data da Entzxcvbnm rega:\n" + DateTime.Now.ToString(), textoFont));
 
                 //DTPCell.Padding = 15;
 
@@ -295,10 +307,13 @@ namespace G.A.S.C.O
                 NContrCell.Border = 0;
                 PdfPCell MoradaClientCell = new PdfPCell(new Phrase("Morada: " + MoradaCliente, textoFont));
                 MoradaClientCell.Border = 0;
+                PdfPCell LocalClienteCell = new PdfPCell(new Phrase("Localidade: " + LocalCliente, textoFont));
+                LocalClienteCell.Border = 0;
 
                 ClientinfTab.AddCell(NomeClientCell);
                 ClientinfTab.AddCell(NContrCell);
                 ClientinfTab.AddCell(MoradaClientCell);
+                ClientinfTab.AddCell(LocalClienteCell);
 
                 PdfPCell ClienteCol = new PdfPCell(ClientinfTab);
 
@@ -444,6 +459,9 @@ namespace G.A.S.C.O
 
                         documento.Add(tableLDP);
 
+                        PdfPTable PrecFinalTab = new PdfPTable(1);
+                        PrecFinalTab.WidthPercentage = 100;
+                        PdfPCell PrecFinalCell = new PdfPCell(new Phrase("O preço final da reparação ficará: "+ precoTot+(double)(HorasServ*PAHUD.Value)));
                         //documento.Add(new Paragraph());
 
 
@@ -458,7 +476,7 @@ namespace G.A.S.C.O
                 documento.Add(DescTab);
 
                 documento.Add(new Paragraph("Eu, " + NomeCliente + ", declaro que recebi o meu veículo imaculado e com respectivo serviço realizado."));
-
+                documento.Add(new Paragraph());
                 documento.Add(new Paragraph(new Paragraph(new Chunk(new LineSeparator(0.0F, 15.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)))));
 
 

@@ -199,8 +199,7 @@ namespace G.A.S.C.O
 
         private void FormInicio_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Main M1 = (Main)Application.OpenForms["Main"];
-            M1.panel2.BackColor = Login.corMenu;
+
             
         }
     }

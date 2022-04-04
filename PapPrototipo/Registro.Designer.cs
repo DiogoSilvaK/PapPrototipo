@@ -44,12 +44,16 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.EmpTBox = new System.Windows.Forms.TextBox();
+            this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserPicBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -78,6 +82,8 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.EmpTBox);
             this.panel1.Controls.Add(this.VoltarBut);
             this.panel1.Controls.Add(this.NomeLabel);
             this.panel1.Controls.Add(this.NomeTextBox);
@@ -165,7 +171,7 @@
             this.PassLabel.BackColor = System.Drawing.SystemColors.HotTrack;
             this.PassLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PassLabel.ForeColor = System.Drawing.Color.White;
-            this.PassLabel.Location = new System.Drawing.Point(115, 277);
+            this.PassLabel.Location = new System.Drawing.Point(113, 364);
             this.PassLabel.Name = "PassLabel";
             this.PassLabel.Size = new System.Drawing.Size(160, 32);
             this.PassLabel.TabIndex = 3;
@@ -177,7 +183,7 @@
             this.PassTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.PassTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PassTextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PassTextBox.Location = new System.Drawing.Point(115, 312);
+            this.PassTextBox.Location = new System.Drawing.Point(113, 399);
             this.PassTextBox.Name = "PassTextBox";
             this.PassTextBox.Size = new System.Drawing.Size(160, 27);
             this.PassTextBox.TabIndex = 4;
@@ -190,7 +196,7 @@
             this.UserLabel.BackColor = System.Drawing.SystemColors.HotTrack;
             this.UserLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserLabel.ForeColor = System.Drawing.Color.White;
-            this.UserLabel.Location = new System.Drawing.Point(115, 197);
+            this.UserLabel.Location = new System.Drawing.Point(113, 284);
             this.UserLabel.Name = "UserLabel";
             this.UserLabel.Size = new System.Drawing.Size(160, 32);
             this.UserLabel.TabIndex = 2;
@@ -202,7 +208,7 @@
             this.UserTextBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.UserTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserTextBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserTextBox.Location = new System.Drawing.Point(115, 232);
+            this.UserTextBox.Location = new System.Drawing.Point(113, 319);
             this.UserTextBox.Name = "UserTextBox";
             this.UserTextBox.Size = new System.Drawing.Size(160, 27);
             this.UserTextBox.TabIndex = 2;
@@ -232,6 +238,34 @@
             // 
             this.errorProvider3.ContainerControl = this;
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(113, 205);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 32);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Empresa";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // EmpTBox
+            // 
+            this.EmpTBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.EmpTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmpTBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmpTBox.Location = new System.Drawing.Point(113, 240);
+            this.EmpTBox.Name = "EmpTBox";
+            this.EmpTBox.Size = new System.Drawing.Size(160, 27);
+            this.EmpTBox.TabIndex = 11;
+            this.EmpTBox.Validating += new System.ComponentModel.CancelEventHandler(this.EmpTBox_Validating);
+            // 
+            // errorProvider4
+            // 
+            this.errorProvider4.ContainerControl = this;
+            // 
             // Registro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,6 +287,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,5 +309,8 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
         private System.Windows.Forms.ErrorProvider errorProvider3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox EmpTBox;
+        private System.Windows.Forms.ErrorProvider errorProvider4;
     }
 }

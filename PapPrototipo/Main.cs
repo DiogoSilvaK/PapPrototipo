@@ -101,8 +101,9 @@ namespace G.A.S.C.O
 
 
 
-        private void InicioBut_Click(object sender, EventArgs e) {
-
+        private void InicioBut_Click(object sender, EventArgs e) 
+        {
+            
             panelf3.Controls.Clear();
             FormInicio fi = new FormInicio();
             fi.TopLevel = false;
@@ -138,6 +139,10 @@ namespace G.A.S.C.O
 
         }
 
-
+        private void panelf3_ControlAdded(object sender, ControlEventArgs e)
+        {
+            Main M1 = (Main)Application.OpenForms["Main"];
+            M1.panel2.BackColor = Login.corMenu;
+        }
     }
 }

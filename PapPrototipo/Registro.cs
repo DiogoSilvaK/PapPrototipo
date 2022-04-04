@@ -27,7 +27,7 @@ namespace G.A.S.C.O
             string ConnectS = "data source= localhost; database= pap1; user id= root; pwd= ''";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
-            string UserT= UserTextBox.Text.ToLower(), PassT= PassTextBox.Text, NomeT= NomeTextBox.Text;
+            string UserT= UserTextBox.Text.ToLower(), PassT= PassTextBox.Text, NomeT= NomeTextBox.Text, EmpT = EmpTBox.Text;
 
             MD5 mD5 = MD5.Create();
             byte[] valorC = mD5.ComputeHash(Encoding.Default.GetBytes(PassT));
@@ -39,7 +39,7 @@ namespace G.A.S.C.O
 
 
 
-            string consultaSql = "INSERT INTO Login(Nome, Email, Pass) VALUES('"+NomeT+"','"+UserT+"','"+passSb+"')";
+            string consultaSql = "INSERT INTO Login(Nome, Email, Pass, NomeEmpresa) VALUES('"+NomeT+"','"+UserT+"','"+passSb+"','"+EmpT+"')";
             if (NomeT != "" || UserT != "" || PassT != "")
             {
                 DialogResult DR = MessageBox.Show("Deseja registrar o(a) utilizador(a) '" + NomeT + "' no endereço email '" + UserT + "'", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -87,7 +87,7 @@ namespace G.A.S.C.O
 
         private void NomeTextBox_Validating(object sender, CancelEventArgs e)
         {
-            Regex nomeCheck = new Regex(@"^[a-zA-Z]{1,40}çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ_ &");
+            Regex nomeCheck = new Regex(@"^[a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ_ ]{3,40}$");
             if(!nomeCheck.IsMatch(NomeTextBox.Text))
             {
                 errorProvider1.SetError(NomeTextBox, "Insira um nome válido!");
@@ -121,6 +121,19 @@ namespace G.A.S.C.O
             else
             {
                 errorProvider3.SetError(PassTextBox, "");
+            }
+        }
+
+        private void EmpTBox_Validating(object sender, CancelEventArgs e)
+        {
+            Regex EmpCheck = new Regex(@"^[a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\,\.\-&_ ]{3,40}$");
+            if(!EmpCheck.IsMatch(EmpTBox.Text))
+            {
+                errorProvider4.SetError(EmpTBox, "Nome de Empresa inválido - cuidado com carateres especiais");
+            }
+            else
+            {
+                errorProvider4.SetError(EmpTBox, "");
             }
         }
     }

@@ -31,9 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.LogoBox = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.InicioBut = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.Sair = new System.Windows.Forms.Button();
+            this.DefinBut = new System.Windows.Forms.Button();
+            this.InicioBut = new System.Windows.Forms.Button();
             this.InserirBut = new System.Windows.Forms.Button();
             this.AtualizarBut = new System.Windows.Forms.Button();
             this.ApagarBut = new System.Windows.Forms.Button();
@@ -41,17 +44,14 @@
             this.VTC = new System.Windows.Forms.Button();
             this.VTS = new System.Windows.Forms.Button();
             this.panelf3 = new System.Windows.Forms.Panel();
-            this.DefinBut = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.LogoBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -88,6 +88,18 @@
             this.panel3.Size = new System.Drawing.Size(154, 141);
             this.panel3.TabIndex = 2;
             // 
+            // LogoBox
+            // 
+            this.LogoBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.LogoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LogoBox.Image = global::G.A.S.C.O.Properties.Resources.LogoAMMv2;
+            this.LogoBox.Location = new System.Drawing.Point(0, 0);
+            this.LogoBox.Name = "LogoBox";
+            this.LogoBox.Size = new System.Drawing.Size(153, 141);
+            this.LogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.LogoBox.TabIndex = 2;
+            this.LogoBox.TabStop = false;
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -108,26 +120,16 @@
             this.panel2.Size = new System.Drawing.Size(160, 563);
             this.panel2.TabIndex = 1;
             // 
-            // InicioBut
+            // panel1
             // 
-            this.InicioBut.BackColor = System.Drawing.Color.DimGray;
-            this.InicioBut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.InicioBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.InicioBut.FlatAppearance.BorderSize = 2;
-            this.InicioBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.InicioBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.InicioBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.InicioBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.InicioBut.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InicioBut.ForeColor = System.Drawing.Color.White;
-            this.InicioBut.Location = new System.Drawing.Point(3, 38);
-            this.InicioBut.Margin = new System.Windows.Forms.Padding(4);
-            this.InicioBut.Name = "InicioBut";
-            this.InicioBut.Size = new System.Drawing.Size(151, 50);
-            this.InicioBut.TabIndex = 1;
-            this.InicioBut.Text = "Inicio";
-            this.InicioBut.UseVisualStyleBackColor = false;
-            this.InicioBut.Click += new System.EventHandler(this.InicioBut_Click);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
+            this.panel1.Controls.Add(this.Sair);
+            this.panel1.Controls.Add(this.DefinBut);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 509);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(158, 52);
+            this.panel1.TabIndex = 3;
             // 
             // Sair
             // 
@@ -150,6 +152,49 @@
             this.Sair.Text = "❌";
             this.Sair.UseVisualStyleBackColor = false;
             this.Sair.Click += new System.EventHandler(this.Sair_Click);
+            // 
+            // DefinBut
+            // 
+            this.DefinBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DefinBut.BackColor = System.Drawing.Color.DimGray;
+            this.DefinBut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DefinBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.DefinBut.FlatAppearance.BorderSize = 2;
+            this.DefinBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DefinBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.DefinBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.DefinBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DefinBut.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DefinBut.ForeColor = System.Drawing.Color.White;
+            this.DefinBut.Location = new System.Drawing.Point(2, 5);
+            this.DefinBut.Margin = new System.Windows.Forms.Padding(4);
+            this.DefinBut.Name = "DefinBut";
+            this.DefinBut.Size = new System.Drawing.Size(70, 43);
+            this.DefinBut.TabIndex = 2;
+            this.DefinBut.Text = "🔧";
+            this.DefinBut.UseVisualStyleBackColor = false;
+            this.DefinBut.Click += new System.EventHandler(this.DefinBut_Click);
+            // 
+            // InicioBut
+            // 
+            this.InicioBut.BackColor = System.Drawing.Color.DimGray;
+            this.InicioBut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.InicioBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.InicioBut.FlatAppearance.BorderSize = 2;
+            this.InicioBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.InicioBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.InicioBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.InicioBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.InicioBut.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InicioBut.ForeColor = System.Drawing.Color.White;
+            this.InicioBut.Location = new System.Drawing.Point(3, 38);
+            this.InicioBut.Margin = new System.Windows.Forms.Padding(4);
+            this.InicioBut.Name = "InicioBut";
+            this.InicioBut.Size = new System.Drawing.Size(151, 50);
+            this.InicioBut.TabIndex = 1;
+            this.InicioBut.Text = "Inicio";
+            this.InicioBut.UseVisualStyleBackColor = false;
+            this.InicioBut.Click += new System.EventHandler(this.InicioBut_Click);
             // 
             // InserirBut
             // 
@@ -290,51 +335,7 @@
             this.panelf3.Name = "panelf3";
             this.panelf3.Size = new System.Drawing.Size(1085, 675);
             this.panelf3.TabIndex = 0;
-            // 
-            // DefinBut
-            // 
-            this.DefinBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.DefinBut.BackColor = System.Drawing.Color.DimGray;
-            this.DefinBut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DefinBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.DefinBut.FlatAppearance.BorderSize = 2;
-            this.DefinBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DefinBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.DefinBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
-            this.DefinBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DefinBut.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DefinBut.ForeColor = System.Drawing.Color.White;
-            this.DefinBut.Location = new System.Drawing.Point(2, 5);
-            this.DefinBut.Margin = new System.Windows.Forms.Padding(4);
-            this.DefinBut.Name = "DefinBut";
-            this.DefinBut.Size = new System.Drawing.Size(70, 43);
-            this.DefinBut.TabIndex = 2;
-            this.DefinBut.Text = "🔧";
-            this.DefinBut.UseVisualStyleBackColor = false;
-            this.DefinBut.Click += new System.EventHandler(this.DefinBut_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.panel1.Controls.Add(this.Sair);
-            this.panel1.Controls.Add(this.DefinBut);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 509);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(158, 52);
-            this.panel1.TabIndex = 3;
-            // 
-            // LogoBox
-            // 
-            this.LogoBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(44)))), ((int)(((byte)(44)))));
-            this.LogoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.LogoBox.Image = global::G.A.S.C.O.Properties.Resources.LogoAMMv2;
-            this.LogoBox.Location = new System.Drawing.Point(0, 0);
-            this.LogoBox.Name = "LogoBox";
-            this.LogoBox.Size = new System.Drawing.Size(153, 141);
-            this.LogoBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.LogoBox.TabIndex = 2;
-            this.LogoBox.TabStop = false;
+            this.panelf3.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.panelf3_ControlAdded);
             // 
             // Main
             // 
@@ -358,9 +359,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LogoBox)).EndInit();
             this.ResumeLayout(false);
 
         }
