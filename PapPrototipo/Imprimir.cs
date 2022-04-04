@@ -151,9 +151,7 @@ namespace G.A.S.C.O
             string ConnectS = "data source= localhost; database= pap1; user id= root; pwd='';Allow User Variables=True";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
-            switch (TipoCBox.Text)
-            {
-                case "Cliente":
+
             try
             {
                 Conn.Open();
@@ -195,22 +193,22 @@ namespace G.A.S.C.O
                 cellCab.Border = 0;
                 cellCab.HorizontalAlignment = Element.ALIGN_CENTER;
 
-                        var img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
-                        if (panel1.BackColor == SystemColors.HotTrack)
-                        {
-                             img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
-                        }
-                        if (panel1.BackColor == Color.Firebrick)
-                        {
-                             img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFFirebrick.png");
-                        }
-                        if (panel1.BackColor == Color.Green)
-                        {
-                             img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFGreenGasco.png");
-                        }
-                        img.ScalePercent(35,35);
-                 img.Alignment = Element.ALIGN_CENTER;
-             
+                var img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
+                if (panel1.BackColor == SystemColors.HotTrack)
+                {
+                    img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
+                }
+                if (panel1.BackColor == Color.Firebrick)
+                {
+                    img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFFirebrick.png");
+                }
+                if (panel1.BackColor == Color.Green)
+                {
+                    img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFGreenGasco.png");
+                }
+                img.ScalePercent(35, 35);
+                img.Alignment = Element.ALIGN_CENTER;
+
                 PdfPCell Cellimg = new PdfPCell(img);
                 //Cellimg.Rowspan = 2;
                 //PdfPCell Cellimg = new PdfPCell(new Phrase("LOGOTIPO AQUI!!", textoFont));
@@ -230,7 +228,7 @@ namespace G.A.S.C.O
                 PdfPCell ETPCell = new PdfPCell(new Phrase("Email do Técnico:\n" + EmailTec, textoFont));
 
                 //ETPCell.Padding= 15;
-                PdfPCell DTPCell = new PdfPCell(new Phrase("Data da Entzxcvbnm rega:\n" + DateTime.Now.ToString(), textoFont));
+                PdfPCell DTPCell = new PdfPCell(new Phrase("Data da Entrega:\n" + DateTime.Now.ToString(), textoFont));
 
                 //DTPCell.Padding = 15;
 
@@ -404,7 +402,7 @@ namespace G.A.S.C.O
                 }
 
 
-                        
+
 
                 for (int linhas = 0; linhas < nl; linhas++)
                 {
@@ -412,60 +410,60 @@ namespace G.A.S.C.O
                     {
 
                         stemp = DataTemp.Tables["tabela"].Rows[linhas][colunas].ToString();
-                                
 
-                        if(colunas != nc-1)
-                        tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
-                        {
-                            HorizontalAlignment = Element.ALIGN_CENTER,
-                            Padding = 4,
-                            BorderWidth = 1,
-                            //BorderColor = iTextSharp.text.BaseColor.BLUE,
-                            //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
-                        });
+
+                        if (colunas != nc - 1)
+                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
+                            {
+                                HorizontalAlignment = Element.ALIGN_CENTER,
+                                Padding = 4,
+                                BorderWidth = 1,
+                                //BorderColor = iTextSharp.text.BaseColor.BLUE,
+                                //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
+                            });
                         else
-                        tableLDP.AddCell(new PdfPCell(new Phrase(stemp+"€", textoFont))
-                         {
-                          HorizontalAlignment = Element.ALIGN_CENTER,
-                           Padding = 4,
-                           BorderWidth = 1,
-                           //BorderColor = iTextSharp.text.BaseColor.BLUE,
-                          //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
-                         });
+                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp + "€", textoFont))
+                            {
+                                HorizontalAlignment = Element.ALIGN_CENTER,
+                                Padding = 4,
+                                BorderWidth = 1,
+                                //BorderColor = iTextSharp.text.BaseColor.BLUE,
+                                //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
+                            });
 
-                            }
+                    }
                 }
 
 
                 DataReader.Close();
                 string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
-                        double precoTot = 0.0;
-                        MySqlCommand queryTotPCmd = new MySqlCommand(TotalPCs, Conn);
+                double precoTot = 0.0;
+                MySqlCommand queryTotPCmd = new MySqlCommand(TotalPCs, Conn);
                 DataReader = queryTotPCmd.ExecuteReader();
-                if(DataReader.HasRows)
+                if (DataReader.HasRows)
                 {
-                            while(DataReader.Read())
-                            {
-                                precoTot = DataReader.GetDouble(0);
-                            }
+                    while (DataReader.Read())
+                    {
+                        precoTot = DataReader.GetDouble(0);
+                    }
                 }
 
-                        PdfPCell TotalPrecCell = new PdfPCell(new Phrase("Total: " + precoTot.ToString()+ "€", textoFont));
-                        TotalPrecCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        TotalPrecCell.Colspan = 5;
-                        TotalPrecCell.BorderWidth = 1;
-                        TotalPrecCell.PaddingRight = 4;
-                        tableLDP.AddCell(TotalPrecCell);
+                PdfPCell TotalPrecCell = new PdfPCell(new Phrase("Total: " + precoTot.ToString() + "€", textoFont));
+                TotalPrecCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                TotalPrecCell.Colspan = 5;
+                TotalPrecCell.BorderWidth = 1;
+                TotalPrecCell.PaddingRight = 4;
+                tableLDP.AddCell(TotalPrecCell);
 
-                        documento.Add(tableLDP);
+                documento.Add(tableLDP);
 
-                        PdfPTable PrecFinalTab = new PdfPTable(1);
-                        PrecFinalTab.WidthPercentage = 100;
-                        PdfPCell PrecFinalCell = new PdfPCell(new Phrase("O preço final da reparação ficará: "+ precoTot+(double)(HorasServ*PAHUD.Value)));
-                        //documento.Add(new Paragraph());
+                PdfPTable PrecFinalTab = new PdfPTable(1);
+                PrecFinalTab.WidthPercentage = 100;
+                PdfPCell PrecFinalCell = new PdfPCell(new Phrase("O preço final da reparação ficará: " + precoTot + (double)(HorasServ * PAHUD.Value), textoFont));
+                //documento.Add(new Paragraph());
 
 
-                        PdfPTable DescTab = new PdfPTable(1);
+                PdfPTable DescTab = new PdfPTable(1);
                 DescTab.WidthPercentage = 100;
                 PdfPCell DescTCell = new PdfPCell(new Phrase("Descrição: ", textoFont));
                 PdfPCell DescPCell = new PdfPCell(new Phrase(DescrServ, textoFont));
@@ -474,28 +472,28 @@ namespace G.A.S.C.O
                 DescTab.AddCell(DescPCell);
 
                 documento.Add(DescTab);
-
-                documento.Add(new Paragraph("Eu, " + NomeCliente + ", declaro que recebi o meu veículo imaculado e com respectivo serviço realizado."));
+            }
+            finally
+            {
+                Conn.Close();
+            }
+            switch (TipoCBox.Text)
+                {
+                    case "Cliente":
+                        documento.Add(new Paragraph("Eu, " + NomeCliente + ", declaro que recebi o meu veículo imaculado e com respectivo serviço realizado."));
                 documento.Add(new Paragraph());
                 documento.Add(new Paragraph(new Paragraph(new Chunk(new LineSeparator(0.0F, 15.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)))));
 
 
                 documento.Close();
               //  System.Diagnostics.Process.Start(NomePDF);
-            }
-            finally
-            {
-                Conn.Close();
-            }
+            
+          
             break;
+
                 case "Servidor":
-                    try
-                    {
-                        Conn.Open();
-
-                        MySqlDataAdapter DataAdapter;
-                        DataSet DataTemp;
-
+                  
+                    /*
                         string consultaSql = "Select SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
                         string consultaSqlLogin = "SELECT Nome, Email from login where Email='" + Login.UserLogado + "'";
                         string consultaSqlServico = "SELECT Titulo, Descricao, Horas,Data FROM servico where cod_servico='" + CBoxReg.Text + "'";
@@ -507,274 +505,31 @@ namespace G.A.S.C.O
                         MySqlCommand queryCmdCliente = new MySqlCommand(consultaSqlCliente, Conn);
                         MySqlCommand queryCmdVeiculo = new MySqlCommand(consultaSqlVeiculo, Conn);
                         MySqlCommand queryCmdLDP = new MySqlCommand(consultaSqlLDP, Conn);
-
-
-                        MySqlDataReader DataReader = queryCmdLogin.ExecuteReader();
-                        if (DataReader.HasRows)
-                        {
-                            while (DataReader.Read())
-                            {
-                                NomeTec = DataReader.GetValue(0).ToString();
-                                EmailTec = DataReader.GetValue(1).ToString();
-                            }
-                        }
-                        PdfPTable Cabecalho = new PdfPTable(3);
-                        Cabecalho.DefaultCell.Border = 0;
-                        PdfPCell cellCab = new PdfPCell(new Phrase("AutoMobil Manager", tituloCabFont));
-                        cellCab.Padding = 20;
-                        cellCab.Colspan = 2;
-                        cellCab.Border = 0;
-                        cellCab.HorizontalAlignment = Element.ALIGN_CENTER;
-
-                        /*
-                        var img = iTextSharp.text.Image.GetInstance("F:/Downloads/AMMLogo.png");
-                        img.ScalePercent(34,34);
-                        img.Alignment = Element.ALIGN_CENTER;
-                        */
-                        PdfPCell Cellimg = new PdfPCell(new Phrase("LOGOTIPO AQUI!!", textoFont));
-                        //Cellimg.Rowspan = 2;
-                        Cellimg.Border = 0;
-                        Cellimg.Padding = 20;
-
-
-                        Cabecalho.AddCell(cellCab);
-                        Cabecalho.AddCell(Cellimg);
+                    */
 
 
 
 
-                        PdfPCell NTPCell = new PdfPCell(new Phrase("Nome do Técnico:\n" + NomeTec, textoFont));
 
-                        //NTPCell.Padding = 15;
-                        PdfPCell ETPCell = new PdfPCell(new Phrase("Email do Técnico:\n" + EmailTec, textoFont));
-
-                        //ETPCell.Padding= 15;
-                        PdfPCell DTPCell = new PdfPCell(new Phrase("Data da Entrega:\n" + DateTime.Now.ToString(), textoFont));
-
-                        //DTPCell.Padding = 15;
-
-                        Cabecalho.AddCell(NTPCell); Cabecalho.AddCell(ETPCell); Cabecalho.AddCell(DTPCell);
-
-
-
-
-                        Cabecalho.WidthPercentage = 100;
-                        Paragraph TextoCab = new Paragraph();
-                        //documento.Add(new Phrase("\n"));
-                        documento.Add(Cabecalho);
-                        //documento.Add(new Phrase("\n"));
-                        documento.Add(linhaSeparadora);
-
-                        PdfPTable ClienteTab = new PdfPTable(2);
-                        ClienteTab.WidthPercentage = 100;
-
-                        DataReader.Close();
-                        DataReader = queryCmdServico.ExecuteReader();
-                        if (DataReader.HasRows)
-                        {
-                            while (DataReader.Read())
-                            {
-                                TituloServ = DataReader.GetValue(0).ToString();
-                                DescrServ = DataReader.GetValue(1).ToString();
-                                HorasServ = DataReader.GetInt16(2);
-                                DataServ = DataReader.GetValue(3).ToString();
-
-                            }
-                        }
-                        PdfPTable DataPrT = new PdfPTable(1);
-
-                        PdfPCell DSCell = new PdfPCell(new Phrase("Data de Serviço: " + DataServ, textoFont));
-                        DSCell.Border = 0;
-                        PdfPCell HorasCell = new PdfPCell(new Phrase("Horas: " + HorasServ, textoFont));
-                        HorasCell.Border = 0;
-                        PdfPCell PrecoCell = new PdfPCell(new Phrase("Preço por Hora: " + PAHUD.Value, textoFont));
-                        PrecoCell.Border = 0;
 
                         double MOPT = (double)HorasServ * (double)PAHUD.Value ;
-                        PdfPCell TotalPCell = new PdfPCell(new Phrase("Total: " + MOPT, textoFont));
-                        TotalPCell.Border = 0;
+                   
 
-                        DataPrT.WidthPercentage = 100;
-                        DataPrT.AddCell(DSCell);
-                        DataPrT.AddCell(HorasCell);
-                        DataPrT.AddCell(PrecoCell);
-                        DataPrT.AddCell(TotalPCell);
-
-                        PdfPCell DataPrCol = new PdfPCell(DataPrT);
-
-
-                        DataReader.Close();
-                        DataReader = queryCmdCliente.ExecuteReader();
-                        if (DataReader.HasRows)
-                        {
-                            while (DataReader.Read())
-                            {
-                                NomeCliente = DataReader.GetValue(0).ToString();
-                                NContr = ((int)DataReader.GetValue(1));
-                                MoradaCliente = DataReader.GetValue(2).ToString();
-
-                            }
-                        }
-
-
-                        documento.Add(new Phrase("", textoFont));
-                        PdfPTable ClientinfTab = new PdfPTable(1);
-                        ClientinfTab.WidthPercentage = 100;
-
-                        PdfPCell NomeClientCell = new PdfPCell(new Phrase("Nome: " + NomeCliente, textoFont));
-                        NomeClientCell.Border = 0;
-                        PdfPCell NContrCell = new PdfPCell(new Phrase("Numéro de Contribuinte: " + NContr, textoFont));
-                        NContrCell.Border = 0;
-                        PdfPCell MoradaClientCell = new PdfPCell(new Phrase("Morada: " + MoradaCliente, textoFont));
-                        MoradaClientCell.Border = 0;
-
-                        ClientinfTab.AddCell(NomeClientCell);
-                        ClientinfTab.AddCell(NContrCell);
-                        ClientinfTab.AddCell(MoradaClientCell);
-
-                        PdfPCell ClienteCol = new PdfPCell(ClientinfTab);
-
-                        ClienteTab.AddCell(DataPrCol);
-                        ClienteTab.AddCell(ClienteCol);
-
-                        documento.Add(ClienteTab);
-
-                        DataReader.Close();
-                        DataReader = queryCmdVeiculo.ExecuteReader();
-                        if (DataReader.HasRows)
-                        {
-                            while (DataReader.Read())
-                            {
-                                MarcaV = DataReader.GetValue(0).ToString();
-                                ModeloV = DataReader.GetValue(1).ToString();
-                                MatriculaV = DataReader.GetValue(2).ToString();
-                                CilindradaV = ((int)DataReader.GetValue(3));
-                                MesAnoV = DataReader.GetValue(4).ToString();
-                            }
-                        }
-
-                        PdfPTable VeiculoTab = new PdfPTable(2);
-                        VeiculoTab.WidthPercentage = 100;
-                        PdfPCell LVCell = new PdfPCell(new Phrase("Carro: " + MarcaV + " " + ModeloV + " " + CilindradaV + " " + MesAnoV, textoFont));
-                        LVCell.BorderWidthRight = 0;
-                        PdfPCell RVCell = new PdfPCell(new Phrase("Matricula: " + MatriculaV, textoFont));
-                        RVCell.BorderWidthLeft = 0;
-                        RVCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-
-                        VeiculoTab.AddCell(LVCell);
-                        VeiculoTab.AddCell(RVCell);
-
-                        documento.Add(VeiculoTab);
-
-                        /*
-                        DataReader.Close();
-                        DataReader = queryCmdLDP.ExecuteReader();
-                        if(DataReader.HasRows)
-                        {
-                            while(DataReader.Read())
-                            {
-                                MarcaLDP = DataReader.GetValue(0).ToString();
-                                NomeLDP = DataReader.GetValue(1).ToString();
-                                N_SerieLDP = DataReader.GetValue(2).ToString();
-                                PrecoLDP = ((double)DataReader.GetValue(3));
-                            }
-                        }
-                        */
-                        DataReader.Close();
-                        string consultaSqlRowNReset = "Set @row_num=0";
-                        MySqlCommand RNR = new MySqlCommand(consultaSqlRowNReset, Conn);
-                        RNR.ExecuteNonQuery();
-
-                        DataReader.Close();
-                        DataAdapter = new MySqlDataAdapter(consultaSqlLDP, Conn);
-                        DataTemp = new DataSet();
-                        DataAdapter.Fill(DataTemp, "tabela");
-
-                        int nc = DataTemp.Tables["tabela"].Columns.Count;
-                        int nl = DataTemp.Tables["tabela"].Rows.Count;
-                        //int count = 0;
-
-
-
-                        PdfPTable tableLDP = new PdfPTable(nc);
-
-
-                        PdfPCell LDPT = new PdfPCell(new Phrase("Lista de Peças"));
-                        LDPT.Colspan = 5;
-
-                        tableLDP.AddCell(LDPT);
-                        tableLDP.WidthPercentage = 100;
-                        string stemp = String.Empty;
-                        for (int Col = 0; Col < nc; Col++)
-                        {
-
-                            stemp = DataTemp.Tables[0].Columns[Col].ToString();
-
-                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
-                            {
-                                HorizontalAlignment = Element.ALIGN_CENTER,
-                                Padding = 8,
-                                BorderWidth = 1,
-                                //BorderColor = iTextSharp.text.BaseColor.BLUE,
-                                //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
-                            });
-                        }
+                         
 
 
 
 
-                        for (int linhas = 0; linhas < nl; linhas++)
-                        {
-                            for (int colunas = 0; colunas < nc; colunas++)
-                            {
-
-                                stemp = DataTemp.Tables["tabela"].Rows[linhas][colunas].ToString();
 
 
 
-                                tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
-                                {
-                                    HorizontalAlignment = Element.ALIGN_CENTER,
-                                    Padding = 4,
-                                    BorderWidth = 1,
-                                    //BorderColor = iTextSharp.text.BaseColor.BLUE,
-                                    //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
-                                });
 
-                            }
-                        }
 
-                        DataReader.Close();
+
+
                         string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
                         double precoTot = 0.0;
-                        MySqlCommand queryTotPCmd = new MySqlCommand(TotalPCs, Conn);
-                        DataReader = queryTotPCmd.ExecuteReader();
-                        if (DataReader.HasRows)
-                        {
-                            while (DataReader.Read())
-                            {
-                                precoTot = DataReader.GetDouble(0);
-                            }
-                        }
 
-                        PdfPCell TotalPrecCell = new PdfPCell(new Phrase("Total: " + precoTot.ToString() + "€", textoFont));
-                        TotalPrecCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                        TotalPrecCell.Colspan = 5;
-                        TotalPrecCell.BorderWidth = 1;
-                        TotalPrecCell.PaddingRight = 4;
-                        tableLDP.AddCell(TotalPrecCell);
-
-                        documento.Add(tableLDP);
-
-                        PdfPTable DescTab = new PdfPTable(1);
-                        DescTab.WidthPercentage = 100;
-                        PdfPCell DescTCell = new PdfPCell(new Phrase("Descrição: ", textoFont));
-                        PdfPCell DescPCell = new PdfPCell(new Phrase(DescrServ, textoFont));
-
-                        DescTab.AddCell(DescTCell);
-                        DescTab.AddCell(DescPCell);
-
-                        documento.Add(DescTab);
 
                         Graf.Series.Clear();Graf.Series.Add("Servico");
                         Graf.Series["Servico"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -819,19 +574,12 @@ namespace G.A.S.C.O
                 
                         documento.Close();
                         //System.Diagnostics.Process.Start(NomePDF);
-                    }
-                    catch(MySqlException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    finally
-                    {
-                        Conn.Close();
-                    }
+
+
                     break;
+            }
 
-
-         }
+        
 
 
 
