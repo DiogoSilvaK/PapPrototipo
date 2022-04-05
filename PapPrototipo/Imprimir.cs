@@ -129,6 +129,7 @@ namespace G.A.S.C.O
             iTextSharp.text.Font textoFont = FontFactory.GetFont("Microsoft Sans Serif", 10, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             //documento.Add(new Paragraph(tituloPDF, tituloFont) { Alignment = Element.ALIGN_CENTER, Leading = 10.0F, });
 
+            double precoTot = 0.0;
 
             string EmailTec = String.Empty, NomeTec = String.Empty, NomeEmpTec = String.Empty;
 
@@ -192,19 +193,27 @@ namespace G.A.S.C.O
                 cellCab.Colspan = 2;
                 cellCab.Border = 0;
                 cellCab.HorizontalAlignment = Element.ALIGN_CENTER;
+                System.Drawing.Image cabeclogo = G.A.S.C.O.Properties.Resources.CabecalhoPDFAzul;
 
-                var img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
+
+                var img = iTextSharp.text.Image.GetInstance(cabeclogo, System.Drawing.Imaging.ImageFormat.Png);
                 if (panel1.BackColor == SystemColors.HotTrack)
                 {
-                    img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
+                    cabeclogo = G.A.S.C.O.Properties.Resources.CabecalhoPDFAzul;
+                    img = iTextSharp.text.Image.GetInstance(cabeclogo, System.Drawing.Imaging.ImageFormat.Png);
+                    // img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
                 }
                 if (panel1.BackColor == Color.Firebrick)
                 {
-                    img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFFirebrick.png");
+                    cabeclogo = G.A.S.C.O.Properties.Resources.CabecalhoPDFFirebrick;
+                    img = iTextSharp.text.Image.GetInstance(cabeclogo, System.Drawing.Imaging.ImageFormat.Png);
+                    //img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFFirebrick.png");
                 }
                 if (panel1.BackColor == Color.Green)
                 {
-                    img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFGreenGasco.png");
+                    cabeclogo = G.A.S.C.O.Properties.Resources.CabecalhoPDFGreenGasco;
+                    img = iTextSharp.text.Image.GetInstance(cabeclogo, System.Drawing.Imaging.ImageFormat.Png);
+                    //img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFGreenGasco.png");
                 }
                 img.ScalePercent(35, 35);
                 img.Alignment = Element.ALIGN_CENTER;
@@ -437,7 +446,7 @@ namespace G.A.S.C.O
 
                 DataReader.Close();
                 string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
-                double precoTot = 0.0;
+                precoTot = 0.0;
                 MySqlCommand queryTotPCmd = new MySqlCommand(TotalPCs, Conn);
                 DataReader = queryTotPCmd.ExecuteReader();
                 if (DataReader.HasRows)
@@ -528,8 +537,8 @@ namespace G.A.S.C.O
 
 
                         string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
-                        double precoTot = 0.0;
-
+                       // double precoTot = 0.0;
+                        
 
                         Graf.Series.Clear();Graf.Series.Add("Servico");
                         Graf.Series["Servico"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;

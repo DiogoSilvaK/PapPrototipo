@@ -130,7 +130,7 @@
             this.Graf.Legends.Add(legend1);
             this.Graf.Location = new System.Drawing.Point(8, 6);
             this.Graf.Name = "Graf";
-            this.Graf.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale;
+            this.Graf.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";

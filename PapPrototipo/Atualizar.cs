@@ -31,7 +31,7 @@ namespace G.A.S.C.O
 
         private void TabelaCBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string consultaSql = "";
+            string consultaSql = String.Empty;
             string ConnectS = "data source=localhost; database=pap1; user id=root; pwd=''";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             DataSet DataTemp = new DataSet();
@@ -207,42 +207,7 @@ namespace G.A.S.C.O
                     break;
             }
 
-            switch (Campo2.Text)
-            {
-                case "Nome":
-                case "Titulo":
-                case "Modelo":
-                case "Marca":
-                    if (TabelaCBox1.Text == "Clientes")
-                        campo2Regex = new Regex(@"^[a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ_ ]{3,40}$");
-                    else
-                        campo2Regex = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\-\.\,_ ]{3,40}$");
-                    break;
-                case "Morada":
-                    campo2Regex = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛºª\.\,\-_ ]{10,80}$");
-                    break;
-                case "Cod_Cliente":
-                case "Cod_Servico":
-                case "Cod_Peca":
-                    campo2Regex = new Regex(@"^[0-9]{1,11}$");
-                    break;
-                case "Loca2lidade":
-                    campo2Regex = new Regex(@"^[A-Za-zçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\,\-_ ]{3,80}$");
-                    break;
-                case "Cilindrada":
-                    campo2Regex = new Regex(@"^[0-9]{2,4}$");
-                    break;
-                case "Desconto":
-                case "Horas":
-                    campo2Regex = new Regex(@"^[0-9]{1,3}$");
-                    break;
-                case "Matricula":
-                    campo2Regex = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
-                    break;
-                case "N_Contr":
-                    campo2Regex = new Regex(@"^[0-9]{9}$");
-                    break;
-            }
+
 
 
 
@@ -305,14 +270,24 @@ namespace G.A.S.C.O
                     queryCmd.ExecuteNonQuery();
                 }
 
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                string consultaSql1 = "SELECT * FROM " + tabelaSelect + " WHERE "+ Campo2.Text + "='" + AtNReg+"'";
+
+                string consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                switch (tabelaSelect)
+                {
+                    case "cliente":
+                        consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                        break;
+                    case "veiculo":
+                        consultaSql1 = "SELECT DISTINCT veiculo.Marca, veiculo.Modelo, veiculo.Cilindrada, veiculo.Mes_Ano, veiculo.Matricula, veiculo.Cod_Cliente from veiculo inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                        break;
+                    case "lista_de_pecas":
+                        consultaSql1 = "SELECT DISTINCT lista_de_pecas.Cod_Peca, lista_de_pecas.Nome, lista_de_pecas.Marca, lista_de_pecas.Num_Serie, lista_de_pecas.Preco, lista_de_pecas.Cod_Servico, lista_de_pecas.Desconto from lista_de_pecas inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                        break;
+                    case "servico":
+                        consultaSql1 = "SELECT * From servico" + Login.NAQueryS + "AND" + Campo2.Text + "='" + AtNReg + "'";
+                        break;
+                }
+
                 MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
                 DataSet DataTemp = new DataSet();
 
@@ -322,24 +297,33 @@ namespace G.A.S.C.O
                 DataAdapter.Fill(DataTemp, "tabela");
                 TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
 
-                
+
 
                 TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-                
+
                 for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
                 {
-                    
+
                     int colw = TabelaDataGrid.Columns[i].Width;
 
-                    
+
                     TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
 
-                    
+
                     TabelaDataGrid.Columns[i].Width = colw;
                 }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+
                 Conn.Close();
             }
         }
@@ -351,6 +335,42 @@ namespace G.A.S.C.O
 
         private void Campo2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (Campo2.Text)
+            {
+                case "Nome":
+                case "Titulo":
+                case "Modelo":
+                case "Marca":
+                    if (TabelaCBox1.Text == "Clientes")
+                        campo2Regex = new Regex(@"^[a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ_ ]{3,40}$");
+                    else
+                        campo2Regex = new Regex(@"^[0-9a-zA-ZçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\-\.\,_ ]{3,40}$");
+                    break;
+                case "Morada":
+                    campo2Regex = new Regex(@"^[a-zA-Z0-9çÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛºª\.\,\-_ ]{10,80}$");
+                    break;
+                case "Cod_Cliente":
+                case "Cod_Servico":
+                case "Cod_Peca":
+                    campo2Regex = new Regex(@"^[0-9]{1,11}$");
+                    break;
+                case "Localidade":
+                    campo2Regex = new Regex(@"^[A-Za-zçÇàÀáÁâÂãÃÉéÈèÊêÕõÔôÓóÒòíÍìÌîÎúÚùÙûÛ\.\,\-_ ]{3,80}$");
+                    break;
+                case "Cilindrada":
+                    campo2Regex = new Regex(@"^[0-9]{2,4}$");
+                    break;
+                case "Desconto":
+                case "Horas":
+                    campo2Regex = new Regex(@"^[0-9]{1,3}$");
+                    break;
+                case "Matricula":
+                    campo2Regex = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
+                    break;
+                case "N_Contr":
+                    campo2Regex = new Regex(@"^[0-9]{9}$");
+                    break;
+            }
             switch (Campo2.Text)
             {
                 case "Descricao":

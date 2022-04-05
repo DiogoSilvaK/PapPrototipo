@@ -304,7 +304,7 @@ namespace G.A.S.C.O
 
             bool aut = true;
              
-            string consultaSql1 = "SELECT * FROM Cliente ";
+            string consultaSql1 = "SELECT * FROM Cliente " + Login.NAQueryS;
             string SDR ="";
             switch (CBoxTab.Text)
             {
@@ -313,28 +313,28 @@ namespace G.A.S.C.O
 
                 //Caso ComboBox das tabelas tiver como opção "servicos"
                 case "Serviços":
-                    consultaSql1 = "SELECT * FROM servico where LoginEmail='"+Login.UserLogado+"'";
+                    consultaSql1 = "SELECT * FROM servico"+Login.NAQueryS;
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
                     consultaSql = "insert into servico(Cod_Servico,Titulo, Descricao,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
                     break;
 
                 case "Clientes":
-                    consultaSql1 = "SELECT * FROM Cliente where Cod_Cliente=(SELECT Cod_Cliente FROM Veiculo WHERE Matricula=(SELECT VeiculoMatricula FROM Servico WHERE LoginEmail='"+Login.UserLogado+"'))";
+                    consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join servico"+ Login.NAQueryS;
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
                     consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada, Localidade) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "','"+TBox6.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "") aut = false;
                     break;
 
                 case "Lista de Peças":
-                    consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico=(SELECT Cod_Servico FROM Servico where LoginEmail='"+ Login.UserLogado+"')";
+                    consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico "+Login.NAQueryS+")";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ CBox1.Text+"?";
                     consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico, Desconto) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox6.Text + "','" + TBox4.Text + "','" + CBox1.Text + "', '"+ TBox5.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
                     break;
 
                 case "Veículos":
-                    consultaSql1 = "SELECT * FROM Veiculo WHERE Matricula=(SELECT VeiculoMatricula FROM Servico WHERE LoginEmail='" + Login.UserLogado + "') ";
+                    consultaSql1 = "SELECT DISTINCT Veiculo.Matricula, Veiculo.Marca, Veiculo.Modelo, Veiculo.Mes_Ano, Veiculo.Cilindrada, Veiculo.Cod_Cliente from veiculo inner join servico"+ Login.NAQueryS;
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
                     consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox5.Text + ",'" + MesAnoV.Text + "'," + CBox1.Text + ")";
                     if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox5.Text =="" || CBox1.Text == "") aut = false;
@@ -394,6 +394,10 @@ namespace G.A.S.C.O
                 }
                 finally
                 {
+                    
+
+
+
                     Conn.Close();
                 }
                 aut = true;

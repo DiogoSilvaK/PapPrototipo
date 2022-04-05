@@ -18,8 +18,10 @@ namespace G.A.S.C.O
     {
         public static Color corMenu = new Color();
         public static string UserLogado;
+        public static string NAQueryS;
         public static Bitmap logotipoMain;
         public static Icon icoMain;
+        public static int Adm = 0;
         public Login()
         {
             InitializeComponent();
@@ -96,7 +98,7 @@ namespace G.A.S.C.O
 
             for (int i = 0; i < valorC.Length; i++) { PassSb.Append(valorC[i].ToString("x2")); }
 
-            string ConsultaSql = "select Nome from login where Email='"+UserT+"' and Pass='"+PassSb+"'";
+            string ConsultaSql = "select Nome,Admin from login where Email='"+UserT+"' and Pass='"+PassSb+"'";
 
 
 
@@ -109,6 +111,26 @@ namespace G.A.S.C.O
                     MySqlDataReader LeitorConsulta = queryCmd.ExecuteReader();
                     if (LeitorConsulta.HasRows)
                     {
+                        try {
+                            while (LeitorConsulta.Read())
+                            {  
+                                    Adm = LeitorConsulta.GetInt16(1);
+                               
+                            }
+                        }
+                        catch(MySqlException ex)
+                        {
+                            Adm = 0;
+                        }
+                        if(Adm > 0)
+                        {
+                            NAQueryS = "";
+                        }
+                        else
+                        {
+                            NAQueryS = " where LoginEmail='" + UserT + "'";
+                        }
+                        
                         UserLogado = UserT;
                         //Login f1 = new Login();
                         Main f2 = new Main();
