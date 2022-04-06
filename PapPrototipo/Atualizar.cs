@@ -271,20 +271,20 @@ namespace G.A.S.C.O
                 }
 
 
-                string consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                string consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS + " AND cliente." + Campo2.Text + "='" + AtNReg + "'";
                 switch (tabelaSelect)
                 {
                     case "cliente":
-                        consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                        consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS + " AND cliente." + Campo2.Text + "='" + AtNReg + "'";
                         break;
                     case "veiculo":
-                        consultaSql1 = "SELECT DISTINCT veiculo.Marca, veiculo.Modelo, veiculo.Cilindrada, veiculo.Mes_Ano, veiculo.Matricula, veiculo.Cod_Cliente from veiculo inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                        consultaSql1 = "SELECT DISTINCT veiculo.Marca, veiculo.Modelo, veiculo.Cilindrada, veiculo.Mes_Ano, veiculo.Matricula, veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS + " AND veiculo." + Campo2.Text + "='" + AtNReg + "'";
                         break;
                     case "lista_de_pecas":
-                        consultaSql1 = "SELECT DISTINCT lista_de_pecas.Cod_Peca, lista_de_pecas.Nome, lista_de_pecas.Marca, lista_de_pecas.Num_Serie, lista_de_pecas.Preco, lista_de_pecas.Cod_Servico, lista_de_pecas.Desconto from lista_de_pecas inner join servico" + Login.NAQueryS + " AND " + Campo2.Text + "='" + AtNReg + "'";
+                        consultaSql1 = "SELECT DISTINCT lista_de_pecas.Cod_Peca, lista_de_pecas.Nome, lista_de_pecas.Marca, lista_de_pecas.Num_Serie, lista_de_pecas.Preco, lista_de_pecas.Cod_Servico, lista_de_pecas.Desconto from lista_de_pecas inner join login" + Login.NAQueryS + " AND lista_de_pecas." + Campo2.Text + "='" + AtNReg + "'";
                         break;
                     case "servico":
-                        consultaSql1 = "SELECT * From servico" + Login.NAQueryS + "AND" + Campo2.Text + "='" + AtNReg + "'";
+                        consultaSql1 = "SELECT * From servico where LoginEmail='" + Login.UserLogado + "' AND " + Campo2.Text + "='" + AtNReg + "'";
                         break;
                 }
 

@@ -128,7 +128,7 @@ namespace G.A.S.C.O
                         }
                         else
                         {
-                            NAQueryS = " where LoginEmail='" + UserT + "'";
+                            NAQueryS = " where Email='" + UserT + "'";
                         }
                         
                         UserLogado = UserT;

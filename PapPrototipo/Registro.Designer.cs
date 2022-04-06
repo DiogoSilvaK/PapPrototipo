@@ -32,6 +32,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.UserPicBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.EmpTBox = new System.Windows.Forms.TextBox();
             this.VoltarBut = new System.Windows.Forms.Button();
             this.NomeLabel = new System.Windows.Forms.Label();
             this.NomeTextBox = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProvider3 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.EmpTBox = new System.Windows.Forms.TextBox();
             this.errorProvider4 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserPicBox)).BeginInit();
@@ -99,6 +99,30 @@
             this.panel1.Size = new System.Drawing.Size(383, 477);
             this.panel1.TabIndex = 3;
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(113, 205);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(160, 32);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Empresa";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // EmpTBox
+            // 
+            this.EmpTBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.EmpTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmpTBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EmpTBox.Location = new System.Drawing.Point(113, 240);
+            this.EmpTBox.Name = "EmpTBox";
+            this.EmpTBox.Size = new System.Drawing.Size(160, 27);
+            this.EmpTBox.TabIndex = 11;
+            this.EmpTBox.Validating += new System.ComponentModel.CancelEventHandler(this.EmpTBox_Validating);
+            // 
             // VoltarBut
             // 
             this.VoltarBut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -123,7 +147,7 @@
             // NomeLabel
             // 
             this.NomeLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.NomeLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.NomeLabel.BackColor = System.Drawing.Color.Transparent;
             this.NomeLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NomeLabel.ForeColor = System.Drawing.Color.White;
             this.NomeLabel.Location = new System.Drawing.Point(111, 117);
@@ -168,7 +192,7 @@
             // PassLabel
             // 
             this.PassLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.PassLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.PassLabel.BackColor = System.Drawing.Color.Transparent;
             this.PassLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PassLabel.ForeColor = System.Drawing.Color.White;
             this.PassLabel.Location = new System.Drawing.Point(113, 364);
@@ -193,7 +217,7 @@
             // UserLabel
             // 
             this.UserLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.UserLabel.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.UserLabel.BackColor = System.Drawing.Color.Transparent;
             this.UserLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserLabel.ForeColor = System.Drawing.Color.White;
             this.UserLabel.Location = new System.Drawing.Point(113, 284);
@@ -223,7 +247,7 @@
             this.LoginLabel.Name = "LoginLabel";
             this.LoginLabel.Size = new System.Drawing.Size(311, 62);
             this.LoginLabel.TabIndex = 4;
-            this.LoginLabel.Text = "AutoMobil Manager";
+            this.LoginLabel.Text = "G.A.S.C.O";
             this.LoginLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // errorProvider1
@@ -237,30 +261,6 @@
             // errorProvider3
             // 
             this.errorProvider3.ContainerControl = this;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(113, 205);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(160, 32);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Empresa";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // EmpTBox
-            // 
-            this.EmpTBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.EmpTBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EmpTBox.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EmpTBox.Location = new System.Drawing.Point(113, 240);
-            this.EmpTBox.Name = "EmpTBox";
-            this.EmpTBox.Size = new System.Drawing.Size(160, 27);
-            this.EmpTBox.TabIndex = 11;
-            this.EmpTBox.Validating += new System.ComponentModel.CancelEventHandler(this.EmpTBox_Validating);
             // 
             // errorProvider4
             // 

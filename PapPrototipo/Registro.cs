@@ -39,7 +39,7 @@ namespace G.A.S.C.O
 
 
 
-            string consultaSql = "INSERT INTO Login(Nome, Email, Pass, NomeEmpresa) VALUES('"+NomeT+"','"+UserT+"','"+passSb+"','"+EmpT+"', 0)";
+            string consultaSql = "INSERT INTO Login(Nome, Email, Pass, NomeEmpresa,Admin) VALUES('"+NomeT+"','"+UserT+"','"+passSb+"','"+EmpT+"', 0)";
             if (NomeT != "" || UserT != "" || PassT != "")
             {
                 DialogResult DR = MessageBox.Show("Deseja registrar o(a) utilizador(a) '" + NomeT + "' no endereço email '" + UserT + "'", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -65,7 +65,7 @@ namespace G.A.S.C.O
 
         private void Registro_Load(object sender, EventArgs e)
         {
-
+            panel1.BackColor = Login.corMenu;
         }
 
         private void Registro_FormClosing(object sender, FormClosingEventArgs e)

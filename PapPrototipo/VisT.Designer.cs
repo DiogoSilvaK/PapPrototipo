@@ -81,7 +81,9 @@
             // 
             // CBoxCampo
             // 
+            this.CBoxCampo.BackColor = System.Drawing.SystemColors.Control;
             this.CBoxCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CBoxCampo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CBoxCampo.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBoxCampo.FormattingEnabled = true;
             this.CBoxCampo.Items.AddRange(new object[] {

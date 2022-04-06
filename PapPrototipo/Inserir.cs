@@ -313,14 +313,14 @@ namespace G.A.S.C.O
 
                 //Caso ComboBox das tabelas tiver como opção "servicos"
                 case "Serviços":
-                    consultaSql1 = "SELECT * FROM servico"+Login.NAQueryS;
+                    consultaSql1 = "SELECT * FROM servico where LoginEmail='"+Login.UserLogado+"'";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
                     consultaSql = "insert into servico(Cod_Servico,Titulo, Descricao,Horas, Data, VeiculoMatricula,LoginEmail) VALUES (" + TBox1.Text + ",'" + TBox2.Text + "','" + RTBDescricao.Text+ "',"+TBox4.Text+",'" + Data1.Text + "','" + CBox1.Text + "','" + Login.UserLogado + "')";
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
                     break;
 
                 case "Clientes":
-                    consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join servico"+ Login.NAQueryS;
+                    consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login"+ Login.NAQueryS;
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
                     consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada, Localidade) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "','"+TBox6.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "") aut = false;
@@ -334,7 +334,7 @@ namespace G.A.S.C.O
                     break;
 
                 case "Veículos":
-                    consultaSql1 = "SELECT DISTINCT Veiculo.Matricula, Veiculo.Marca, Veiculo.Modelo, Veiculo.Mes_Ano, Veiculo.Cilindrada, Veiculo.Cod_Cliente from veiculo inner join servico"+ Login.NAQueryS;
+                    consultaSql1 = "SELECT DISTINCT Veiculo.Matricula, Veiculo.Marca, Veiculo.Modelo, Veiculo.Mes_Ano, Veiculo.Cilindrada, Veiculo.Cod_Cliente from veiculo inner join login"+ Login.NAQueryS;
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
                     consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox5.Text + ",'" + MesAnoV.Text + "'," + CBox1.Text + ")";
                     if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox5.Text =="" || CBox1.Text == "") aut = false;

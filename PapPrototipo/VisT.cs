@@ -42,16 +42,16 @@ namespace G.A.S.C.O
             switch (CBoxCampo.Text)
             {
                 case "Clientes":
-                    consultaSql = "SELECT * FROM cliente where Cod_Cliente in (Select Cod_Cliente From Veiculo where Matricula in (Select VeiculoMatricula from servico where LoginEmail ='"+ Login.UserLogado+"' ))";
+                    consultaSql = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS;
                     break;
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM lista_de_pecas WHERE cod_servico in (Select Cod_Servico From servico where LoginEmail='"+Login.UserLogado+"')";
+                    consultaSql = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico " + Login.NAQueryS + ")";
                     break;
                 case "Serviços":
-                    consultaSql = "SELECT * FROM servico where LoginEmail='"+Login.UserLogado+"'";
+                    consultaSql = "SELECT * FROM servico where LoginEmail='" + Login.UserLogado + "'";
                     break;
                 case "Veículos":
-                    consultaSql = "SELECT * FROM veiculo where Matricula in (SELECT VeiculoMatricula from servico where LoginEmail='"+Login.UserLogado+"')";
+                    consultaSql = "SELECT DISTINCT Veiculo.Matricula, Veiculo.Marca, Veiculo.Modelo, Veiculo.Mes_Ano, Veiculo.Cilindrada, Veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS;
                     break;
             }
 
