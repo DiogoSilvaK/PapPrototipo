@@ -32,6 +32,13 @@ namespace G.A.S.C.O
         private void ImprimirForm_Load(object sender, EventArgs e)
         {
             panel1.BackColor = Login.corMenu;
+
+            if (Login.corMenu == Color.Firebrick)
+                Graf.Palette = ChartColorPalette.Fire;
+            else if (Login.corMenu == Color.Green)
+                Graf.Palette = ChartColorPalette.SeaGreen;
+            else if (Login.corMenu == SystemColors.HotTrack)
+                Graf.Palette = ChartColorPalette.Berry;
             string ConnectS = "data source= localhost; database=pap1; user id= root; pwd=''";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
@@ -468,8 +475,9 @@ namespace G.A.S.C.O
 
                 PdfPTable PrecFinalTab = new PdfPTable(1);
                 PrecFinalTab.WidthPercentage = 100;
-                PdfPCell PrecFinalCell = new PdfPCell(new Phrase("O preço final da reparação ficará: " + precoTot + (double)(HorasServ * PAHUD.Value), textoFont));
-                //documento.Add(new Paragraph());
+                PdfPCell PrecFinalCell = new PdfPCell(new Phrase("O preço final da reparação ficará: " + (precoTot + (double)(HorasServ * PAHUD.Value)) + "€", textoFont));
+                PrecFinalTab.AddCell(PrecFinalCell);
+                documento.Add(PrecFinalTab );
 
 
                 PdfPTable DescTab = new PdfPTable(1);
@@ -490,7 +498,7 @@ namespace G.A.S.C.O
                 {
                     case "Cliente":
                         documento.Add(new Paragraph("Eu, " + NomeCliente + ", declaro que recebi o meu veículo imaculado e com respectivo serviço realizado."));
-                documento.Add(new Paragraph());
+                documento.Add(new Paragraph(new Phrase("", textoFont)));
                 documento.Add(new Paragraph(new Paragraph(new Chunk(new LineSeparator(0.0F, 15.0F, lineColor: BaseColor.BLACK, Element.ALIGN_CENTER, 1)))));
 
 
