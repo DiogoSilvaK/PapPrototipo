@@ -39,13 +39,27 @@ namespace G.A.S.C.O
             Campo1.Items.Clear();
             Campo2.Items.Clear();
 
+
+                
+                    
+                
+                
+                    
+                
+                
+                    
+                
+                
+                   
+                
+           
             switch (TabelaCBox1.Text) 
             {
 
 
                 case "Clientes":
-                    consultaSql = "SELECT * FROM Cliente";
-
+                    //consultaSql = "SELECT * FROM Cliente";
+                    consultaSql = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS;
                     labelat3.Visible = false;
                     DataServicos.Visible = false;
                     DescricaoRTR.Visible = false;
@@ -54,7 +68,8 @@ namespace G.A.S.C.O
 
 
                 case "Serviços":
-                    consultaSql = "SELECT * FROM servico";
+                    //consultaSql = "SELECT * FROM servico";
+                    consultaSql = "SELECT * From servico";
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
                     labelat3.Text = "Data:";
@@ -66,7 +81,9 @@ namespace G.A.S.C.O
 
 
                 case "Veículos":
-                    consultaSql = "SELECT * FROM Veiculo";
+                    //consultaSql = "SELECT * FROM Veiculo";
+                    consultaSql = "SELECT DISTINCT veiculo.Marca, veiculo.Modelo, veiculo.Cilindrada, veiculo.Mes_Ano, veiculo.Matricula, veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS;
+
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
                     labelat3.Text = "MêsAnoV:";
@@ -78,7 +95,8 @@ namespace G.A.S.C.O
 
 
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM lista_de_pecas";
+                    //consultaSql = "SELECT * FROM lista_de_pecas";
+                    consultaSql = "SELECT DISTINCT lista_de_pecas.Cod_Peca, lista_de_pecas.Nome, lista_de_pecas.Marca, lista_de_pecas.Num_Serie, lista_de_pecas.Preco, lista_de_pecas.Cod_Servico, lista_de_pecas.Desconto from lista_de_pecas inner join login" + Login.NAQueryS;
                     labelat3.Visible = false;
                     DataServicos.Visible = false;
                     DescricaoRTR.Visible = false;
