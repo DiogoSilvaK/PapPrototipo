@@ -45,7 +45,7 @@ namespace G.A.S.C.O
                     consultaSql = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS;
                     break;
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico " + Login.NAQueryS + ")";
+                    consultaSql = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where LoginEmail='" + Login.UserLogado + "')";
                     break;
                 case "Serviços":
                     consultaSql = "SELECT * FROM servico where LoginEmail='" + Login.UserLogado + "'";

@@ -23,7 +23,7 @@ namespace G.A.S.C.O
         private void ButDel_Click(object sender, EventArgs e)
         {
            string tabelaSelect = string.Empty;
-            if (errorProvider1.GetError(DelReg)!= "")
+            if (errorProvider1.GetError(DelReg)== "")
             {
                 switch (CBoxTabela.Text)
                 {
@@ -61,7 +61,23 @@ namespace G.A.S.C.O
                 }
                 finally
                 {
-                    string consultaSql1 = "SELECT * FROM " + tabelaSelect;
+                    //string consultaSql1 = "SELECT * FROM " + tabelaSelect;
+                    string consultaSql1 = String.Empty;
+                    switch (CBoxTabela.Text)
+                    {
+                        case "Clientes":
+                            consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS;
+                            break;
+                        case "Lista de peças":
+                            consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where LoginEmail='" + Login.UserLogado + "')";
+                            break;
+                        case "Serviços":
+                            consultaSql1 = "SELECT * FROM servico where LoginEmail='" + Login.UserLogado + "'";
+                            break;
+                        case "Veículos":
+                            consultaSql1 = "SELECT DISTINCT Veiculo.Matricula, Veiculo.Marca, Veiculo.Modelo, Veiculo.Mes_Ano, Veiculo.Cilindrada, Veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS;
+                            break;
+                    }
                     MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
                     DataSet DataTemp = new DataSet();
 
@@ -224,7 +240,7 @@ namespace G.A.S.C.O
 
         private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > 0)
+            if (e.RowIndex > -1)
             {
 
                 DelReg.Text = TabelaDataGrid.CurrentCell.Value.ToString();

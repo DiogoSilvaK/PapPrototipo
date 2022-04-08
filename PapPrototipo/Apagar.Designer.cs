@@ -70,7 +70,7 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Firebrick;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -210,7 +210,7 @@
             this.DelReg.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.DelReg.Location = new System.Drawing.Point(8, 138);
             this.DelReg.Name = "DelReg";
-            this.DelReg.Size = new System.Drawing.Size(1016, 27);
+            this.DelReg.Size = new System.Drawing.Size(1030, 27);
             this.DelReg.TabIndex = 5;
             this.DelReg.Validating += new System.ComponentModel.CancelEventHandler(this.DelReg_Validating);
             // 

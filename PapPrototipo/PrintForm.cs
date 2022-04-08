@@ -22,7 +22,7 @@ namespace G.A.S.C.O
         public static int NumCopias = 0;
         public static bool Cores = false;
 
-       PdfiumViewer.PdfViewer pdfPreview;
+        PdfiumViewer.PdfViewer pdfPreview;
 
         public PrintForm()
         {

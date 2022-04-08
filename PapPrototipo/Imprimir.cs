@@ -172,7 +172,19 @@ namespace G.A.S.C.O
                 string consultaSqlServico = "SELECT Titulo, Descricao, Horas,Data FROM servico where cod_servico='" + CBoxReg.Text + "'";
                 string consultaSqlCliente = "SELECT Nome, N_Contr,Morada,Localidade FROM cliente where Cod_Cliente=(Select Cod_Cliente from veiculo where Matricula=(Select VeiculoMatricula from servico where Cod_Servico='" + CBoxReg.Text + "'))";
                 string consultaSqlVeiculo = "SELECT Marca, Modelo,Matricula, Cilindrada, Mes_Ano FROM Veiculo where Matricula=(SELECT VeiculoMatricula from servico where Cod_Servico ='" + CBoxReg.Text + "')";
-                string consultaSqlLDP = "SELECT (@row_num:=@row_num+1) AS 'N', Marca, Nome, Num_Serie, Preco FROM Lista_de_pecas where cod_servico=(Select Cod_Servico from Servico where cod_servico='" + CBoxReg.Text + "')";
+                string consultaSqlLDP = String.Empty; int subLDP = 0; int subDescLDP = 0;
+                if (TipoCBox.Text == "Cliente")
+                {
+                    consultaSqlLDP = "SELECT (@row_num:=@row_num+1) AS 'Nº', Marca, Nome, Num_Serie, Preco as Preço FROM Lista_de_pecas where cod_servico=(Select Cod_Servico from Servico where cod_servico='" + CBoxReg.Text + "')";
+                    subLDP = 1;
+                    subDescLDP = 2;
+                }
+                else
+                {
+                    consultaSqlLDP = "SELECT (@row_num:=@row_num+1) AS 'Nº', Marca, Nome, Num_Serie, Preco as Preço, Desconto FROM Lista_de_pecas where cod_servico=(Select Cod_Servico from Servico where cod_servico='" + CBoxReg.Text + "')";
+                    subLDP = 2;
+                    subDescLDP = 1;
+                }
                 MySqlCommand queryCmdLogin = new MySqlCommand(consultaSqlLogin, Conn);
                 MySqlCommand queryCmdServico = new MySqlCommand(consultaSqlServico, Conn);
                 MySqlCommand queryCmdCliente = new MySqlCommand(consultaSqlCliente, Conn);
@@ -244,7 +256,7 @@ namespace G.A.S.C.O
                 PdfPCell ETPCell = new PdfPCell(new Phrase("Email do Técnico:\n" + EmailTec, textoFont));
 
                 //ETPCell.Padding= 15;
-                PdfPCell DTPCell = new PdfPCell(new Phrase("Data da Entrega:\n" + DateTime.Now.ToString(), textoFont));
+                PdfPCell DTPCell = new PdfPCell(new Phrase("Data da entrega:\n" + DateTime.Now.ToString(), textoFont));
 
                 //DTPCell.Padding = 15;
 
@@ -278,13 +290,13 @@ namespace G.A.S.C.O
                 }
                 PdfPTable DataPrT = new PdfPTable(1);
 
-                PdfPCell DSCell = new PdfPCell(new Phrase("Data de Serviço: " + DataServ, textoFont));
+                PdfPCell DSCell = new PdfPCell(new Phrase("Data de conclusão: " + DataServ, textoFont));
                 DSCell.Border = 0;
                 PdfPCell HorasCell = new PdfPCell(new Phrase("Horas: " + HorasServ, textoFont));
                 HorasCell.Border = 0;
-                PdfPCell PrecoCell = new PdfPCell(new Phrase("Preço por Hora: " + PAHUD.Value, textoFont));
+                PdfPCell PrecoCell = new PdfPCell(new Phrase("Preço por Hora: " + PAHUD.Value + "€/h", textoFont));
                 PrecoCell.Border = 0;
-                PdfPCell TotalPCell = new PdfPCell(new Phrase("Total: " + HorasServ * PAHUD.Value, textoFont));
+                PdfPCell TotalPCell = new PdfPCell(new Phrase("Total: " + (HorasServ * PAHUD.Value) + "€", textoFont));
                 TotalPCell.Border = 0;
 
                 DataPrT.WidthPercentage = 100;
@@ -315,9 +327,9 @@ namespace G.A.S.C.O
                 PdfPTable ClientinfTab = new PdfPTable(1);
                 ClientinfTab.WidthPercentage = 100;
 
-                PdfPCell NomeClientCell = new PdfPCell(new Phrase("Nome: " + NomeCliente, textoFont));
+                PdfPCell NomeClientCell = new PdfPCell(new Phrase("Nome do cliente: " + NomeCliente, textoFont));
                 NomeClientCell.Border = 0;
-                PdfPCell NContrCell = new PdfPCell(new Phrase("Numéro de Contribuinte: " + NContr, textoFont));
+                PdfPCell NContrCell = new PdfPCell(new Phrase("Número de Contribuinte: " + NContr, textoFont));
                 NContrCell.Border = 0;
                 PdfPCell MoradaClientCell = new PdfPCell(new Phrase("Morada: " + MoradaCliente, textoFont));
                 MoradaClientCell.Border = 0;
@@ -352,9 +364,9 @@ namespace G.A.S.C.O
 
                 PdfPTable VeiculoTab = new PdfPTable(2);
                 VeiculoTab.WidthPercentage = 100;
-                PdfPCell LVCell = new PdfPCell(new Phrase("Carro: " + MarcaV + " " + ModeloV + " " + CilindradaV + " " + MesAnoV, textoFont));
+                PdfPCell LVCell = new PdfPCell(new Phrase("Carro: " + MarcaV + " " + ModeloV + " " + CilindradaV + "cm³ " + MesAnoV, textoFont));
                 LVCell.BorderWidthRight = 0;
-                PdfPCell RVCell = new PdfPCell(new Phrase("Matricula: " + MatriculaV, textoFont));
+                PdfPCell RVCell = new PdfPCell(new Phrase("Matrícula: " + MatriculaV, textoFont));
                 RVCell.BorderWidthLeft = 0;
                 RVCell.HorizontalAlignment = Element.ALIGN_RIGHT;
 
@@ -377,6 +389,7 @@ namespace G.A.S.C.O
                     }
                 }
                 */
+
                 DataReader.Close();
                 string consultaSqlRowNReset = "Set @row_num=0";
                 MySqlCommand RNR = new MySqlCommand(consultaSqlRowNReset, Conn);
@@ -390,24 +403,25 @@ namespace G.A.S.C.O
                 int nc = DataTemp.Tables["tabela"].Columns.Count;
                 int nl = DataTemp.Tables["tabela"].Rows.Count;
                 //int count = 0;
-
-
+                 
 
                 PdfPTable tableLDP = new PdfPTable(nc);
 
 
                 PdfPCell LDPT = new PdfPCell(new Phrase("Lista de Peças"));
-                LDPT.Colspan = 5;
+                LDPT.Colspan = nc;
+                LDPT.BorderWidthBottom = 0;
 
                 tableLDP.AddCell(LDPT);
                 tableLDP.WidthPercentage = 100;
                 string stemp = String.Empty;
+                string[] nomeCol = { "Nº", "Marca", "Nome", "Num_Serie", "Preço", "Desconto" };
                 for (int Col = 0; Col < nc; Col++)
                 {
 
                     stemp = DataTemp.Tables[0].Columns[Col].ToString();
 
-                    tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
+                    tableLDP.AddCell(new PdfPCell(new Phrase(nomeCol[Col], textoFont))
                     {
                         HorizontalAlignment = Element.ALIGN_CENTER,
                         Padding = 8,
@@ -427,9 +441,10 @@ namespace G.A.S.C.O
 
                         stemp = DataTemp.Tables["tabela"].Rows[linhas][colunas].ToString();
 
+                        
 
-                        if (colunas != nc - 1)
-                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
+                        if (colunas == nc - subLDP)
+                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp + "€", textoFont))
                             {
                                 HorizontalAlignment = Element.ALIGN_CENTER,
                                 Padding = 4,
@@ -437,8 +452,18 @@ namespace G.A.S.C.O
                                 //BorderColor = iTextSharp.text.BaseColor.BLUE,
                                 //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
                             });
+                        else if(colunas == nc - subDescLDP)
+                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
+                            {
+                               
+                                HorizontalAlignment = Element.ALIGN_CENTER,
+                                
+                                BorderWidth = 1,
+                                //BorderColor = iTextSharp.text.BaseColor.BLUE,
+                                //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
+                            });
                         else
-                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp + "€", textoFont))
+                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
                             {
                                 HorizontalAlignment = Element.ALIGN_CENTER,
                                 Padding = 4,
@@ -483,7 +508,9 @@ namespace G.A.S.C.O
                 PdfPTable DescTab = new PdfPTable(1);
                 DescTab.WidthPercentage = 100;
                 PdfPCell DescTCell = new PdfPCell(new Phrase("Descrição: ", textoFont));
+                DescTCell.BorderWidthBottom = 0;
                 PdfPCell DescPCell = new PdfPCell(new Phrase(DescrServ, textoFont));
+                DescPCell.BorderWidthTop = 0;
 
                 DescTab.AddCell(DescTCell);
                 DescTab.AddCell(DescPCell);
@@ -550,7 +577,7 @@ namespace G.A.S.C.O
 
                         Graf.Series.Clear();Graf.Series.Add("Servico");
                         Graf.Series["Servico"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-                        Graf.Series["Servico"].Color = Color.Red;
+                       //Graf.Series["Servico"].Color = Color.Red;
 
                         Graf.Series["Servico"].IsValueShownAsLabel = true;
 

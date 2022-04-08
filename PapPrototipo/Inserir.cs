@@ -327,7 +327,7 @@ namespace G.A.S.C.O
                     break;
 
                 case "Lista de Peças":
-                    consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico "+Login.NAQueryS+")";
+                    consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where LoginEmail='"+Login.UserLogado+")";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ CBox1.Text+"?";
                     consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico, Desconto) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox6.Text + "','" + TBox4.Text + "','" + CBox1.Text + "', '"+ TBox5.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
