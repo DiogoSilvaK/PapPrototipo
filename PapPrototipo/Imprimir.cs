@@ -136,7 +136,7 @@ namespace G.A.S.C.O
             iTextSharp.text.Font textoFont = FontFactory.GetFont("Microsoft Sans Serif", 10, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             //documento.Add(new Paragraph(tituloPDF, tituloFont) { Alignment = Element.ALIGN_CENTER, Leading = 10.0F, });
 
-            double precoTot = 0.0;
+            double precoTot = 0.0, precoCDTot = 0.0, valorRD = 0.0;
 
             string EmailTec = String.Empty, NomeTec = String.Empty, NomeEmpTec = String.Empty;
 
@@ -453,7 +453,7 @@ namespace G.A.S.C.O
                                 //BackgroundColor = iTextSharp.text.BaseColor.WHITE,
                             });
                         else if(colunas == nc - subDescLDP)
-                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp, textoFont))
+                            tableLDP.AddCell(new PdfPCell(new Phrase(stemp + "%", textoFont))
                             {
                                
                                 HorizontalAlignment = Element.ALIGN_CENTER,
@@ -477,8 +477,14 @@ namespace G.A.S.C.O
 
 
                 DataReader.Close();
-                string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
-                precoTot = 0.0;
+                string TotalPCs = String.Empty;
+               
+       
+                    TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
+                
+
+
+                
                 MySqlCommand queryTotPCmd = new MySqlCommand(TotalPCs, Conn);
                 DataReader = queryTotPCmd.ExecuteReader();
                 if (DataReader.HasRows)
@@ -489,9 +495,24 @@ namespace G.A.S.C.O
                     }
                 }
 
+                    TotalPCs = "SELECT SUM(Preco-(Preco*(Desconto/100))) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
+
+
+                DataReader.Close();
+                MySqlCommand queryTotCDPCmd = new MySqlCommand(TotalPCs, Conn);
+                DataReader = queryTotCDPCmd.ExecuteReader();
+                if (DataReader.HasRows)
+                {
+                    while (DataReader.Read())
+                    {
+                        precoCDTot = DataReader.GetDouble(0);
+                    }
+                }
+                valorRD = precoTot - precoCDTot;
+
                 PdfPCell TotalPrecCell = new PdfPCell(new Phrase("Total: " + precoTot.ToString() + "€", textoFont));
                 TotalPrecCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                TotalPrecCell.Colspan = 5;
+                TotalPrecCell.Colspan = nc;
                 TotalPrecCell.BorderWidth = 1;
                 TotalPrecCell.PaddingRight = 4;
                 tableLDP.AddCell(TotalPrecCell);
@@ -571,7 +592,9 @@ namespace G.A.S.C.O
 
 
 
-                        string TotalPCs = "SELECT SUM(Preco) from lista_de_pecas where Cod_Servico='" + CBoxReg.Text + "'";
+                       
+
+                       
                        // double precoTot = 0.0;
                         
 
@@ -597,12 +620,13 @@ namespace G.A.S.C.O
 
 
                         double precoFinal = MOPT+precoTot;
-                        double VTPF = (double)(decimal.Round((decimal)((precoTot*100)/precoFinal), 2));
+                        double VTPF = (double)(decimal.Round((decimal)((precoCDTot*100)/precoFinal), 2));
                         double VMOF = (double)(decimal.Round((decimal)((MOPT*100)/precoFinal), 2));
+                        double VRCD = (double)(decimal.Round((decimal)((valorRD*100)/precoFinal),2));
 
-                        Graf.Series["Servico"].Points.AddXY("Valor Total das Peças", VTPF);
+                        Graf.Series["Servico"].Points.AddXY("Valor total com desconto das Peças", VTPF);
                         Graf.Series["Servico"].Points.AddXY("Valor da Mão de Obra", VMOF);
-                       
+                        Graf.Series["Servico"].Points.AddXY("Valor real do desconto", VRCD);
                         
 
 
