@@ -92,7 +92,7 @@ namespace G.A.S.C.O
                     DescricaoRTR.Visible= false;
                     labelat6.Visible= false;
                     break;
-
+                    
 
                 case "Lista de peças":
                     //consultaSql = "SELECT * FROM lista_de_pecas";
