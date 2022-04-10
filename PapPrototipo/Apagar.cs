@@ -41,7 +41,7 @@ namespace G.A.S.C.O
                         break;
                 }
 
-                string ConnectS = "data source= localhost; database= pap1; user id= root; pwd=''";
+                string ConnectS = "data source= localhost; database= gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
                 MySqlConnection Conn = new MySqlConnection(ConnectS);
 
                 string consultaSql = "DELETE FROM " + tabelaSelect + " WHERE " + CampoCBox.Text + "='" + WREG + "'";
@@ -117,7 +117,7 @@ namespace G.A.S.C.O
         private void CBoxTabela_SelectedIndexChanged(object sender, EventArgs e)
         {
             string consultaSql = "";
-            string ConnectS = "data source=localhost; database=pap1; user id=root; pwd=''";
+            string ConnectS = "data source=localhost; database=gasco_ds; user id=GASCO_OP; pwd='GascoBDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             DataSet DataTemp = new DataSet();
 
@@ -236,6 +236,7 @@ namespace G.A.S.C.O
         {
             panel1.BackColor = Login.corMenu;
             CBoxTabela.SelectedIndex = 0;
+            TabelaDataGrid.DefaultCellStyle.SelectionBackColor = Login.corMenu;
         }
 
         private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -35,23 +35,30 @@ namespace G.A.S.C.O
         {
 
             string consultaSql = String.Empty;
-            string ConnectS = "data source=localhost; database=pap1 ; user id=root; pwd=''";
+            string ConnectS = "data source=localhost; database=gasco_ds ; user id=GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
 
             switch (CBoxCampo.Text)
             {
                 case "Clientes":
-                    consultaSql = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS;
+                    consultaSql = "SELECT * FROM Cliente";
                     break;
                 case "Lista de peças":
-                    consultaSql = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where LoginEmail='" + Login.UserLogado + "')";
+                    if (Login.Adm <= 0)
+                    {
+                        consultaSql = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where LoginEmail='" + Login.UserLogado + "')";
+                    }
+                    else
+                    {
+                        consultaSql = "SELECT * FROM Lista_de_pecas";
+                    }
                     break;
                 case "Serviços":
-                    consultaSql = "SELECT * FROM servico where LoginEmail='" + Login.UserLogado + "'";
+                    consultaSql = "SELECT * FROM servico " + Login.NASQueryS;
                     break;
                 case "Veículos":
-                    consultaSql = "SELECT DISTINCT Veiculo.Matricula, Veiculo.Marca, Veiculo.Modelo, Veiculo.Mes_Ano, Veiculo.Cilindrada, Veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS;
+                    consultaSql = "SELECT * from veiculo";
                     break;
             }
 

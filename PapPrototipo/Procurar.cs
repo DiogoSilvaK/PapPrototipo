@@ -19,7 +19,7 @@ namespace G.A.S.C.O
         public FormPesquisar()
         {
             InitializeComponent();
-            panel1.BackColor = Login.corMenu;
+            
         }
 
         private void OperadoresCbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,13 +55,14 @@ namespace G.A.S.C.O
 
         private void FormPesquisar_Load(object sender, EventArgs e)
         {
-
+            TabelaDataGrid.DefaultCellStyle.SelectionBackColor = Login.corMenu;
+            panel1.BackColor = Login.corMenu;
         }
 
         private void CBoxTabela_SelectedIndexChanged(object sender, EventArgs e)
         {
             string consultaSql = "";
-            string ConnectS = "data source=localhost; database=pap1; user id=root; pwd=''";
+            string ConnectS = "data source=localhost; database=pap1; user id=GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             DataSet DataTemp = new DataSet();
 
@@ -153,7 +154,7 @@ namespace G.A.S.C.O
 
         private void PesquisarBut_Click(object sender, EventArgs e)
         {
-            string ConnectS = "data source=localhost; database= pap1; user id= root; pwd=''";
+            string ConnectS = "data source=localhost; database= pap1; user id= GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             
             switch (CampoCBox.Text)

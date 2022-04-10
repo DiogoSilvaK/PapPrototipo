@@ -23,45 +23,57 @@ namespace G.A.S.C.O
 
         private void RegistrarBut_Click(object sender, EventArgs e)
         {
-            bool suc = true;
-            string ConnectS = "data source= localhost; database= pap1; user id= root; pwd= ''";
-            MySqlConnection Conn = new MySqlConnection(ConnectS);
-
-            string UserT= UserTextBox.Text.ToLower(), PassT= PassTextBox.Text, NomeT= NomeTextBox.Text, EmpT = EmpTBox.Text;
-
-            MD5 mD5 = MD5.Create();
-            byte[] valorC = mD5.ComputeHash(Encoding.Default.GetBytes(PassT));
-            StringBuilder passSb = new StringBuilder();
-            for (int i = 0; i< valorC.Length; i++)
+            if (errorProvider1.GetError(UserTextBox) == "" && errorProvider2.GetError(NomeTextBox) == "" && errorProvider3.GetError(PassTextBox) == "" && errorProvider4.GetError(EmpTBox) == "")
             {
-                passSb.Append(valorC[i].ToString("x2"));
+                bool suc = true;
+                string ConnectS = "data source= localhost; database= gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
+                MySqlConnection Conn = new MySqlConnection(ConnectS);
+
+                string UserT = UserTextBox.Text.ToLower(), PassT = PassTextBox.Text, NomeT = NomeTextBox.Text, EmpT = EmpTBox.Text;
+
+                MD5 mD5 = MD5.Create();
+                byte[] valorC = mD5.ComputeHash(Encoding.Default.GetBytes(PassT));
+                StringBuilder passSb = new StringBuilder();
+                for (int i = 0; i < valorC.Length; i++)
+                {
+                    passSb.Append(valorC[i].ToString("x2"));
+                }
+
+
+
+                string consultaSql = "INSERT INTO Login(Nome, Email, Pass, NomeEmpresa,Admin) VALUES('" + NomeT + "','" + UserT + "','" + passSb + "','" + EmpT + "', 0)";
+                if (NomeT != "" || UserT != "" || PassT != "")
+                {
+                    DialogResult DR = MessageBox.Show("Deseja registrar o(a) utilizador(a) '" + NomeT + "' no endereço email '" + UserT + "'", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    try
+                    {
+                        MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
+                        Conn.Open();
+                        if (DR == DialogResult.Yes) queryCmd.ExecuteNonQuery();
+                    }
+                    catch (MySqlException MySqlEx)
+                    {
+                        MessageBox.Show(MySqlEx.Message);
+                        suc = false;
+                    }
+                    finally
+                    {
+                        if (suc) MessageBox.Show("Dados inseridos com sucesso");
+                        Conn.Close();
+                    }
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("ERRO!! PREENCHA TODOS OS CAMPOS COM INFORMAÇÕES CORRETAS!!", "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
-
-            string consultaSql = "INSERT INTO Login(Nome, Email, Pass, NomeEmpresa,Admin) VALUES('"+NomeT+"','"+UserT+"','"+passSb+"','"+EmpT+"', 0)";
-            if (NomeT != "" || UserT != "" || PassT != "")
-            {
-                DialogResult DR = MessageBox.Show("Deseja registrar o(a) utilizador(a) '" + NomeT + "' no endereço email '" + UserT + "'", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                try
-                {
-                    MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
-                    Conn.Open();
-                    if (DR == DialogResult.Yes) queryCmd.ExecuteNonQuery();
-                }
-                catch (MySqlException MySqlEx)
-                {
-                    MessageBox.Show(MySqlEx.Message);
-                    suc = false;
-                }
-                finally
-                {
-                    if(suc)MessageBox.Show("Dados inseridos com sucesso");
-                    Conn.Close();
-                }
-            }
         }
+
 
         private void Registro_Load(object sender, EventArgs e)
         {

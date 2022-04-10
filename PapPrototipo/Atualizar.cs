@@ -25,14 +25,17 @@ namespace G.A.S.C.O
 
         private void FormAtualizar_Load(object sender, EventArgs e)
         {
+            TabelaCBox1.SelectedIndex = 0;
             panel1.BackColor = Login.corMenu;
+            TabelaDataGrid.DefaultCellStyle.SelectionBackColor = Login.corMenu;
+            
         }
 
 
         private void TabelaCBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string consultaSql = String.Empty;
-            string ConnectS = "data source=localhost; database=pap1; user id=root; pwd=''";
+            string ConnectS = "data source=localhost; database=gasco_ds; user id=GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             DataSet DataTemp = new DataSet();
 
@@ -48,18 +51,17 @@ namespace G.A.S.C.O
                 
                 
                     
-                
-                
-                   
-                
-           
+
+
+
             switch (TabelaCBox1.Text) 
             {
 
 
                 case "Clientes":
                     //consultaSql = "SELECT * FROM Cliente";
-                    consultaSql = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS;
+                    //consultaSql = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS;
+                    consultaSql = "SELECT * FROM CLIENTE";
                     labelat3.Visible = false;
                     DataServicos.Visible = false;
                     DescricaoRTR.Visible = false;
@@ -69,7 +71,9 @@ namespace G.A.S.C.O
 
                 case "Serviços":
                     //consultaSql = "SELECT * FROM servico";
-                    consultaSql = "SELECT * From servico";
+                    consultaSql = "SELECT * From servico"+ Login.NASQueryS;
+                    //consultaSql = "SELECT * FROM SERVICO WHERE LoginEmail='" + Login.UserLogado + "'";
+
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
                     labelat3.Text = "Data:";
@@ -82,7 +86,8 @@ namespace G.A.S.C.O
 
                 case "Veículos":
                     //consultaSql = "SELECT * FROM Veiculo";
-                    consultaSql = "SELECT DISTINCT veiculo.Marca, veiculo.Modelo, veiculo.Cilindrada, veiculo.Mes_Ano, veiculo.Matricula, veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS;
+                    //consultaSql = "SELECT DISTINCT veiculo.Marca, veiculo.Modelo, veiculo.Cilindrada, veiculo.Mes_Ano, veiculo.Matricula, veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS;
+                    consultaSql = "SELECT * FROM VEICULO ";
 
                     labelat3.Visible = true;
                     DataServicos.Visible = true;
@@ -96,7 +101,15 @@ namespace G.A.S.C.O
 
                 case "Lista de peças":
                     //consultaSql = "SELECT * FROM lista_de_pecas";
-                    consultaSql = "SELECT DISTINCT lista_de_pecas.Cod_Peca, lista_de_pecas.Nome, lista_de_pecas.Marca, lista_de_pecas.Num_Serie, lista_de_pecas.Preco, lista_de_pecas.Cod_Servico, lista_de_pecas.Desconto from lista_de_pecas inner join login" + Login.NAQueryS;
+                    //consultaSql = "SELECT DISTINCT lista_de_pecas.Cod_Peca, lista_de_pecas.Nome, lista_de_pecas.Marca, lista_de_pecas.Num_Serie, lista_de_pecas.Preco, lista_de_pecas.Cod_Servico, lista_de_pecas.Desconto from lista_de_pecas inner join login" + Login.NAQueryS;
+                    if (Login.Adm <= 0)
+                    {
+                        consultaSql = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM SERVICO WHERE LoginEmail='" + Login.UserLogado + "')";
+                    }
+                    else
+                    {
+                        consultaSql = "SELECT * FROM Lista_de_pecas";
+                    }
                     labelat3.Visible = false;
                     DataServicos.Visible = false;
                     DescricaoRTR.Visible = false;
@@ -238,112 +251,128 @@ namespace G.A.S.C.O
 
         private void ButAt_Click(object sender, EventArgs e)
         {
-            string tabelaSelect = "";
-            switch(TabelaCBox1.Text)
+            string tabelaSelect = String.Empty;
+            if (errorProvider1.GetError(AntigoReg) == "" && errorProvider2.GetError(NovoReg) == "")
             {
-                case "Clientes":
-                    tabelaSelect = "cliente";
-                    break;
-                case "Lista de Peças":
-                    tabelaSelect = "lista_de_pecas";
-                    break;
-                case "Serviços":
-                    tabelaSelect = "servico";
-                    break;
-                case "Veículos":
-                    tabelaSelect = "veiculo";
-                    break;
-            }
-
-            switch (Campo2.Text)
-            {
-                case "Descricao":
-                    AtNReg = DescricaoRTR.Text;
-                    break;
-                case "Mes_Ano":
-                    AtNReg = DataServicos.Text;
-                    break;
-                case "Data":
-                    AtNReg = DataServicos.Text;
-                    break;
-                default:
-                    AtNReg = NovoReg.Text;
-                    break;
-
-            }
-
-
-            string consultaSql = "UPDATE "+ tabelaSelect + " SET "+ Campo2.Text +"='"+ AtNReg +"' WHERE "+ Campo1.Text + "='"+ AntigoReg.Text+"'";
-            string ConnectS = "data source= localhost; database=pap1; user id= root; pwd=''";
-            MySqlConnection Conn = new MySqlConnection(ConnectS);
-
-            DialogResult DR = MessageBox.Show("Deseja atualizar o campo: " + Campo2.Text + "com o registo '" + NovoReg.Text + "' onde o campo: " + Campo1.Text + " tem o registo '" + AntigoReg.Text + "' da Tabela " + tabelaSelect, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            try
-            {
-                Conn.Open();
-                MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
-                if (DR == DialogResult.Yes)
+                switch (TabelaCBox1.Text)
                 {
-                    queryCmd.ExecuteNonQuery();
-                }
-
-
-                string consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS + " AND cliente." + Campo2.Text + "='" + AtNReg + "'";
-                switch (tabelaSelect)
-                {
-                    case "cliente":
-                        consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login" + Login.NAQueryS + " AND cliente." + Campo2.Text + "='" + AtNReg + "'";
+                    case "Clientes":
+                        tabelaSelect = "cliente";
                         break;
-                    case "veiculo":
-                        consultaSql1 = "SELECT DISTINCT veiculo.Marca, veiculo.Modelo, veiculo.Cilindrada, veiculo.Mes_Ano, veiculo.Matricula, veiculo.Cod_Cliente from veiculo inner join login" + Login.NAQueryS + " AND veiculo." + Campo2.Text + "='" + AtNReg + "'";
+                    case "Lista de Peças":
+                        tabelaSelect = "lista_de_pecas";
                         break;
-                    case "lista_de_pecas":
-                        consultaSql1 = "SELECT DISTINCT lista_de_pecas.Cod_Peca, lista_de_pecas.Nome, lista_de_pecas.Marca, lista_de_pecas.Num_Serie, lista_de_pecas.Preco, lista_de_pecas.Cod_Servico, lista_de_pecas.Desconto from lista_de_pecas inner join login" + Login.NAQueryS + " AND lista_de_pecas." + Campo2.Text + "='" + AtNReg + "'";
+                    case "Serviços":
+                        tabelaSelect = "servico";
                         break;
-                    case "servico":
-                        consultaSql1 = "SELECT * From servico where LoginEmail='" + Login.UserLogado + "' AND " + Campo2.Text + "='" + AtNReg + "'";
+                    case "Veículos":
+                        tabelaSelect = "veiculo";
                         break;
                 }
 
-                MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
-                DataSet DataTemp = new DataSet();
+                switch (Campo2.Text)
+                {
+                    case "Descricao":
+                        AtNReg = DescricaoRTR.Text;
+                        break;
+                    case "Mes_Ano":
+                        AtNReg = DataServicos.Text;
+                        break;
+                    case "Data":
+                        AtNReg = DataServicos.Text;
+                        break;
+                    default:
+                        AtNReg = NovoReg.Text;
+                        break;
+
+                }
 
 
-                //DataAdapter = new MySqlDataAdapter(query2, Conn);
-                //DataTemp = new DataSet("tabela");
-                DataAdapter.Fill(DataTemp, "tabela");
-                TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
+                string consultaSql = "UPDATE " + tabelaSelect + " SET " + Campo2.Text + "='" + AtNReg + "' WHERE " + Campo1.Text + "='" + AntigoReg.Text + "'";
+                string ConnectS = "data source= localhost; database=gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
+                MySqlConnection Conn = new MySqlConnection(ConnectS);
+
+                DialogResult DR = MessageBox.Show("Deseja atualizar o campo: " + Campo2.Text + "com o registo '" + NovoReg.Text + "' onde o campo: " + Campo1.Text + " tem o registo '" + AntigoReg.Text + "' da Tabela " + tabelaSelect, "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                try
+                {
+                    Conn.Open();
+                    MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
+                    if (DR == DialogResult.Yes)
+                    {
+                        queryCmd.ExecuteNonQuery();
+                    }
+
+
+                    string consultaSql1 = "SELECT * FROM Cliente where " + Campo2.Text + "='" + AtNReg + "'";
+                    if (Login.Adm <= 0)
+                    {
+                        switch (tabelaSelect)
+                        {
+                            case "cliente":
+                                consultaSql1 = "SELECT * FROM Cliente where " + Campo2.Text + "='" + AtNReg + "'";
+                                break;
+                            case "veiculo":
+                                consultaSql1 = "SELECT * from veiculo where " + Campo2.Text + "='" + AtNReg + "'";
+                                break;
+                            case "lista_de_pecas":
+                                consultaSql1 = "SELECT * from lista_de_pecas where " + Campo2.Text + "='" + AtNReg + "'";
+                                break;
+                            case "servico":
+                                consultaSql1 = "SELECT * From servico where " + Campo2.Text + "='" + AtNReg + "'";
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        consultaSql1 = "SELECT * FROM " + tabelaSelect;
+                    }
+
+
+                    MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
+                    DataSet DataTemp = new DataSet();
+
+
+                    //DataAdapter = new MySqlDataAdapter(query2, Conn);
+                    //DataTemp = new DataSet("tabela");
+                    DataAdapter.Fill(DataTemp, "tabela");
+                    TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
 
 
 
-                TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
 
-                for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    for (int i = 0; i <= TabelaDataGrid.Columns.Count - 1; i++)
+                    {
+
+                        int colw = TabelaDataGrid.Columns[i].Width;
+
+
+                        TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+
+                        TabelaDataGrid.Columns[i].Width = colw;
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
                 {
 
-                    int colw = TabelaDataGrid.Columns[i].Width;
 
-
-                    TabelaDataGrid.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-
-
-                    TabelaDataGrid.Columns[i].Width = colw;
+                    Conn.Close();
                 }
             }
-            catch (MySqlException ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("ERRO! PREENCHA TODOS OS CAMPOS COM A INFORMAÇÃO CORRETA!!", "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
-            {
 
-
-                Conn.Close();
-            }
         }
 
         private void TabelaDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -28,7 +28,7 @@ namespace G.A.S.C.O
 
         private void BackDBBut_Click(object sender, EventArgs e)
         {
-            string ConnectS = "data source= localhost; database=pap1; user id= root; pwd=''";
+            string ConnectS = "data source= localhost; database=gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
             string ficheiroSql = @"BackupBDPAP.sql";
 
             SaveFileDialog GravarRestauroDialog = new SaveFileDialog();
@@ -78,7 +78,7 @@ namespace G.A.S.C.O
 
         private void RestDBBut_Click(object sender, EventArgs e)
         {
-            string ConnectS = "data source= localhost; database=Backup_PAP; user id=root; pwd=''";
+            string ConnectS = "data source= localhost; database=Backup_PAP; user id=GASCO_BACKUP_OP; pwd='GascoBDb1234'";
 
             OpenFileDialog AbrirRestauroDialog = new OpenFileDialog();
             AbrirRestauroDialog.Filter = "Ficheiro Sql | .sql";

@@ -19,6 +19,7 @@ namespace G.A.S.C.O
         public static Color corMenu = new Color();
         public static string UserLogado;
         public static string NAQueryS;
+        public static string NASQueryS;
         public static Bitmap logotipoMain;
         public static Icon icoMain;
         public static int Adm = 0;
@@ -81,85 +82,92 @@ namespace G.A.S.C.O
 
         public void LoginBut_Click(object sender, EventArgs e)
         {
-           
-            string ConnectS = "data source= localhost; database= pap1; user id= root; pwd= ''";
-            MySqlConnection Conn = new MySqlConnection(ConnectS);
-
-
-            string UserT=UserTextBox.Text.ToLower(), PassT = PassTextBox.Text;
-           
-            
-            
-           
-
-            MD5 md5 = MD5.Create();
-            byte[] valorC = md5.ComputeHash(Encoding.Default.GetBytes(PassT));
-            StringBuilder PassSb = new StringBuilder();
-
-            for (int i = 0; i < valorC.Length; i++) { PassSb.Append(valorC[i].ToString("x2")); }
-
-            string ConsultaSql = "select Nome,Admin from login where Email='"+UserT+"' and Pass='"+PassSb+"'";
-
-
-
-            if ((UserT != "") || (PassT != ""))
+            if (errorProvider1.GetError(UserTextBox) == "" && errorProvider2.GetError(PassTextBox) == "")
             {
-                try
+                string ConnectS = "data source= localhost; database= gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
+                MySqlConnection Conn = new MySqlConnection(ConnectS);
+
+
+                string UserT = UserTextBox.Text.ToLower(), PassT = PassTextBox.Text;
+
+
+
+
+
+                MD5 md5 = MD5.Create();
+                byte[] valorC = md5.ComputeHash(Encoding.Default.GetBytes(PassT));
+                StringBuilder PassSb = new StringBuilder();
+
+                for (int i = 0; i < valorC.Length; i++) { PassSb.Append(valorC[i].ToString("x2")); }
+
+                string ConsultaSql = "select Nome,Admin from login where Email='" + UserT + "' and Pass='" + PassSb + "'";
+
+
+
+                if ((UserT != "") || (PassT != ""))
                 {
-                    MySqlCommand queryCmd = new MySqlCommand(ConsultaSql, Conn);
-                    Conn.Open();
-                    MySqlDataReader LeitorConsulta = queryCmd.ExecuteReader();
-                    if (LeitorConsulta.HasRows)
+                    try
                     {
-                        try {
-                            while (LeitorConsulta.Read())
-                            {  
+                        MySqlCommand queryCmd = new MySqlCommand(ConsultaSql, Conn);
+                        Conn.Open();
+                        MySqlDataReader LeitorConsulta = queryCmd.ExecuteReader();
+                        if (LeitorConsulta.HasRows)
+                        {
+                            try
+                            {
+                                while (LeitorConsulta.Read())
+                                {
                                     Adm = LeitorConsulta.GetInt16(1);
-                               
+
+                                }
                             }
-                        }
-                        catch(MySqlException ex)
-                        {
-                            Adm = 0;
-                        }
-                        if(Adm > 0)
-                        {
-                            NAQueryS = "";
+                            catch (MySqlException ex)
+                            {
+                                Adm = 0;
+                            }
+                            if (Adm > 0)
+                            {
+                                NAQueryS = "";
+                                NASQueryS = "";
+                            }
+                            else
+                            {
+                                NAQueryS = " where login.Email='" + UserT + "' ";
+                                NASQueryS = " where LoginEmail='" + UserT + "' ";
+                            }
+
+                            UserLogado = UserT;
+                            //Login f1 = new Login();
+                            Main f2 = new Main();
+                            this.Hide();
+                            f2.Show();
+
+
                         }
                         else
                         {
-                            NAQueryS = " where Email='" + UserT + "'";
+                            MessageBox.Show("User ou Pass errados!! Tente de novo...");
                         }
-                        
-                        UserLogado = UserT;
-                        //Login f1 = new Login();
-                        Main f2 = new Main();
-                        this.Hide();
-                        f2.Show();
-                       
-                          
                     }
-                    else
+                    catch (MySqlException MySqlEx)
                     {
-                        MessageBox.Show("User ou Pass errados!! Tente de novo...");
+
+                        MessageBox.Show(MySqlEx.Message);
+                    }
+                    finally
+                    {
+
+                        Conn.Close();
+
                     }
                 }
-                catch (MySqlException MySqlEx)
-                {
-                   
-                    MessageBox.Show(MySqlEx.Message);
-                }
-                finally
-                {
-                    
-                    Conn.Close();
-                    
-                }
+
+
             }
-            
-
-
-
+            else
+            {
+                MessageBox.Show("ERRO!! PREENCHA TODOS OS CAMPOS COM A INFORMAÇÃO CORRETA!!", "ERRO!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             
            
         }

@@ -28,7 +28,7 @@ namespace G.A.S.C.O
         {
             panel1.BackColor = Login.corMenu;
             CBoxTab.SelectedIndex = 0;
-
+            TabelaDataGrid.DefaultCellStyle.SelectionBackColor = Login.corMenu;
         }
 
         public void CBoxTab_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,7 +51,7 @@ namespace G.A.S.C.O
             Data1.ResetText();
             MesAnoV.ResetText();
 
-            string ConnectS = "data source= localhost; database= pap1; user id= root; pwd= ''";
+            string ConnectS = "data source= localhost; database= gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             string ConsultaSql = String.Empty;
 
@@ -303,8 +303,8 @@ namespace G.A.S.C.O
 
 
             bool aut = true;
-             
-            string consultaSql1 = "SELECT * FROM Cliente " + Login.NAQueryS;
+
+            string consultaSql1 = "SELECT * FROM Cliente ";
             string SDR ="";
             switch (CBoxTab.Text)
             {
@@ -320,28 +320,28 @@ namespace G.A.S.C.O
                     break;
 
                 case "Clientes":
-                    consultaSql1 = "SELECT DISTINCT Cliente.Cod_Cliente,Cliente.Nome, Cliente.Morada, Cliente.Localidade, Cliente.N_Contr FROM Cliente inner join login"+ Login.NAQueryS;
+                    consultaSql1 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
                     consultaSql = "insert into Cliente(Cod_Cliente, Nome, N_Contr, Morada, Localidade) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "'," + TBox3.Text + ",'" + TBox4.Text + "','"+TBox6.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "") aut = false;
                     break;
 
                 case "Lista de Peças":
-                    consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where LoginEmail='"+Login.UserLogado+"')";
+                    consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where Cod_Servico='"+ CBox1.Text + "'";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ CBox1.Text+"?";
                     consultaSql = "insert into Lista_de_pecas(Cod_Peca, Nome, Marca, Num_Serie, Preco, Cod_Servico, Desconto) VALUES(" + TBox1.Text + ",'" + TBox2.Text + "','" + TBox3.Text+ "','" + TBox6.Text + "','" + TBox4.Text + "','" + CBox1.Text + "', '"+ TBox5.Text+"')";
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
                     break;
 
                 case "Veículos":
-                    consultaSql1 = "SELECT DISTINCT Veiculo.Matricula, Veiculo.Marca, Veiculo.Modelo, Veiculo.Mes_Ano, Veiculo.Cilindrada, Veiculo.Cod_Cliente from veiculo inner join login"+ Login.NAQueryS;
+                    consultaSql1 = "SELECT * from veiculo";
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
                     consultaSql = "insert into veiculo(Marca, Modelo, Matricula, Cilindrada, Mes_Ano, Cod_Cliente) VALUES('" + TBox1.Text + "','" + TBox2.Text + "','" + TBox3.Text + "'," + TBox5.Text + ",'" + MesAnoV.Text + "'," + CBox1.Text + ")";
                     if (TBox2.Text == "" || TBox1.Text == ""|| TBox3.Text == "" || TBox5.Text =="" || CBox1.Text == "") aut = false;
                     break;
 
             }
-                    string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
+                    string ConnectS = "data source=localhost; database=gasco_ds; user id= GASCO_OP; pwd=''";
                     MySqlConnection Conn = new MySqlConnection(ConnectS);
 
             if (aut && aut1)

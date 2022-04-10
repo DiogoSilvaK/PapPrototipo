@@ -23,7 +23,7 @@ namespace G.A.S.C.O
         {
             
             panel1.BackColor = Login.corMenu;
-            string ConnectS = "data source=localhost; database=pap1; user id= root; pwd=''";
+            string ConnectS = "data source=localhost; database=gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
             string UserN = String.Empty;
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             
@@ -161,7 +161,8 @@ namespace G.A.S.C.O
 
             
 
-            string consultaSql = "SELECT Titulo, Cod_Servico,Data FROM servico where LoginEmail='"+Login.UserLogado+"'";
+            string consultaSql = "SELECT Titulo, Cod_Servico,Data FROM servico "+ Login.NASQueryS;
+
 
             MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
             

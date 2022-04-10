@@ -32,19 +32,19 @@ namespace G.A.S.C.O
         private void ImprimirForm_Load(object sender, EventArgs e)
         {
             panel1.BackColor = Login.corMenu;
-
+            TabelaDataGrid.DefaultCellStyle.SelectionBackColor = Login.corMenu;
             if (Login.corMenu == Color.Firebrick)
                 Graf.Palette = ChartColorPalette.Fire;
             else if (Login.corMenu == Color.Green)
                 Graf.Palette = ChartColorPalette.SeaGreen;
             else if (Login.corMenu == SystemColors.HotTrack)
-                Graf.Palette = ChartColorPalette.Berry;
-            string ConnectS = "data source= localhost; database=pap1; user id= root; pwd=''";
+                Graf.Palette = ChartColorPalette.Bright;
+            string ConnectS = "data source= localhost; database=gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
             TipoCBox.SelectedIndex = 0;
 
-            string consultaSql = "SELECT * FROM Servico";
+            string consultaSql = "SELECT * FROM Servico"+ Login.NASQueryS;
             CBoxReg.Items.Clear();
             try
             {
@@ -156,7 +156,7 @@ namespace G.A.S.C.O
             //documento.Add(new Paragraph(NomeEmp, textoFont) { Alignment = Element.ALIGN_LEFT, Leading = 10.0F, });
 
             //MessageBox.Show(PageSize.A4.Width + " " + PageSize.A4.Height);
-            string ConnectS = "data source= localhost; database= pap1; user id= root; pwd='';Allow User Variables=True";
+            string ConnectS = "data source= localhost; database= gasco_ds; user id= GASCO_OP; pwd='GascoDb1234';Allow User Variables=True";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
 
 
@@ -604,7 +604,7 @@ namespace G.A.S.C.O
 
                         Graf.Series["Servico"].IsValueShownAsLabel = true;
 
-                        Graf.Series["Servico"].Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif,Sans-Serif", 28, FontStyle.Regular);
+                        Graf.Series["Servico"].Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif,Sans-Serif", 12, FontStyle.Regular);
                       //  Graf.ChartAreas[0].AxisX.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif,Sans-Serif", 50, FontStyle.Regular);
                        // Graf.ChartAreas[0].AxisY.LabelStyle.Font = new System.Drawing.Font("Century Gothic, Microsoft Sans Serif, Sans-Serif", 50, FontStyle.Regular);
                         Graf.ChartAreas[0].AxisX.TitleForeColor = Color.Black;
@@ -619,20 +619,25 @@ namespace G.A.S.C.O
 
 
 
-                        double precoFinal = MOPT+precoTot;
+
+                    double precoFinal = MOPT+precoTot;
                         double VTPF = (double)(decimal.Round((decimal)((precoCDTot*100)/precoFinal), 2));
                         double VMOF = (double)(decimal.Round((decimal)((MOPT*100)/precoFinal), 2));
                         double VRCD = (double)(decimal.Round((decimal)((valorRD*100)/precoFinal),2));
 
-                        Graf.Series["Servico"].Points.AddXY("Valor total com desconto das Peças", VTPF);
-                        Graf.Series["Servico"].Points.AddXY("Valor da Mão de Obra", VMOF);
-                        Graf.Series["Servico"].Points.AddXY("Valor real do desconto", VRCD);
-                        
+                        Graf.Series["Servico"].Points.AddXY("Total com desconto das Peças", VTPF);
+                        Graf.Series["Servico"].Points.AddXY("Mão de Obra", VMOF);
+                        Graf.Series["Servico"].Points.AddXY("Sem Desconto", VRCD);
+
+                    foreach (DataPoint p in Graf.Series["Servico"].Points)
+                    {
+                        p.Label = "#PERCENT\n#VALX";
+                    }
 
 
-                        
 
-                        MemoryStream memoryStream = new MemoryStream();
+
+                    MemoryStream memoryStream = new MemoryStream();
                         Graf.SaveImage(memoryStream, ChartImageFormat.Png);
                         iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(memoryStream.GetBuffer());
                         img.Alignment = Element.ALIGN_CENTER;
@@ -663,11 +668,5 @@ namespace G.A.S.C.O
 
 
         }
-
-
-
-
-
-
     }
 }
