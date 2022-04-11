@@ -170,11 +170,11 @@
     <Compile Include="Procurar.Designer.cs">
       <DependentUpon>Procurar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro.cs">
+    <Compile Include="Registo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro.Designer.cs">
-      <DependentUpon>Registro.cs</DependentUpon>
+    <Compile Include="Registo.Designer.cs">
+      <DependentUpon>Registo.cs</DependentUpon>
     </Compile>
     <Compile Include="VisT.cs">
       <SubType>Form</SubType>
@@ -217,8 +217,8 @@
     <EmbeddedResource Include="Procurar.resx">
       <DependentUpon>Procurar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registro.resx">
-      <DependentUpon>Registro.cs</DependentUpon>
+    <EmbeddedResource Include="Registo.resx">
+      <DependentUpon>Registo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VisT.resx">
       <DependentUpon>VisT.cs</DependentUpon>

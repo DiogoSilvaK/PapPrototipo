@@ -1,6 +1,6 @@
 ﻿namespace G.A.S.C.O
 {
-    partial class Registro
+    partial class Registo
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.VoltarBut = new System.Windows.Forms.Button();
             this.NomeLabel = new System.Windows.Forms.Label();
             this.NomeTextBox = new System.Windows.Forms.TextBox();
-            this.RegistrarBut = new System.Windows.Forms.Button();
+            this.RegistarBut = new System.Windows.Forms.Button();
             this.PassLabel = new System.Windows.Forms.Label();
             this.PassTextBox = new System.Windows.Forms.TextBox();
             this.UserLabel = new System.Windows.Forms.Label();
@@ -87,7 +87,7 @@
             this.panel1.Controls.Add(this.VoltarBut);
             this.panel1.Controls.Add(this.NomeLabel);
             this.panel1.Controls.Add(this.NomeTextBox);
-            this.panel1.Controls.Add(this.RegistrarBut);
+            this.panel1.Controls.Add(this.RegistarBut);
             this.panel1.Controls.Add(this.PassLabel);
             this.panel1.Controls.Add(this.PassTextBox);
             this.panel1.Controls.Add(this.UserLabel);
@@ -168,26 +168,26 @@
             this.NomeTextBox.TabIndex = 8;
             this.NomeTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.NomeTextBox_Validating);
             // 
-            // RegistrarBut
+            // RegistarBut
             // 
-            this.RegistrarBut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.RegistrarBut.BackColor = System.Drawing.Color.DimGray;
-            this.RegistrarBut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RegistrarBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.RegistrarBut.FlatAppearance.BorderSize = 2;
-            this.RegistrarBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
-            this.RegistrarBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
-            this.RegistrarBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.RegistrarBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RegistrarBut.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegistrarBut.ForeColor = System.Drawing.Color.White;
-            this.RegistrarBut.Location = new System.Drawing.Point(194, 441);
-            this.RegistrarBut.Name = "RegistrarBut";
-            this.RegistrarBut.Size = new System.Drawing.Size(184, 31);
-            this.RegistrarBut.TabIndex = 6;
-            this.RegistrarBut.Text = "Registrar";
-            this.RegistrarBut.UseVisualStyleBackColor = false;
-            this.RegistrarBut.Click += new System.EventHandler(this.RegistrarBut_Click);
+            this.RegistarBut.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.RegistarBut.BackColor = System.Drawing.Color.DimGray;
+            this.RegistarBut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.RegistarBut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RegistarBut.FlatAppearance.BorderSize = 2;
+            this.RegistarBut.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGray;
+            this.RegistarBut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.RegistarBut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.RegistarBut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RegistarBut.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegistarBut.ForeColor = System.Drawing.Color.White;
+            this.RegistarBut.Location = new System.Drawing.Point(194, 441);
+            this.RegistarBut.Name = "RegistarBut";
+            this.RegistarBut.Size = new System.Drawing.Size(184, 31);
+            this.RegistarBut.TabIndex = 6;
+            this.RegistarBut.Text = "Registar";
+            this.RegistarBut.UseVisualStyleBackColor = false;
+            this.RegistarBut.Click += new System.EventHandler(this.RegistarBut_Click);
             // 
             // PassLabel
             // 
@@ -266,7 +266,7 @@
             // 
             this.errorProvider4.ContainerControl = this;
             // 
-            // Registro
+            // Registo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -276,10 +276,10 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LoginLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Registro";
-            this.Text = "Registro";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Registro_FormClosing);
-            this.Load += new System.EventHandler(this.Registro_Load);
+            this.Name = "Registo";
+            this.Text = "Registo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Registo_FormClosing);
+            this.Load += new System.EventHandler(this.Registo_Load);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UserPicBox)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -297,7 +297,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox UserPicBox;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button RegistrarBut;
+        private System.Windows.Forms.Button RegistarBut;
         private System.Windows.Forms.Label PassLabel;
         private System.Windows.Forms.TextBox PassTextBox;
         private System.Windows.Forms.Label UserLabel;

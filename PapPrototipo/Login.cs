@@ -174,7 +174,7 @@ namespace G.A.S.C.O
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Registro FormReg = new Registro();
+            Registo FormReg = new Registo();
             FormReg.Show();
             this.Hide();
         }
