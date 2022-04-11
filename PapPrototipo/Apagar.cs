@@ -117,7 +117,7 @@ namespace G.A.S.C.O
         private void CBoxTabela_SelectedIndexChanged(object sender, EventArgs e)
         {
             string consultaSql = "";
-            string ConnectS = "data source=localhost; database=gasco_ds; user id=GASCO_OP; pwd='GascoBDb1234'";
+            string ConnectS = "data source=localhost; database=gasco_ds; user id=GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
             DataSet DataTemp = new DataSet();
 

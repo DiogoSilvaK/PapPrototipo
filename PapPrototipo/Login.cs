@@ -31,6 +31,7 @@ namespace G.A.S.C.O
         
         public void Form1_Load(object sender, EventArgs e)
         {
+            
             try
             {
                // StreamReader leitorTxt = new StreamReader(@"colorconfig.ini");
@@ -64,7 +65,8 @@ namespace G.A.S.C.O
 
                 }
                 //leitorTxt.Close();
-                
+                Login L1 = (Login)Application.OpenForms["Login"];
+                L1.Icon = Login.icoMain;
             }
             catch (Exception ex)
             {

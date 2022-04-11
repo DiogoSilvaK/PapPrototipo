@@ -102,6 +102,8 @@ namespace G.A.S.C.O
         private void Registo_Load(object sender, EventArgs e)
         {
             panel1.BackColor = Login.corMenu;
+            Registo R1 = (Registo)Application.OpenForms["Registo"];
+            R1.Icon = Login.icoMain;
         }
 
         private void RegistarBut_Click(object sender, EventArgs e)

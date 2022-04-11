@@ -24,6 +24,8 @@ namespace G.A.S.C.O
         public void DefinForms_Load(object sender, EventArgs e)
         {
             panel1.BackColor = Login.corMenu;
+            DefinForms D1 = (DefinForms)Application.OpenForms["DefinForms"];
+            D1.Icon = Login.icoMain;
         }
 
         private void BackDBBut_Click(object sender, EventArgs e)
