@@ -230,7 +230,7 @@ namespace G.A.S.C.O
                 //Se for "Veículos"
                 case "Veículos":
                     CBox1.Items.Clear();
-                    ConsultaSql = "Select * from Cliente";
+                    ConsultaSql = "Select Cod_Cliente from Cliente";
                     MySqlCommand queryCmd2 = new MySqlCommand(ConsultaSql, Conn);
                     try
                     {
