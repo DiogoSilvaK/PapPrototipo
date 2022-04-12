@@ -15,6 +15,7 @@ namespace G.A.S.C.O
     
     public partial class FormInserir : Form
     {
+        //Definindo variaveis estáticas para serem usadas em todo o código
         static string consultaSql;
         static bool aut1 = true;
 
@@ -26,13 +27,19 @@ namespace G.A.S.C.O
 
         private void FormInserir_Load(object sender, EventArgs e)
         {
+            //Define a cor do painel principal do form, com a cor respetiva do tema, guardada na variavel "Login.corMenu"
             panel1.BackColor = Login.corMenu;
+
+            //Seleciona o indice 0 na ComboBox que define a tabela a ser inserida
             CBoxTab.SelectedIndex = 0;
+
+            //Define a cor da celula selecionada para a cor do tema
             TabelaDataGrid.DefaultCellStyle.SelectionBackColor = Login.corMenu;
         }
 
+        //Quando o indice da combobox da seleção de tabela muda
         public void CBoxTab_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        { //Limpa o que está nos erros e controles
             errorProvider1.Clear();
             errorProvider2.Clear();
             errorProvider3.Clear();
@@ -51,12 +58,17 @@ namespace G.A.S.C.O
             Data1.ResetText();
             MesAnoV.ResetText();
 
+            //Define a string que guarda as informações de conexão e cria uma conexão
             string ConnectS = "data source= localhost; database= gasco_ds; user id= GASCO_OP; pwd='GascoDb1234'";
             MySqlConnection Conn = new MySqlConnection(ConnectS);
+
+            //Define uma variavel para ser usada no "switch"
             string ConsultaSql = String.Empty;
 
+            //Vai analisar o texto no ComboBox da tabela, para depois selecionar quais controles e quais os textos nas TextBoxes dependendo de qual tabela selecionada
             switch (CBoxTab.Text)
             {
+                //Se for "Clientes"
                 case "Clientes":
                     labelIns1.Text = "Cod_Cliente:";
                     labelIns2.Text = "Nome:";
@@ -82,6 +94,8 @@ namespace G.A.S.C.O
                     MesAnoV.Visible = false;
                     RTBDescricao.Visible = false;
                 break;
+
+                //Se for "Lista de Peças"
                 case "Lista de Peças":
                     
       
@@ -149,6 +163,7 @@ namespace G.A.S.C.O
                     RTBDescricao.Visible = false;
 
                 break;
+                //Se for "Serviços"
                 case "Serviços":
                     CBox1.Items.Clear();
                     
@@ -212,6 +227,7 @@ namespace G.A.S.C.O
                     MesAnoV.Visible = false;
                     RTBDescricao.Visible = true;
                 break;
+                //Se for "Veículos"
                 case "Veículos":
                     CBox1.Items.Clear();
                     ConsultaSql = "Select * from Cliente";
@@ -285,8 +301,11 @@ namespace G.A.S.C.O
 
         }
 
+
+        //Quando o botão de inserir é pressionado
         private void InsButton_Click(object sender, EventArgs e)
         {
+            //Se os erros estiveram limpos, ele define uma boolean para verdadeira, e limpa os.
             if (errorProvider1.GetError(TBox1) == "" && errorProvider2.GetError(TBox2) == "" && errorProvider3.GetError(TBox3) == "" && errorProvider4.GetError(TBox4) == "" && errorProvider5.GetError(TBox5) == "" && errorProvider6.GetError(TBox6) == "")
             {
                 aut1 = true;
@@ -301,17 +320,19 @@ namespace G.A.S.C.O
             }
         
 
-
+            //define outra variavel booleana para verdadeiro
             bool aut = true;
 
-            string consultaSql1 = "SELECT * FROM Cliente ";
-            string SDR ="";
+            //Define a variavel que vai ter a consulta de pesquisa
+            string consultaSql1 = String.Empty;
+            //Define a variavel que vai ter a consulta de inserir
+            string SDR = String.Empty;
+
+            //Analisa o texto da combobox da seleção de tabela
             switch (CBoxTab.Text)
             {
 
-
-
-                //Caso ComboBox das tabelas tiver como opção "servicos"
+               //Se for "Serviços"
                 case "Serviços":
                     consultaSql1 = "SELECT * FROM servico where LoginEmail='"+Login.UserLogado+"'";
                     SDR = "Deseja inserir o serviço "+ TBox1.Text+" de nome '"+ TBox2.Text+"'?";
@@ -319,6 +340,7 @@ namespace G.A.S.C.O
                     if (TBox1.Text == ""|| TBox2.Text == ""|| RTBDescricao.Text == ""|| TBox4.Text == ""|| TBox5.Text == "")aut = false;
                     break;
 
+                //Se for "Clientes"
                 case "Clientes":
                     consultaSql1 = "SELECT * FROM Cliente";
                     SDR = "Deseja inserir o cliente "+TBox2.Text+" de nome "+ TBox2.Text +"?";
@@ -326,6 +348,7 @@ namespace G.A.S.C.O
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "") aut = false;
                     break;
 
+                //Se for "Lista de Peças"
                 case "Lista de Peças":
                     consultaSql1 = "SELECT * FROM Lista_de_pecas WHERE Cod_Servico in (SELECT Cod_Servico FROM Servico where Cod_Servico='"+ CBox1.Text + "'";
                     SDR = "Deseja inserir a peça "+TBox1.Text+" para o serviço "+ CBox1.Text+"?";
@@ -333,6 +356,7 @@ namespace G.A.S.C.O
                     if (TBox1.Text == "" || TBox2.Text == "" || TBox3.Text == "" || TBox4.Text == "" || TBox6.Text == "" || CBox1.Text == "") aut = false;
                     break;
 
+                //Se for "Veículos"
                 case "Veículos":
                     consultaSql1 = "SELECT * from veiculo";
                     SDR = "Deseja inserir o veiculo "+TBox1.Text+" "+TBox2.Text+ " de matricula "+TBox3.Text+"?";
@@ -341,6 +365,7 @@ namespace G.A.S.C.O
                     break;
 
             }
+                    //Define a string de conexão a base de dados
                     string ConnectS = "data source=localhost; database=gasco_ds; user id= GASCO_OP; pwd=''";
                     MySqlConnection Conn = new MySqlConnection(ConnectS);
 
