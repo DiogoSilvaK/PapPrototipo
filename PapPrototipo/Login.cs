@@ -29,17 +29,19 @@ namespace G.A.S.C.O
 
             }
         
+
+        //Executa ao iniciar a aplicação
         public void Form1_Load(object sender, EventArgs e)
         {
-            
+            //Vai fazer uma tentativa de executar o bloco de código a seguir
             try
             {
-               // StreamReader leitorTxt = new StreamReader(@"colorconfig.ini");
+           
                 string corSF = "Color = " + Color.Firebrick;
                 string corSB = "Color = " + SystemColors.HotTrack;
                 string corSG = "Color = " + Color.Green;
                 
-                //ERRO AQUI
+            
                 string[] arquivo = File.ReadAllLines(@"colorconfig.ini");
                 if (arquivo[0] == (corSF))
                 {
@@ -52,7 +54,7 @@ namespace G.A.S.C.O
                 {
                     panel1.BackColor = SystemColors.HotTrack;
                     corMenu = SystemColors.HotTrack;
-                    //leitorTxt.Close();
+                  
                     logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2Azul;
                     icoMain = G.A.S.C.O.Properties.Resources.TASKBARICONAzul;
                 }
@@ -64,7 +66,7 @@ namespace G.A.S.C.O
                     icoMain = G.A.S.C.O.Properties.Resources.TASKBARICONGreenGasco;
 
                 }
-                //leitorTxt.Close();
+             
                 Login L1 = (Login)Application.OpenForms["Login"];
                 L1.Icon = Login.icoMain;
             }
@@ -73,7 +75,6 @@ namespace G.A.S.C.O
                 string erro = ex.Message;
                 StreamWriter gravErro = new StreamWriter(@"colorconfig.ini");
                 gravErro.WriteLine("Color = " + SystemColors.HotTrack);
-                //MessageBox.Show(ex.Message);
                 logotipoMain = G.A.S.C.O.Properties.Resources.LogoAMMv2Azul;
                 corMenu = SystemColors.HotTrack;
                 gravErro.Close();

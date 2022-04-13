@@ -368,32 +368,42 @@ namespace G.A.S.C.O
                     //Define a string de conexão a base de dados
                     string ConnectS = "data source=localhost; database=gasco_ds; user id= GASCO_OP; pwd=''";
                     MySqlConnection Conn = new MySqlConnection(ConnectS);
-
+            //Verifica se aquelas mesmas variavéis booleanas são verdadeiras
             if (aut && aut1)
             {
+
+                //Gera uma MessageBox de aviso
                 DialogResult DR = MessageBox.Show(SDR, "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                //Faz uma tentativa de executar o bloco de código a seguir
                 try
                 {
+                    //Gera um comando MySql
                     MySqlCommand queryCmd = new MySqlCommand(consultaSql, Conn);
 
+                    //Abre uma conexão
                     Conn.Open();
 
-
+                    //Verifica se a pessoa aceitou o MessageBox
                     if (DR == DialogResult.Yes)
                     {
+
+                        //Executa o comando MySql
                         queryCmd.ExecuteNonQuery();
 
-
+                        ///Cria um Adapator de dados MySql com uma consulta
                         MySqlDataAdapter DataAdapter = new MySqlDataAdapter(consultaSql1, Conn);
+
+                        //Cria um armazenador de dados temporário
                         DataSet DataTemp = new DataSet();
 
-
-                        //DataAdapter = new MySqlDataAdapter(query2, Conn);
-                        //DataTemp = new DataSet("tabela");
+                        //Enche o armazenador com os dados do adaptador
                         DataAdapter.Fill(DataTemp, "tabela");
+
+                        //Preenche o controle "TabelaDataGrid" com as informações obtidas
                         TabelaDataGrid.DataSource = DataTemp.Tables["tabela"];
 
-
+                        //Este bloco a seguir é responsavel por ajustar o tamanho das colunas da tabela
                         TabelaDataGrid.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                         TabelaDataGrid.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                         TabelaDataGrid.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -409,39 +419,44 @@ namespace G.A.S.C.O
 
                             TabelaDataGrid.Columns[i].Width = colw;
                         }
+
+                        //----------------------------------------------------------------------------------------------//
                     }
 
 
                 }
+                //Se houver um erro
                 catch (MySqlException ex)
                 {
+                    //Mostra a mensagem de erro
                     MessageBox.Show(ex.Message);
                 }
+                //Finalmente
                 finally
                 {
-                    
-
-
-
+                    //Fecha a conexão
                     Conn.Close();
                 }
                 aut = true;
             } 
+            //Se alguma das variaveis booleanas estiver falsa
             else 
             {
+                //Mostra uma mensagem de erro
                 MessageBox.Show("PREENCHA TODOS OS CAMPOS OU VERIFIQUE SE TODOS ESTÃO BEM PREENCHIDOS!!","AVISO!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 aut1 = true;
             }
         }
 
 
-
+        //Sempre que for selecionado uma celula da Tabela
         private void TabelaDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-
+            //Analisa o texto da combobox da seleção de tabela
             switch (CBoxTab.Text)
             {
+                //Se for "Serviços"
                 case "Serviços":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
@@ -457,6 +472,7 @@ namespace G.A.S.C.O
                         }
                     }
                     break;
+                //Se for "Clientes"
                 case "Clientes":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
@@ -469,6 +485,7 @@ namespace G.A.S.C.O
                         }
                     }
                     break;
+                //Se for "Lista de Peças"
                 case "Lista de Peças":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
@@ -483,7 +500,8 @@ namespace G.A.S.C.O
                         }
                     }
                     break;
-                case "Veiculos":
+                //Se for "Veiculos
+                case "Veículos":
                     if (TabelaDataGrid.SelectedCells.ToString() != "")
                     {
                         if (e.RowIndex >= 0)
@@ -500,6 +518,7 @@ namespace G.A.S.C.O
 
         }
 
+        //Validação da TextBox1
         private void TBox1_Validating(object sender, CancelEventArgs e)
         {
             switch(CBoxTab.Text)
@@ -560,6 +579,7 @@ namespace G.A.S.C.O
             }
         }
 
+        //Validação da TextBox2
         private void TBox2_Validating(object sender, CancelEventArgs e)
         {
             switch(CBoxTab.Text)
@@ -621,7 +641,7 @@ namespace G.A.S.C.O
         }
 
 
-
+        //Validação da TextBox3
         private void TBox3_Validating(object sender, CancelEventArgs e)
         {
             switch(CBoxTab.Text)
@@ -652,8 +672,6 @@ namespace G.A.S.C.O
                     if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider5.GetError(TBox5) != "")
                         aut1 = false;
                     break;
-                case "Serviços":
-                    break;
                 case "Veículos":
                     Regex MatriculaCheck = new Regex(@"^(([A-Z]{2}-\d{2}-(\d{2}|[A-Z]{2}))|(\d{2}-(\d{2}-[A-Z]{2}|[A-Z]{2}-\d{2})))$");
                     if (!MatriculaCheck.IsMatch(TBox3.Text))
@@ -670,6 +688,8 @@ namespace G.A.S.C.O
             }
         }
 
+
+        //Validação da TextBox4
         private void TBox4_Validating(object sender, CancelEventArgs e)
         {
             switch(CBoxTab.Text)
@@ -700,10 +720,6 @@ namespace G.A.S.C.O
                     if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider5.GetError(TBox5) != "")
                         aut1 = false;
                     break;
-                    
-                case "Serviços":
-
-                    break;
                 case "Veículos":
                     Regex HorasCheck = new Regex(@"^[0-9]{1,3}$");
                     if (!HorasCheck.IsMatch(TBox4.Text))
@@ -720,12 +736,11 @@ namespace G.A.S.C.O
             }
         }
 
+        //Validação da TextBox5
         private void TBox5_Validating(object sender, CancelEventArgs e)
         {
             switch(CBoxTab.Text)
             {
-                case "Clientes":
-                    break;
                 case "Lista de Peças":
                     Regex DescontoCheck = new Regex(@"^[0-9]{1,3}$");
                     if(!DescontoCheck.IsMatch(TBox5.Text) || TBox5.Text.Length > 3)
@@ -736,8 +751,6 @@ namespace G.A.S.C.O
                     {
                         errorProvider5.SetError(TBox5, "");
                     }
-                    break;
-                case "Serviços":
                     break;
                 case "Veículos":
                     Regex CilindradaCheck = new Regex(@"^[0-9]{2,4}$");
@@ -755,6 +768,7 @@ namespace G.A.S.C.O
             }
         }
 
+        //Validação da TextBox6
         private void TBox6_Validating(object sender, CancelEventArgs e)
         {
             switch(CBoxTab.Text)
@@ -771,13 +785,6 @@ namespace G.A.S.C.O
                     }
                     if (errorProvider1.GetError(TBox1) != "" || errorProvider2.GetError(TBox2) != "" || errorProvider3.GetError(TBox3) != "" || errorProvider4.GetError(TBox4) != "" || errorProvider6.GetError(TBox6) != "")
                         aut1 = false;
-                    break;
-                case "Lista de peças":
-                    
-                    break;
-                case "Serviços":
-                    break;
-                case "Veículos":
                     break;
 
             }
