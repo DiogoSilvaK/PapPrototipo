@@ -15,8 +15,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
 using System.IO;
-//using Spire.Pdf;
-using RawPrint;
+
 namespace G.A.S.C.O
 {
     public partial class ImprimirForm : Form
@@ -220,26 +219,25 @@ namespace G.A.S.C.O
                 {
                     cabeclogo = G.A.S.C.O.Properties.Resources.CabecalhoPDFAzul;
                     img = iTextSharp.text.Image.GetInstance(cabeclogo, System.Drawing.Imaging.ImageFormat.Png);
-                    // img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFAzul.png");
+                    
                 }
                 if (panel1.BackColor == Color.Firebrick)
                 {
                     cabeclogo = G.A.S.C.O.Properties.Resources.CabecalhoPDFFirebrick;
                     img = iTextSharp.text.Image.GetInstance(cabeclogo, System.Drawing.Imaging.ImageFormat.Png);
-                    //img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFFirebrick.png");
+                    
                 }
                 if (panel1.BackColor == Color.Green)
                 {
                     cabeclogo = G.A.S.C.O.Properties.Resources.CabecalhoPDFGreenGasco;
                     img = iTextSharp.text.Image.GetInstance(cabeclogo, System.Drawing.Imaging.ImageFormat.Png);
-                    //img = iTextSharp.text.Image.GetInstance("../../Resources/CabecalhoPDFGreenGasco.png");
+                    
                 }
                 img.ScalePercent(35, 35);
                 img.Alignment = Element.ALIGN_CENTER;
 
                 PdfPCell Cellimg = new PdfPCell(img);
-                //Cellimg.Rowspan = 2;
-                //PdfPCell Cellimg = new PdfPCell(new Phrase("LOGOTIPO AQUI!!", textoFont));
+                
                 Cellimg.Border = 0;
                 Cellimg.Padding = 20;
 
@@ -595,7 +593,7 @@ namespace G.A.S.C.O
                        
 
                        
-                       // double precoTot = 0.0;
+                    
                         
 
                         Graf.Series.Clear();Graf.Series.Add("Servico");
@@ -646,7 +644,7 @@ namespace G.A.S.C.O
 
                 
                         documento.Close();
-                        //System.Diagnostics.Process.Start(NomePDF);
+                        
 
 
                     break;

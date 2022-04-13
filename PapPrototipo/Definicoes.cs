@@ -87,7 +87,6 @@ namespace G.A.S.C.O
             AbrirRestauroDialog.Title = "Abrir o restauro";
             AbrirRestauroDialog.FileName = "BackupBDPAP.sql";
 
-            //AbrirRestauroDialog.ShowDialog();
             
 
             MySqlConnection Conn = new MySqlConnection(ConnectS);
